@@ -1,0 +1,7 @@
+{
+"name": "MPDS API",
+"version": "0.0.2",
+"description": "Web-based platform, presenting all the data of the Linus Pauling File materials database.",
+"title": "MPDS Online Platform API",
+"url": "https://api.mpds.io/v0"
+}
