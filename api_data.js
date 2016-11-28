@@ -74,7 +74,7 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Example of q parameter:",
+          "title": "Example of parameter q:",
           "content": "{\"elements\":\"Es-Fm-Md\",\"classes\":\"perovskite,conductor,\",\"sgs\":\"Pm-3m\"}",
           "type": "json"
         }
@@ -88,7 +88,7 @@ define({ "api": [
             "type": "json",
             "optional": false,
             "field": "Response",
-            "description": "<p>in <strong>json</strong> format, containing the following properties: out (list i.e. array of S-entries), npages (number of pages in the selected or default pagination), count (total number of hits), and error (should be none).</p>"
+            "description": "<p>in <strong>json</strong> format, containing the following properties: <strong>out</strong> (list i.e. array of S-entries), <strong>npages</strong> (number of pages in the selected or default pagination), <strong>count</strong> (total number of hits), and <strong>error</strong> (should be none).</p>"
           }
         ]
       },
@@ -113,18 +113,20 @@ define({ "api": [
             "type": "json",
             "optional": false,
             "field": "Response",
-            "description": "<p>with an error property.</p>"
+            "description": "<p>with an <strong>error</strong> property.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "string",
+            "optional": false,
+            "field": "Responses",
+            "description": "<p>with the status codes <em>400</em> (wrong parameters) or <em>403</em> (forbidden) may have no JSON body. Generally, checking the response status code should be always done first.</p>"
           }
         ]
       }
     },
-    "sampleRequest": [
-      {
-        "url": "https://api.mpds.io/v0/download/facet?q={\"formulae\":\"SrTiO3\"}&fmt=cif&pagesize=100&page=2"
-      }
-    ],
     "version": "0.0.0",
-    "filename": "../codebase/api/app_download/__init__.py",
+    "filename": "codebase/api/app_download/__init__.py",
     "groupTitle": "Download"
   }
 ] });
