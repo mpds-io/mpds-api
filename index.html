@@ -8,6 +8,7 @@
   <link href="vendor/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="vendor/prettify.css" rel="stylesheet" media="screen">
   <link href="css/style.css" rel="stylesheet" media="screen, print">
+  <link href="css/docson.css" rel="stylesheet">
   <link href="img/favicon.ico" rel="icon" type="image/x-icon">
   <script src="vendor/polyfill.js"></script>
 </head>
@@ -31,6 +32,9 @@
       {{/if}}
     {{/if}}
   {{/each}}
+
+    <li class="nav-header"><a href="#s_json_schema">JSON response</a></li>
+
   </ul>
 </nav>
 </script>
@@ -633,7 +637,12 @@
       <div id="project"></div>
       <div id="header"></div>
       <div id="sections"></div>
-      <div id="footer"></div>
+      <div id="footer">
+
+        <div id="s_json_schema">
+        </div>
+
+      </div>
       <div id="generator"></div>
     </div>
   </div>

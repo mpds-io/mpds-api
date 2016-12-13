@@ -1,0 +1,125 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema#",
+    "description": "MPDS.IO API S-entries schema describes JSON format used for the crystalline structures.",
+    "type": "object",
+    "properties": {
+        "sg_n": {
+            "description": "Space group number",
+            "type": "number",
+            "required": true,
+            "minimum": 1,
+            "maximum": 230
+        },
+        "sg_hm": {
+            "description": "International or Hermann-Mauguin notation of the space group",
+            "type": "string",
+            "required": true
+        },
+        "cell_abc": {
+            "description": "Crystalline cell as _a_, _b_, _c_, _alpha_, _beta_, _gamma_, in angstroms and degrees",
+            "type": "array",
+            "required": true,
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 200
+            }
+        },
+        "basis_noneq": {
+            "description": "Fractional atomic coordinates",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3
+            }
+        },
+        "symops": {
+            "description": "Symmetry operations for CIF, according to [IUCR](http://www.iucr.org/__data/iucr/cifdic_html/1/cif_core.dic/Ispace_group_symop_operation_xyz.html)",
+            "type": "array",
+            "required": true,
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "setting": {
+            "description": "Crystalline cell setting, in the most cases the standard setting is adopted",
+            "type": "string",
+            "required": false,
+            "enum": ["2", "hex"]
+        },
+        "els_noneq": {
+            "description": "Chemical elements",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "string"
+            }
+        },
+        "labels_noneq": {
+            "description": "Non-equivalent atomic labels, may contain important information, such as hydroxyl label",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "occs_noneq": {
+            "description": "Non-equivalent atomic site occupancies, according to [IUCR](http://www.iucr.org/__data/iucr/cifdic_html/1/cif_core.dic/Iatom_site_occupancy.html)",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "number",
+                "minimum": 0.005,
+                "maximum": 1.1
+            }
+        },
+        "mendeleev_nums": {
+            "description": "Mendeleev numbers for chemical elements in the crystalline structure",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 120
+            }
+        },
+        "linus_pauling_nums": {
+            "description": "Legacy information",
+            "type": "array",
+            "required": true,
+            "minItems": 0,
+            "items": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 240
+            }
+        },
+        "entry": {
+            "description": "Internal LPF and MPDS.IO identifier",
+            "type": "string",
+            "required": true
+        },
+        "version": {
+            "description": "MPDS.IO API version",
+            "type": "string",
+            "required": true,
+            "enum": ["0.0.2", "0.0.3", "0.0.4", "0.1.0"]
+        },
+        "object_repr": {
+            "description": "Legacy information",
+            "type": "string",
+            "required": true
+        }
+    }
+}

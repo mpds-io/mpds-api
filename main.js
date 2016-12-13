@@ -11,7 +11,8 @@ require.config({
         prettify: './vendor/prettify/prettify',
         semver: './vendor/semver.min',
         utilsSampleRequest: './utils/send_sample_request',
-        webfontloader: './vendor/webfontloader'
+        webfontloader: './vendor/webfontloader',
+        docson: './vendor/docson'
     },
     shim: {
         bootstrap: {
@@ -46,9 +47,10 @@ require([
     'utilsSampleRequest',
     'semver',
     'webfontloader',
+    'docson',
     'bootstrap',
-    'pathToRegexp'
-], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, semver, WebFont) {
+    'pathToRegexp',
+], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, semver, WebFont, docson) {
 
     // load google web fonts
     loadGoogleFontCss();
@@ -472,6 +474,17 @@ require([
             $('html,body').animate({ scrollTop: parseInt($(id).offset().top) - 18 }, 0);
         }
     }
+
+    $.get('/s.schema.json').done(function(schema){
+        try {
+            docson.doc("s_json_schema", schema);
+            $('#footer').prepend('<h1>JSON Schema</h1>');
+        } catch (e) {
+            alert("Could not parse JSON schema!");
+        }
+    }).fail(function (xhr, status, err) {
+        alert("Could not load JSON schema");
+    });
 
     /**
      * Change version of an article to compare it to an other version.
