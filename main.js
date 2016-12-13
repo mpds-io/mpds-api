@@ -475,17 +475,6 @@ require([
         }
     }
 
-    $.get('/s.schema.json').done(function(schema){
-        try {
-            docson.doc("s_json_schema", schema);
-            $('#footer').prepend('<h1>JSON Schema</h1>');
-        } catch (e) {
-            alert("Could not parse JSON schema!");
-        }
-    }).fail(function (xhr, status, err) {
-        alert("Could not load JSON schema");
-    });
-
     /**
      * Change version of an article to compare it to an other version.
      */
@@ -755,5 +744,18 @@ require([
         });
         return results;
     }
+
+    setTimeout(function(){
+        $.get('/s.schema.json').done(function(schema){
+            try {
+                docson.doc("s_json_schema", schema);
+                $('#footer').prepend('<h1>JSON Schema</h1>');
+            } catch (e) {
+                alert("Could not parse JSON schema!");
+            }
+        }).fail(function (xhr, status, err) {
+            alert("Could not load JSON schema");
+        });
+    }, 0);
 
 });
