@@ -3,7 +3,7 @@
     "type": "get",
     "url": "/download/facet",
     "title": "download-facet",
-    "description": "<p>Download the data satisfying the given aspect or a combination of aspects. Only the data of the same kind (e.g. crystalline structures or physical properties) can be requested; mixing of different data kinds in the response is not supported.</p>",
+    "description": "<p>Download the data satisfying the given aspect or a combination of aspects. Only the data of the same kind (<em>e.g.</em> crystalline structures or physical properties) can be requested; mixing of different data kinds in the response is not supported.</p>",
     "name": "Download_Facet",
     "group": "Download",
     "header": {
@@ -20,8 +20,8 @@
       },
       "examples": [
         {
-          "title": "Example:",
-          "content": "\"Key:a_long_and_secret_string\"",
+          "title": "Example for curl:",
+          "content": "curl -X GET -H \"Key:a_long_and_secret_string\" https://api.mpds.io/v0/download/facet",
           "type": "String"
         }
       ]
@@ -34,7 +34,7 @@
             "type": "json",
             "optional": false,
             "field": "q",
-            "description": "<p>A serialized JSON object containing any reasonable combination of 8 search aspects: <strong>physical properties</strong>, <strong>chemical elements</strong>, <strong>materials classes</strong>, <strong>crystal system</strong>, <strong>chemical formula</strong>, <strong>publication author</strong>, <strong>prototype system</strong>, <strong>space group</strong>. They are defined with the object properties <strong>props</strong>, <strong>elements</strong>, <strong>classes</strong>, <strong>lattices</strong>, <strong>formulae</strong>, <strong>authors</strong>, <strong>protos</strong> and <strong>sgs</strong>, correspondingly. An object property <strong>props</strong> is compulsory (in contrast to others), since it determines the kind of the desired data (e.g. crystalline structures or physical properties).</p>"
+            "description": "<p>A serialized JSON object containing any reasonable combination of 8 search aspects: <strong>physical properties</strong>, <strong>chemical elements</strong>, <strong>materials classes</strong>, <strong>crystal system</strong>, <strong>chemical formula</strong>, <strong>publication author</strong>, <strong>prototype system</strong>, <strong>space group</strong>. They are defined with the object properties <strong>props</strong>, <strong>elements</strong>, <strong>classes</strong>, <strong>lattices</strong>, <strong>formulae</strong>, <strong>authors</strong>, <strong>protos</strong> and <strong>sgs</strong>, correspondingly. An object property <strong>props</strong> is compulsory (in contrast to others), since it determines the kind of the desired data (<em>e.g.</em> crystalline structures or physical properties).</p>"
           },
           {
             "group": "Parameter",
@@ -74,12 +74,12 @@
       },
       "examples": [
         {
-          "title": "Example of parameter **q** for the retrieval of crystalline structures:",
+          "title": "Example of **q** (crystalline structures):",
           "content": "{\"elements\":\"Sr-Ti-O\",\"classes\":\"perovskite, conductor\",\"sgs\":\"Pm-3m\",\"props\":\"structural properties\"}",
           "type": "json"
         },
         {
-          "title": "Example of parameter **q** for the retrieval of some physical properties:",
+          "title": "Example of **q** (physical properties):",
           "content": "{\"elements\":\"Zr\",\"classes\":\"oxide\",\"props\":\"thermal expansion\"}",
           "type": "json"
         }
@@ -93,19 +93,19 @@
             "type": "json",
             "optional": false,
             "field": "Response",
-            "description": "<p>in <strong>json</strong> format, containing the following properties: <strong>out</strong> (list i.e. array of entries), <strong>npages</strong> (number of pages in the selected or default pagination), <strong>count</strong> (total number of hits), and <strong>error</strong> (should be none).</p>"
+            "description": "<p>in <strong>json</strong> format, containing the following properties: <strong>out</strong> (list i.e. array of entries), <strong>npages</strong> (number of pages in the selected or default pagination), <strong>page</strong> (current page number), <strong>count</strong> (total number of hits), and <strong>error</strong> (should be none).</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Successful response with two entries:",
-          "content": "{\"error\": null, \"out\":[{\"entry_one_properties\":\"entry_one_values\"}, {\"entry_two_properties\":\"entry_two_values\"}], \"npages\": 1, \"count\": 2}",
+          "content": "{\"error\": null, \"out\":[{\"entry_one_properties\":\"entry_one_values\"}, {\"entry_two_properties\":\"entry_two_values\"}], \"npages\": 1, \"page\": 0, \"count\": 2}",
           "type": "json"
         },
         {
           "title": "Successful response (nothing found):",
-          "content": "{\"error\": null, \"out\":[], \"npages\": 0, \"count\": 0}",
+          "content": "{\"error\": null, \"out\":[], \"npages\": 0, \"count\": 0, \"page\": 0}",
           "type": "json"
         }
       ]

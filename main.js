@@ -11,8 +11,7 @@ require.config({
         prettify: './vendor/prettify/prettify',
         semver: './vendor/semver.min',
         utilsSampleRequest: './utils/send_sample_request',
-        webfontloader: './vendor/webfontloader',
-        docson: './vendor/docson'
+        webfontloader: './vendor/webfontloader'
     },
     shim: {
         bootstrap: {
@@ -47,10 +46,9 @@ require([
     'utilsSampleRequest',
     'semver',
     'webfontloader',
-    'docson',
     'bootstrap',
     'pathToRegexp',
-], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, semver, WebFont, docson) {
+], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, semver, WebFont) {
 
     // load google web fonts
     loadGoogleFontCss();
@@ -744,18 +742,4 @@ require([
         });
         return results;
     }
-
-    setTimeout(function(){
-        $.get('/s.schema.json').done(function(schema){
-            try {
-                docson.doc("s_json_schema", schema);
-                $('#footer').prepend('<h1>JSON Schema</h1>');
-            } catch (e) {
-                alert("Could not parse JSON schema!");
-            }
-        }).fail(function (xhr, status, err) {
-            alert("Could not load JSON schema");
-        });
-    }, 0);
-
 });
