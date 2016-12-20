@@ -72,14 +72,7 @@
                                     "name": {"required": true},
                                     "category": {"required": true},
                                     "domain": {"required": true}
-                                },
-                                "oneOf": [
-                                    {"required": ["textual"]},
-                                    {"required": ["scalar"]},
-                                    {"required": ["vector"]},
-                                    {"required": ["matrix"]},
-                                    {"required": ["tensor"]}
-                                ]
+                                }
                             },
                             "condition": {
                                 "description": "MIF's details of the external conditions (if available) applied during a measurement",
@@ -93,11 +86,7 @@
                                         "scalar": {},
                                         "range": {},
                                         "name": {"required": true}
-                                    },
-                                    "oneOf": [
-                                        {"required": ["scalar"]},
-                                        {"required": ["range"]}
-                                    ]
+                                    }
                                 }
                             }
                         }

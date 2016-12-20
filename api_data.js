@@ -74,12 +74,12 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "Example of **q** (crystalline structures):",
+          "title": "Example of q (crystalline structures):",
           "content": "{\"elements\":\"Sr-Ti-O\",\"classes\":\"perovskite, conductor\",\"sgs\":\"Pm-3m\",\"props\":\"structural properties\"}",
           "type": "json"
         },
         {
-          "title": "Example of **q** (physical properties):",
+          "title": "Example of q (physical properties):",
           "content": "{\"elements\":\"Zr\",\"classes\":\"oxide\",\"props\":\"thermal expansion\"}",
           "type": "json"
         }
