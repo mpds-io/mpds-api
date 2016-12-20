@@ -1,8 +1,16 @@
 {
     "$schema": "http://json-schema.org/draft-03/schema#",
-    "description": "MPDS.IO API S-entries schema describes JSON format used for the crystalline structures.",
+    "description": "MPDS.IO S-entries schema describes JSON format used in API for the crystalline structures",
+    "version": "0.0.3",
     "type": "object",
     "properties": {
+        "phase_id": {
+            "description": "Unique material phase identifier (according to LPF distinct phases concept)",
+            "type": "number",
+            "required": true,
+            "minimum": 1,
+            "maximum": 200000
+        },
         "sg_n": {
             "description": "Space group number",
             "type": "number",
@@ -28,7 +36,7 @@
             }
         },
         "basis_noneq": {
-            "description": "Fractional atomic coordinates",
+            "description": "Non-equivalent fractional atomic coordinates",
             "type": "array",
             "required": true,
             "minItems": 0,
@@ -54,12 +62,13 @@
             "enum": ["2", "hex"]
         },
         "els_noneq": {
-            "description": "Chemical elements",
+            "description": "Valid chemical elements",
             "type": "array",
             "required": true,
             "minItems": 0,
             "items": {
-                "type": "string"
+                "type": "string",
+                "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
             }
         },
         "labels_noneq": {
@@ -80,10 +89,10 @@
             "items": {
                 "type": "number",
                 "minimum": 0.005,
-                "maximum": 1.1
+                "maximum": 1.0
             }
         },
-        "mendeleev_nums": {
+        "mendeleev_nums_noneq": {
             "description": "Mendeleev numbers for chemical elements in the crystalline structure",
             "type": "array",
             "required": true,
@@ -91,19 +100,14 @@
             "items": {
                 "type": "number",
                 "minimum": 1,
-                "maximum": 120
+                "maximum": 236
             }
         },
-        "linus_pauling_nums": {
+        "linus_pauling_nums_noneq": {
             "description": "Legacy information",
             "type": "array",
             "required": true,
-            "minItems": 0,
-            "items": {
-                "type": "number",
-                "minimum": 1,
-                "maximum": 240
-            }
+            "minItems": 0
         },
         "entry": {
             "description": "Internal LPF and MPDS.IO identifier",
@@ -114,7 +118,7 @@
             "description": "MPDS.IO API version",
             "type": "string",
             "required": true,
-            "enum": ["0.0.2", "0.0.3", "0.0.4", "0.1.0"]
+            "enum": ["0.0.3"]
         },
         "object_repr": {
             "description": "Legacy information",

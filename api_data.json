@@ -3,7 +3,7 @@
     "type": "get",
     "url": "/download/facet",
     "title": "download-facet",
-    "description": "<p>Download the data satisfying the given aspect or a combination of aspects. Currently, only crystalline structures (S-entries) are supported.</p>",
+    "description": "<p>Download the data satisfying the given aspect or a combination of aspects. Only the data of the same kind (e.g. crystalline structures or physical properties) can be requested; mixing of different data kinds in the response is not supported.</p>",
     "name": "Download_Facet",
     "group": "Download",
     "header": {
@@ -34,7 +34,7 @@
             "type": "json",
             "optional": false,
             "field": "q",
-            "description": "<p>A serialized JSON object containing any reasonable combination of 8 search aspects: <strong>physical properties</strong>, <strong>chemical elements</strong>, <strong>materials classes</strong>, <strong>crystal system</strong>, <strong>chemical formula</strong>, <strong>publication author</strong>, <strong>prototype system</strong>, <strong>space group</strong>. They are defined with the object properties <strong>props</strong>, <strong>elements</strong>, <strong>classes</strong>, <strong>lattices</strong>, <strong>formulae</strong>, <strong>authors</strong>, <strong>protos</strong> and <strong>sgs</strong>, correspondingly.</p>"
+            "description": "<p>A serialized JSON object containing any reasonable combination of 8 search aspects: <strong>physical properties</strong>, <strong>chemical elements</strong>, <strong>materials classes</strong>, <strong>crystal system</strong>, <strong>chemical formula</strong>, <strong>publication author</strong>, <strong>prototype system</strong>, <strong>space group</strong>. They are defined with the object properties <strong>props</strong>, <strong>elements</strong>, <strong>classes</strong>, <strong>lattices</strong>, <strong>formulae</strong>, <strong>authors</strong>, <strong>protos</strong> and <strong>sgs</strong>, correspondingly. An object property <strong>props</strong> is compulsory (in contrast to others), since it determines the kind of the desired data (e.g. crystalline structures or physical properties).</p>"
           },
           {
             "group": "Parameter",
@@ -68,14 +68,19 @@
             "optional": false,
             "field": "fmt",
             "defaultValue": "json",
-            "description": "<p>Output data format.</p>"
+            "description": "<p>Output data format (<strong>cif</strong> is only valid for structural properties i.e. S-entries).</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Example of parameter q:",
-          "content": "{\"elements\":\"Es-Fm-Md\",\"classes\":\"perovskite,conductor,\",\"sgs\":\"Pm-3m\"}",
+          "title": "Example of parameter **q** for the retrieval of crystalline structures:",
+          "content": "{\"elements\":\"Sr-Ti-O\",\"classes\":\"perovskite, conductor\",\"sgs\":\"Pm-3m\",\"props\":\"structural properties\"}",
+          "type": "json"
+        },
+        {
+          "title": "Example of parameter **q** for the retrieval of some physical properties:",
+          "content": "{\"elements\":\"Zr\",\"classes\":\"oxide\",\"props\":\"thermal expansion\"}",
           "type": "json"
         }
       ]
@@ -88,14 +93,14 @@
             "type": "json",
             "optional": false,
             "field": "Response",
-            "description": "<p>in <strong>json</strong> format, containing the following properties: <strong>out</strong> (list i.e. array of S-entries), <strong>npages</strong> (number of pages in the selected or default pagination), <strong>count</strong> (total number of hits), and <strong>error</strong> (should be none).</p>"
+            "description": "<p>in <strong>json</strong> format, containing the following properties: <strong>out</strong> (list i.e. array of entries), <strong>npages</strong> (number of pages in the selected or default pagination), <strong>count</strong> (total number of hits), and <strong>error</strong> (should be none).</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Successful response with two S-entries:",
-          "content": "{\"error\": null, \"out\":[{\"S_entry_one_properties\":\"S_entry_one_values\"}, {\"S_entry_two_properties\":\"S_entry_two_values\"}], \"npages\": 1, \"count\": 2}",
+          "title": "Successful response with two entries:",
+          "content": "{\"error\": null, \"out\":[{\"entry_one_properties\":\"entry_one_values\"}, {\"entry_two_properties\":\"entry_two_values\"}], \"npages\": 1, \"count\": 2}",
           "type": "json"
         },
         {

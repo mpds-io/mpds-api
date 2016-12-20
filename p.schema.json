@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema#",
+    "description": "MPDS.IO P-entries schema describes MIF-alike JSON format used in API for the physical properties",
+    "version": "0.0.3",
+    "type": "object",
+    "properties": {
+        "sample": {
+            "description": "MIF's root container, according to http://citrine.io/mif",
+            "type": "object",
+            "required": true,
+            "properties": {
+                "material": {
+                    "description": "MIF's material container",
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "chemical_formula": {
+                            "description": "MIF's chemicalFormula",
+                            "type": "string",
+                            "required": true
+                        },
+                        "condition": {
+                            "description": "MIF's information about the conditions of the system as a whole, currently contains space group number",
+                            "type": "array",
+                            "required": true,
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "scalar": {"required": true},
+                                    "name": {"required": true}
+                                }
+                            }
+                        },
+                        "phase_id": {
+                            "description": "Unique material phase identifier (according to LPF distinct phases concept)",
+                            "type": "number",
+                            "required": true,
+                            "minimum": 1,
+                            "maximum": 200000
+                        },
+                        "entry": {
+                            "description": "Internal LPF and MPDS.IO identifier",
+                            "type": "string",
+                            "required": true
+                        },
+                        "object_repr": {
+                            "description": "Legacy information",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "measurement": {
+                    "description": "MIF's measurement container",
+                    "type": "array",
+                    "required": true,
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "property": {
+                                "description": "MIF's name, value, and units of the measured property, augmented with the LPF domain-category hierarchy",
+                                "type": "object",
+                                "properties": {
+                                    "units": {"required": true},
+                                    "textual": {},
+                                    "scalar": {},
+                                    "vector": {},
+                                    "matrix": {},
+                                    "tensor": {},
+                                    "name": {"required": true},
+                                    "category": {"required": true},
+                                    "domain": {"required": true}
+                                },
+                                "oneOf": [
+                                    {"required": ["textual"]},
+                                    {"required": ["scalar"]},
+                                    {"required": ["vector"]},
+                                    {"required": ["matrix"]},
+                                    {"required": ["tensor"]}
+                                ]
+                            },
+                            "condition": {
+                                "description": "MIF's details of the external conditions (if available) applied during a measurement",
+                                "type": "array",
+                                "required": false,
+                                "minItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "units": {"required": true},
+                                        "scalar": {},
+                                        "range": {},
+                                        "name": {"required": true}
+                                    },
+                                    "oneOf": [
+                                        {"required": ["scalar"]},
+                                        {"required": ["range"]}
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "version": {
+            "description": "MPDS.IO API version",
+            "type": "string",
+            "required": true,
+            "enum": ["0.0.3"]
+        }
+    }
+}
