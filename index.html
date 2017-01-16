@@ -56,11 +56,11 @@ function is_inview(element){
 
 function update_menu(){
     $('#menu a').removeClass('active');
-    var tol = 2, cnt = 0;
+    var tol = 3, cnt = 0;
     $('#content .view').each(function(){
         if (is_inview(this)){
-            var h3 = $(this).nearest('h3').attr('id');
-            var h2 = $(this).nearest('h2').attr('id');
+            var h3 = $(this).nearest('h3', {onlyY: true, directionConstraints: ['top']}).attr('id');
+            var h2 = $(this).nearest('h2', {onlyY: true, directionConstraints: ['top']}).attr('id');
             $('#menu a[href="#' + h3 + '"]').addClass('active');
             $('#menu a[href="#' + h2 + '"]').addClass('active');
             cnt++;
@@ -121,9 +121,9 @@ $(document).ready(function(){
         <div class="spacer"></div>
 
         <div id="content">
-            <p class="view" style="background:#eff;">Dear developers! We are happy to welcome you here. This is the draft of documentation, being constantly updated. To use the MPDS API you will need a valid key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
+            <p class="view" style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. This is the draft of documentation, being constantly updated. To use the MPDS API you will need a valid key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
 
-            <p class="view">The MPDS API described below presents all the scientific data of the Linus Pauling File materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
+            <p class="view">The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">Linus Pauling File</a> materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
