@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
-<title>MPDS: Introduction for Developers and Robots</title>
+<title>MPDS API Docs</title>
 <link rel="stylesheet" href="style.css" />
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
@@ -122,7 +122,7 @@ $(document).ready(function(){
         <div class="spacer"></div>
 
         <div id="content">
-            <p class="view" style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. This is the draft of documentation, being constantly updated. To use the MPDS API you will need a valid key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
+            <p class="view" style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. This is the draft of the MPDS API documentation, being constantly updated. To use the MPDS API you will need a valid key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
 
             <p class="view">The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">Linus Pauling File</a> materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
 
@@ -132,11 +132,11 @@ $(document).ready(function(){
 
             <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. In the current version of the API only the entries of the same kind can be requested. Mixing of different kinds is not supported.</p>
 
-            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct phases they belong.</p>
+            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct phases which they belong.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">Generally, the most frequent action is to get the data according to some criteria. We support 8 basic criteria for searching and downloading:</p>
+            <p class="view">Generally, the most frequent action is to get the data according to some criteria. We support 8 basic criteria for searching and downloading the entries:</p>
 
             <table class="view">
                 <thead>
@@ -194,7 +194,7 @@ $(document).ready(function(){
 
             <h3 id="REST-endpoint">&sect;1.3. REST-alike download endpoint</h3>
 
-            <p class="view">To serve data we employ the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoints, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and headers and provide the standard HTTP status codes in response. The address of the data download endpoint is the following:</p>
+            <p class="view">To serve data we employ the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoints, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and request header and provide the standard HTTP status codes in response. The address of the data download endpoint is the following:</p>
 
             <div class="blackbg">https://api.mpds.io/v0/download/facet</div>
 
@@ -216,12 +216,12 @@ $(document).ready(function(){
                     <tr>
                     <td><span class="t">q</span></td>
                     <td><span class="t">JSON-serialized object</span></td>
-                    <td>The object <span class="t">q</span> may contain any reasonable combination of properties, which are given in the Table 1, column "Machine-readable name". An object property <span class="t">props</span> is compulsory (in contrast to others), since it determines the <strong>kind</strong> of the desired data (e.g. <strong>crystalline structures</strong> or <strong>physical properties</strong>).</td>
+                    <td>The object <span class="t">q</span> may contain any reasonable combination of properties, which are given in the Table 1, column "Machine-readable name". An object property <span class="t">props</span> is compulsory (in contrast to others), since it determines the <strong>kind</strong> of the desired data (e.g. crystalline structure or physical properties).</td>
                     </tr>
                     <tr>
                     <td><span class="t">pagesize</span></td>
                     <td><span class="t">integer</span></td>
-                    <td>The number of hits per page (pagination). Default value: <span class="t">10</span>. Allowed values: <span class="t">10</span>, <span class="t">100</span>, <span class="t">500</span>, and <span class="t">1000</span>.</td>
+                    <td>The maximum number of hits per a single response (pagination). Default value: <span class="t">10</span>. Allowed values: <span class="t">10</span>, <span class="t">100</span>, <span class="t">500</span>, and <span class="t">1000</span>.</td>
                     </tr>
                     <tr>
                     <td><span class="t">page</span></td>
@@ -256,6 +256,8 @@ $(document).ready(function(){
 }</div>
 
             <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>).</p>
+
+            <p class="view">Each kind of entries (<i>i.e.</i> S- or P-entries) has its own specific properties in <strong>JSON</strong> (see below).</p>
 
             <div class="blackbg view">{
     "error": null,

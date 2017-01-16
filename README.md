@@ -1,4 +1,4 @@
-MPDS (Materials Platform for Data Science): Introduction for Developers and Robots
+MPDS (Materials Platform for Data Science): Introduction for Developers
 ==========
 
 ![MPDS: Materials Platform for Data Science](https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png "MPDS: Materials Platform for Data Science")
