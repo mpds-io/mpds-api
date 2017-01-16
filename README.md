@@ -1,7 +1,7 @@
 MPDS (Materials Platform for Data Science): Introduction for Developers and Robots
 ==========
 
-![MPDS: Materials Platform for Data Science](https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.jpg "MPDS: Materials Platform for Data Science")
+![MPDS: Materials Platform for Data Science](https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png "MPDS: Materials Platform for Data Science")
 
 This repository contains the website [developer.mpds.io](http://developer.mpds.io) with the MPDS API documentation.
 
