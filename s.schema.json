@@ -1,15 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-03/schema#",
     "description": "MPDS.IO S-entries schema describes JSON format used in API for the crystalline structures",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "type": "object",
     "properties": {
         "phase_id": {
-            "description": "Unique material phase identifier (according to LPF distinct phases concept)",
-            "type": "number",
-            "required": true,
-            "minimum": 1,
-            "maximum": 200000
+            "description": "Unique material phase identifier (according to LPF distinct phases concept), can be none",
+            "type": ["number", "null"],
+            "required": true
+        },
+        "chemical_formula": {
+            "description": "Standard chemical formula",
+            "type": "string",
+            "required": true
         },
         "sg_n": {
             "description": "Space group number",
@@ -118,7 +121,7 @@
             "description": "MPDS.IO API version",
             "type": "string",
             "required": true,
-            "enum": ["0.0.3"]
+            "enum": ["0.0.4"]
         },
         "object_repr": {
             "description": "Legacy information",
