@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
 <title>MPDS API Docs</title>
 <link rel="stylesheet" href="style.css" />
 <!--[if lt IE 9]>
@@ -14,10 +13,6 @@
 <script type="text/javascript" src="/js/require.min.js"></script>
 <script type="text/javascript">
 if (!window.console) window.console = {log: function(){}, error: function(){}};
-
-$.fn.isAfter = function(sel){
-  return this.prevAll(sel).length !== 0;
-}
 
 function load_schema(addr, el){
     $.get(addr).done(function(schema){
@@ -71,20 +66,24 @@ function update_menu(){
 }
 
 $(document).ready(function(){
-    var menu = '<ul>';
-    $('h2, h3').each(function(){
-        var that = $(this),
-            active_cls = '',
-            hlevel = that.prop('tagName'),
-            value = that.text(),
-            href = that.attr('id');
-        if (is_inview(that)) active_cls = ' class="active"';
+    if ($('#menu').is(':visible')){
+        var menu = '<ul>';
+        $('h2, h3').each(function(){
+            var that = $(this),
+                active_cls = '',
+                hlevel = that.prop('tagName'),
+                value = that.text(),
+                href = that.attr('id');
+            if (is_inview(that)) active_cls = ' class="active"';
 
-        if (hlevel == 'H2') menu += '<li><a' + active_cls + ' href="#' + href + '">' + value + '</a></li>';
-        else if (hlevel == 'H3') menu += '<li><ul><li><a' + active_cls + ' href="#' + href + '">' + value + '</a></li></ul></li>';
-    });
-    menu += '</ul>';
-    $('#menu').append(menu);
+            if (hlevel == 'H2') menu += '<li><a' + active_cls + ' href="#' + href + '">' + value + '</a></li>';
+            else if (hlevel == 'H3') menu += '<li><ul><li><a' + active_cls + ' href="#' + href + '">' + value + '</a></li></ul></li>';
+        });
+        menu += '</ul>';
+        $('#menu').append(menu);
+
+        $(window).scroll(debounce(update_menu, 300));
+    }
 
     require(['js/docson'], function(docson){
         load_schema('/s.schema.json', 's_json_schema');
@@ -100,31 +99,32 @@ $(document).ready(function(){
             $('#json_schema_gist').append(data.div);
         }
     });
-
-    $(window).scroll(debounce(update_menu, 250));
 });
-</script>
 </script>
 </head>
 <body class="sky">
-    <div id="nav">
-        <a href="https://mpds.io">MPDS Start Page</a>
-    </div>
+
+    <div id="nav"><ul>
+        <li id="start_link"><a href="https://mpds.io/#start">Start</a></li>
+        <li><a href="http://datascience.mpds.io">Manual</a></li>
+        <li><a href="http://developer.mpds.io">API</a></li>
+        <li><a href="https://mpds.io/#products">Products</a></li>
+    </ul></div>
 
     <div id="menu"></div>
 
     <div id="main">
         <div id="landing_box">
             <div id="logo_l">MPDS</div><div id="logo"></div><div id="logo_r">Materials Platform<br />for Data Science</div>
-            <div id="motto">based on the <a href="http://paulingfile.com" target="_blank">Linus Pauling File</a> materials database</div>
+            <div id="motto">based on the <a href="http://paulingfile.com" target="_blank" rel="noopener noreferrer">PAULING FILE</a> materials database</div>
         </div>
 
         <div class="spacer"></div>
 
         <div id="content">
-            <p class="view" style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. This is the draft of the MPDS API documentation, being constantly updated. To use the MPDS API you will need a valid key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
+            <p style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. This is the draft of the MPDS API documentation, being constantly updated. To use the MPDS API you will need a valid API key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
 
-            <p class="view">The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">Linus Pauling File</a> materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
+            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -309,11 +309,13 @@ $(document).ready(function(){
             <!-- h2 id="Test-menu">&sect;2. Test menu</h2 -->
             <!-- h3 id="Testing">&sect;2.1. Testing</h3 -->
 
-            <p>Thanks for reading! Please do not hesitate to <a href="mailto:eb@tilde.pro">contact us</a> if you have any feedback or questions.</p>
+            <p style="background:#DBF2FF;">Thanks for reading! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
         </div>
     </div>
 
     <div id="logo_bg"></div>
+
+    <div id="twitter"><a href="https://twitter.com/mpdsio" target="_blank" rel="noopener noreferrer">Twitter @mpdsio</a></div>
 
     <div id="footer">Created by <a href="http://paulingfile.com" target="_blank">Materials Phase Data System</a> and <a href="https://tilde.pro" target="_blank">Tilde Materials Informatics</a>.</div>
 

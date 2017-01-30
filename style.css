@@ -14,16 +14,28 @@ background-attachment:fixed;
 }
 #overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;text-align:center;z-index:100;background:#fff;opacity:0.75;overflow:hidden;}
 
-#nav{position:fixed;top:0;left:0;height:30px;z-index:200;background:#fff;border-bottom-right-radius:4px;line-height:29px;padding:0 8px 0 3px;border-bottom:1px solid #888;border-right:1px solid #888;cursor:pointer;box-shadow:4px 4px 4px -4px rgba(0,0,0,0.5);}
-#nav a{margin:0 10px;letter-spacing:1px;text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;}
+/* COMMON NAVBAR START */
 
-#menu{position:fixed;left:0;top:210px;width:12.5%;height:auto;z-index:100;border-top:1px solid #ccc;padding-top:20px;}
+#nav{position:fixed;top:0;left:0;height:34px;z-index:101;background:#fff;font-size:0.9em;padding:0 3px;border-bottom-right-radius:4px;line-height:33px;border-bottom:1px solid #888;border-right:1px solid #888;cursor:pointer;box-shadow:4px 4px 4px -4px rgba(0,0,0,0.5);}
+#nav li{list-style:none;float:left;font-weight:bold;margin:0 7px;}
+#nav a{text-decoration:none;color:#555;}
+#nav a:hover{border-bottom:1px solid #000;}
+#start_link{display:none;}
+
+/* COMMON NAVBAR END */
+
+#menu{display:none;position:fixed;left:0;top:210px;width:12.5%;height:auto;z-index:100;border-top:1px solid #ccc;padding-top:20px;}
 #menu li{text-align:left;list-style:none;}
 #menu a{display:block;}
 #menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;font-size:1.1em;padding-left:5px;line-height:2em;}
 #menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
 #menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;font-size:0.9em;padding-left:20px;line-height:2em;}
 #menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
+
+@media all and (min-width:1000px){
+#menu{display:block;}
+#start_link{display:inline-block;}
+}
 
 .wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
 
@@ -45,7 +57,7 @@ div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 #content > p{line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
 #content > p:first-letter {font-size:1.6em;font-weight:bold;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
-#content > table{width:100%;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
+#content > table{width:auto;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
 #content > table td{line-height:2em;border:1px solid #ddd;padding:4px 2px;}
 #content > table th{line-height:2.2em;border:1px solid #ddd;background:#f6f6f6;padding:4px 2px;}
 span.t{font-family:'Courier New';background:#aaa;color:#fff;padding:1px 2px;}
@@ -68,6 +80,8 @@ div.caption b{font-style:normal;}
 
 #footer{width:100%;height:24px;padding-top:8px;text-align:center;font-size:0.85em;color:#888;background:#f6f6f6;border-top:1px solid #888;}
 #footer a{text-decoration:none;color:#888;border-bottom:1px solid #888;}
+#twitter{position:fixed;z-index:3;bottom:0;left:0;width:13.5%;height:32px;text-align:center;}
+#twitter a{text-decoration:none;font-size:0.85em;color:#888;line-height:32px;border-bottom:1px solid #888;font-family:Georgia;}
 
 /* DOCSON */
 
@@ -532,6 +546,7 @@ div.caption b{font-style:normal;}
 }
 
 /* "Fork me on GitHub" CSS ribbon v0.1.1 */
+
 .github-fork-ribbon {
 position: absolute;
 padding: 2px 0;
