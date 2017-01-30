@@ -18,7 +18,7 @@ background-attachment:fixed;
 
 #nav{position:fixed;top:0;left:0;height:34px;z-index:101;background:#fff;font-size:0.9em;padding:0 3px;border-bottom-right-radius:4px;line-height:33px;border-bottom:1px solid #888;border-right:1px solid #888;cursor:pointer;box-shadow:4px 4px 4px -4px rgba(0,0,0,0.5);}
 #nav li{list-style:none;float:left;font-weight:bold;margin:0 7px;}
-#nav a{text-decoration:none;color:#555;}
+#nav a{text-decoration:none;color:#555;font-family:Arial;}
 #nav a:hover{border-bottom:1px solid #000;}
 #start_link{display:none;}
 
