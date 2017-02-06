@@ -20,7 +20,6 @@ background-attachment:fixed;
 #nav li{list-style:none;float:left;font-weight:bold;margin:0 7px;}
 #nav a{text-decoration:none;color:#555;font-family:Arial;}
 #nav a:hover{border-bottom:1px solid #000;}
-#start_link{display:none;}
 
 /* COMMON NAVBAR END */
 
@@ -34,7 +33,6 @@ background-attachment:fixed;
 
 @media all and (min-width:1000px){
 #menu{display:block;}
-#start_link{display:inline-block;}
 }
 
 .wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
