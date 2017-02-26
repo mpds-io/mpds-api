@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-03/schema#",
-    "description": "MPDS.IO P-entries schema describes MIF-alike JSON format used in API for the physical properties",
-    "version": "0.0.4",
+    "description": "MIF-alike JSON format used in the MPDS API for the physical properties (P-entries)",
+    "version": "0.0.5",
     "type": "object",
     "properties": {
         "sample": {
@@ -63,7 +63,9 @@
                                 "properties": {
                                     "units": {"required": true},
                                     "textual": {},
-                                    "scalar": {},
+                                    "scalar": {
+                                        "description": "Note that the value is represented by string if out of 2^32 bound",
+                                    },
                                     "vector": {},
                                     "matrix": {},
                                     "tensor": {},
@@ -107,7 +109,7 @@
             "description": "MPDS.IO API version",
             "type": "string",
             "required": true,
-            "enum": ["0.0.4"]
+            "enum": ["0.0.5"]
         }
     }
 }

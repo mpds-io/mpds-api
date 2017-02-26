@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-03/schema#",
-    "description": "MPDS.IO S-entries schema describes JSON format used in API for the crystalline structures",
-    "version": "0.0.4",
+    "description": "JSON format used in the MPDS API for the crystalline structures (S-entries)",
+    "version": "0.0.5",
     "type": "object",
     "properties": {
         "phase_id": {
@@ -11,6 +11,11 @@
         },
         "chemical_formula": {
             "description": "Standard chemical formula",
+            "type": "string",
+            "required": true
+        },
+        "prototype": {
+            "description": "Prototype system: chemical formula, Pearson symbol, and space group number",
             "type": "string",
             "required": true
         },
@@ -121,7 +126,7 @@
             "description": "MPDS.IO API version",
             "type": "string",
             "required": true,
-            "enum": ["0.0.4"]
+            "enum": ["0.0.5"]
         },
         "object_repr": {
             "description": "Legacy information",

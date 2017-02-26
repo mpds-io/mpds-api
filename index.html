@@ -88,6 +88,7 @@ $(document).ready(function(){
     require(['js/docson'], function(docson){
         load_schema('/s.schema.json', 's_json_schema');
         load_schema('/p.schema.json', 'p_json_schema');
+        load_schema('/c.schema.json', 'c_json_schema');
     });
 
     $.ajax({
@@ -97,6 +98,24 @@ $(document).ready(function(){
         success: function (data) {
             $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
             $('#json_schema_gist').append(data.div);
+            $.ajax({
+                url: 'https://gist.github.com/blokhin/5fbfa38bcaf9f44f4cab6d677c44bc99.json',
+                dataType: 'jsonp',
+                timeout: 1000,
+                success: function (data) {
+                    $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
+                    $('#example_python').append(data.div);
+                    $.ajax({
+                        url: 'https://gist.github.com/blokhin/fedfe8a7c5fb4a771115322ce2dd39ab.json',
+                        dataType: 'jsonp',
+                        timeout: 1000,
+                        success: function (data) {
+                            $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
+                            $('#example_js').append(data.div);
+                        }
+                    });
+                }
+            });
         }
     });
 });
@@ -124,13 +143,13 @@ $(document).ready(function(){
         <div id="content">
             <p style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. To use the MPDS API you will need a valid API key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
 
-            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
+            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
             <h3 id="Overview">&sect;1.1. Overview</h3>
 
-            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. In the current version of the API only the entries of the same kind can be requested. Mixing of different kinds is not supported.</p>
+            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly.</p>
 
             <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct phases which they belong.</p>
 
@@ -208,7 +227,7 @@ $(document).ready(function(){
 
             <div class="blackbg">https://api.mpds.io/v0/download/facet</div>
 
-            <p class="view">The HTTP verb to be used is always <span class="t">GET</span>. The header must always contain the <span class="t">Key</span> string with the valid MPDS API key, obtained from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. A minimal <span class="t">curl</span> example looks:</p>
+            <p class="view">The HTTP verb to be used is always <span class="t">GET</span>. The header must always contain the <span class="t">Key</span> string with the valid MPDS API key, obtained from the corresponding <a href="https://mpds.io/#modal/menu">MPDS account</a>. A minimal <span class="t">curl</span> example looks:</p>
 
             <div class="blackbg">curl -X GET -H "Key:a_long_and_secret_string" https://api.mpds.io/v0/download/facet</div>
 
@@ -226,7 +245,7 @@ $(document).ready(function(){
                     <tr>
                     <td><span class="t">q</span></td>
                     <td><span class="t">JSON-serialized object</span></td>
-                    <td>The object <span class="t">q</span> may contain any reasonable combination of properties, which are given in the Table 1, column "Machine-readable name". An object property <span class="t">props</span> is compulsory (in contrast to others), since it determines the <strong>kind</strong> of the desired data (e.g. crystalline structure or physical properties).</td>
+                    <td>The object <span class="t">q</span> may contain any reasonable combination of properties, which are given in the Table 1, column "Machine-readable name".</td>
                     </tr>
                     <tr>
                     <td><span class="t">pagesize</span></td>
@@ -241,7 +260,7 @@ $(document).ready(function(){
                     <tr>
                     <td><span class="t">fmt</span></td>
                     <td><span class="t">integer</span></td>
-                    <td>Output data format. Can be <span class="t">json</span> or <span class="t">cif</span>. The latter <span class="t">cif</span> is only valid for <strong>crystalline structures</strong>. Default value: <span class="t">json</span>.</td>
+                    <td>Output data format. Can be <span class="t">json</span> or <span class="t">cif</span>. The latter <span class="t">cif</span> only makes sense for <strong>crystalline structures</strong>. Default value: <span class="t">json</span>.</td>
                     </tr>
                 </tbody>
             </table>
@@ -257,7 +276,7 @@ $(document).ready(function(){
     "props": "structural properties"
 }</div>
 
-            <p class="view">Once again, note that you should always include the property <span class="t">props</span>, in order to distinguish the kinds of the entries. Another example of the <span class="t">q</span> parameter to request <strong>physical properties</strong>:</p>
+            <p class="view">Another example of the <span class="t">q</span> parameter to request <strong>physical properties</strong>:</p>
 
             <div class="blackbg view">{
     "elements": "Zr",
@@ -300,7 +319,7 @@ $(document).ready(function(){
 
             <h3 id="JSON-schemata">&sect;1.4. JSON schemata of the MPDS entries</h3>
 
-            <p class="view">JSON is the first-class passenger in the MPDS API. We provide JSON schema for the MPDS entries of <strong>crystalline structures</strong> and <strong>physical properties</strong> in the API output:</p>
+            <p class="view">JSON is the first-class passenger in the MPDS API. We provide JSON schemata for all kinds of the MPDS entries in the API output:</p>
 
             <div id="s_json_schema" class="view"></div>
 
@@ -310,11 +329,27 @@ $(document).ready(function(){
 
             <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for the <strong>physical properties</strong> or <strong>P-entries</strong><br />(also available as a <a href="https://raw.githubusercontent.com/mpds-io/API/gh-pages/p.schema.json">separate file</a>).</div>
 
-            <p class="view">The MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using python script. In the following example the <span class="t">jsonschema</span> python package is used:</p>
+            <div id="c_json_schema" class="view"></div>
+
+            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for the <strong>phase diagrams</strong> or <strong>C-entries</strong><br />(also available as a <a href="https://raw.githubusercontent.com/mpds-io/API/gh-pages/c.schema.json">separate file</a>).</div>
+
+            <p class="view">The MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using Python script. In the following example the <span class="t">jsonschema</span> Python package is used:</p>
 
             <div id="json_schema_gist" class="view"></div>
 
-            <div class="caption view"><b>Listing 1.</b> A python console script for JSON validation.</div>
+            <div class="caption view"><b>Listing 1.</b> A Python console script for JSON validation.</div>
+
+            <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
+
+            <p class="view">Below are very simple examples in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that the Python example employs an external package <span class="t">httplib2</span>.</p>
+
+            <div id="example_python" class="view"></div>
+
+            <div class="caption view"><b>Listing 2.</b> Sample Python script for working with the MPDS API.</div>
+
+            <div id="example_js" class="view"></div>
+
+            <div class="caption view"><b>Listing 3.</b> Sample JavaScript code for working with the MPDS API.</div>
 
             <!-- h2 id="Test-menu">&sect;2. Test menu</h2 -->
             <!-- h3 id="Testing">&sect;2.1. Testing</h3 -->
