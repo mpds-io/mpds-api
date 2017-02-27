@@ -64,7 +64,7 @@
                                     "units": {"required": true},
                                     "textual": {},
                                     "scalar": {
-                                        "description": "Note that the value is represented by string if out of 2^32 bound",
+                                        "description": "Note that the value is represented by string if out of 2^32 bound"
                                     },
                                     "vector": {},
                                     "matrix": {},
