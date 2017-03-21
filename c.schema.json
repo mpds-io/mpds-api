@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-03/schema#",
-    "description": "JSON format used in the MPDS API for the phase diagrams (C-entries)",
+    "description": "JSON format used in the MPDS API for the phase diagrams (C-entries); currently employed for the online plots",
     "version": "0.0.5",
     "type": "object",
     "properties": {
@@ -60,12 +60,12 @@
             "maxItems": 2
         },
         "labels": {
-            "description": "Labels for phases, as appear at the source plot",
+            "description": "Labels for phases, as extracted from the vector image",
             "type": "array",
             "required": true
         },
         "shapes": {
-            "description": "SVG paths for phases, as extracted from the vector image",
+            "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*",
             "type": "array",
             "required": true
         },
