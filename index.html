@@ -3,14 +3,422 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Materials Platform for Data Science" />
+<meta property="og:site_name" content="MPDS.IO"/>
+<meta property="og:description" content="Online PAULING FILE materials database with nearly 2 million data entries (physical properties, crystal structures, phase diagrams) available via API, ready for modern data-intensive applications." />
+<meta property="og:image" content="https://mpds.io/wm_logo_opt.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="225" />
+<meta property="og:image:height" content="224" />
+<meta property="og:url" content="https://mpds.io">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@mpdsio" />
+<meta name="twitter:title" content="Materials Platform for Data Science" />
+<meta name="twitter:creator" content="@tildepro" />
+<meta name="twitter:image" content="https://mpds.io/wm_logo_opt.png" />
+<meta name="twitter:image:alt" content="Online materials data-mining platform" />
+<meta name="twitter:description" content="Online PAULING FILE materials database with nearly 2 million data entries (physical properties, crystal structures, phase diagrams) available via API, ready for modern data-intensive applications." />
+<meta name="description" content="Online PAULING FILE materials database with nearly 2 million data entries (physical properties, crystal structures, phase diagrams) available via API, ready for modern data-intensive applications." />
+<meta name="keywords" content="materials platform, physical properties, phase diagrams, crystalline structures, materials database, PAULING FILE" />
+<meta name="subject" content="materials informatics" />
+<meta name="url" content="https://mpds.io" />
+<meta name="rating" content="General" />
+<meta name="author" content="feedback@tilde.pro" />
+<meta name="robots" content="notranslate" />
 <title>MPDS API Docs</title>
-<link rel="stylesheet" href="style.css" />
+<style>
+/* COMMON */
+
+*{font-family:Georgia;margin:0;padding:0;}
+html, body{height:100%;}
+sup, sub{font-size:12px;}
+body.sky{
+background:-webkit-linear-gradient(top, #DBF2FF 0%, #fff 10%);
+background:-linear-gradient(top, #DBF2FF 0%, #fff 10%);
+background:-ms-linear-gradient(top, #DBF2FF 0%, #fff 10%);
+background:-moz-linear-gradient(top, #DBF2FF 0%, #fff 10%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#DBF2FF, endColorstr=#ffffff, GradientType=0);
+background-attachment:fixed;
+}
+#overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;text-align:center;z-index:100;background:#fff;opacity:0.75;overflow:hidden;}
+
+/* COMMON NAVBAR START */
+
+#nav{position:fixed;top:0;left:0;height:34px;z-index:101;background:#fff;font-size:0.9em;padding:0 3px;border-bottom-right-radius:4px;line-height:33px;border-bottom:1px solid #888;border-right:1px solid #888;cursor:pointer;box-shadow:6px 6px 4px -3px rgba(0,0,0,0.4);}
+#nav li{list-style:none;float:left;font-weight:bold;margin:0 7px;}
+#nav a{text-decoration:none;color:#555;font-family:Arial;}
+#nav a:hover{border-bottom:1px solid #000;}
+li.nav_fluid{display:none;}
+
+/* COMMON NAVBAR END */
+
+#menu{display:none;position:fixed;left:0;top:210px;width:12.5%;height:auto;z-index:100;border-top:1px solid #ccc;padding-top:20px;}
+#menu li{text-align:left;list-style:none;}
+#menu a{display:block;}
+#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;font-size:1.1em;padding-left:5px;line-height:2em;}
+#menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
+#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;font-size:0.9em;padding-left:20px;line-height:2em;}
+#menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
+
+.wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
+
+div.modal_dialogue{position:fixed;top:10%;left:50%;border-radius:4px;border:1px solid #999;box-shadow:15px 15px 10px -5px rgba(0,0,0,0.4);}
+div.cross{float:right;width:16px;height:16px;font-size:10px;text-align:center;cursor:pointer;background:url(data:image/gif;base64,R0lGODlhEAAQAJEAAAAAAP///1VVVf///yH5BAEAAAMALAAAAAAQABAAAAIjnI+py6L+BDRy0gqxHVqvLjGcJ3Yl+IEhQpLX+m7wMYv2PRQAOw==) no-repeat;}
+span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;}
+
+#response{white-space:pre;}
+#logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
+#notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
+#main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
+h1, h2, h3{line-height:2.2em;font-size:1.5em;font-weight:bold;color:#3e3f95;}
+h2:first-letter , h3:first-letter {color:#900;}
+h3{line-height:2.2em;font-size:1.2em;}
+
+div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
+
+#content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:15px;}
+#content > p{line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
+#content > p:first-letter {font-size:1.6em;font-weight:bold;}
+#content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
+#content > table{width:auto;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
+#content > table td{line-height:2em;border:1px solid #ddd;padding:4px 2px;}
+#content > table th{line-height:2.2em;border:1px solid #ddd;background:#f6f6f6;padding:4px 2px;}
+span.t{font-family:'Courier New';background:#aaa;color:#fff;padding:1px 2px;}
+
+div.blackbg{background:#666;font-size:0.9em;color:#fff;font-family:'Courier New';line-height:1.6em;margin:20px 0;padding:10px 5px;border-radius:4px;white-space:pre;}
+div.caption{text-align:center;font-size:0.9em;line-height:2em;color:#666;margin:20px 0 30px;font-style:italic;}
+div.caption b{font-style:normal;}
+
+/* LOGOS */
+
+#landing_box{width:590px;margin:0 auto;height:170px;padding:20px 0;}
+#logo_l{float:left;width:230px;margin-left:25px;font-size:3em;text-align:right;padding-top:38px;letter-spacing:24px;color:#555;font-weight:normal;}
+#logo{float:left;width:140px;height:130px;background:url(https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png) center center no-repeat;background-size:85%;}
+#logo_r{float:left;width:165px;margin-left:15px;font-size:1.2em;line-height:1.3em;text-align:left;font-weight:normal;padding-top:42px;color:#555;}
+#motto{clear:both;width:100%;height:33px;text-align:left;padding-top:20px;padding-left:80px;letter-spacing:0.5px;font-size:0.95em;color:#333;}
+#motto a{text-decoration:none;color:#333;border-bottom:1px solid #333;}
+
+/* FOOTER */
+/* HEIGHT 32px */
+
+#footer{width:100%;height:24px;padding-top:8px;text-align:center;font-size:0.85em;color:#888;background:#f6f6f6;border-top:1px solid #888;}
+#footer a{text-decoration:none;color:#888;border-bottom:1px solid #888;}
+#twitter{position:fixed;z-index:3;bottom:0;left:0;width:13.5%;height:32px;text-align:center;}
+#twitter a{text-decoration:none;font-size:0.85em;color:#888;line-height:32px;border-bottom:1px solid #888;font-family:Georgia;}
+
+/* MEDIA-QUERIES */
+
+@media all and (min-width:1000px){
+#menu{display:block;}
+li.nav_fluid {display:inline-block;}
+}
+
+/* DOCSON */
+
+.docson {
+font-family: 'Droid Sans',verdana,helvetica;font-size: 13px;padding: 6px 6px 6px 6px;
+}
+.docson .box {
+position: relative;float: left;background-color:rgba(255, 255, 255, 0.2);border: 1px solid lightgrey;border-radius: 4px;-moz-border-radius: 4px;-webkit-border-radius: 4px;padding-bottom: 10px;-moz-box-shadow:    1px 1px 1px darkgray;-webkit-box-shadow: 1px 1px 1px darkgray;box-shadow:         1px 1px 1px darkgray;
+}
+.docson .expand-button {
+position: absolute;margin-top: 15px;padding: 2px;right: 2px;float: right;width: 18px;text-align: center;cursor: pointer;font-weight: bold;font-family: "Lucida Console", Monaco, monospace;font-size: 15px;color: darkgray;display: none;
+}
+.docson .source-button {
+position: absolute;padding: 2px;margin-top: 3px;right: 2px;width: 18px;text-align: center;cursor: pointer;font-weight: bold;font-family: "Lucida Console", Monaco, monospace;font-size: 10px;color: darkgray;display: none;
+}
+.docson .box-header {
+padding: 6px;border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom: 1px solid lightgrey;background: whitesmoke;
+}
+.docson .box-name {
+color: darkblue;padding: 5px 40px 2px 3px;float: left;
+}
+.docson .title {
+margin-top: -3px;font-size: 120%;
+}
+.docson .link {
+text-decoration: underline;
+}
+.docson .box-description {
+color: dimgray;float: left;max-width: 600px;
+}
+.docson .end {
+clear: both;
+}
+.docson .error {
+color: red;
+}
+.docson .box-body {
+padding-left: 10px;padding-right: 28px;clear: both;
+}
+.docson .box-1 {
+background: whitesmoke;
+}
+.docson .box-2 {
+background: beige;background: -webkit-linear-gradient(white, beige, beige, gainsboro);background: -moz-linear-gradient(white, beige, beige, gainsboro);
+}
+.docson .box-3 {
+background: azure;background: -webkit-linear-gradient(white, azure, azure, gainsboro);background: -moz-linear-gradient(white, azure, azure, gainsboro);
+}
+.docson .box-4 {
+background: mistyrose;background: -webkit-linear-gradient(white, mistyrose, mistyrose, gainsboro);background: -moz-linear-gradient(white, mistyrose, mistyrose, gainsboro);
+}
+.docson .box-5 {
+background: #ddffee;background: -webkit-linear-gradient(white, #ddffee, #ddffee, gainsboro);background: -moz-linear-gradient(white, #ddffee, #ddffee, gainsboro);
+}
+.docson .box-6 {
+background: ghostwhite;background: -webkit-linear-gradient(white, ghostwhite, ghostwhite, gainsboro);background: -moz-linear-gradient(white, ghostwhite, ghostwhite, gainsboro);
+}
+.docson .box-7 {
+background: lavenderblush;background: -webkit-linear-gradient(white, lavenderblush, lavenderblush, gainsboro);background: -moz-linear-gradient(white, lavenderblush, lavenderblush, gainsboro);
+}
+.docson .box-8 {
+background: aliceblue;background: -webkit-linear-gradient(white, aliceblue, aliceblue, gainsboro);background: -moz-linear-gradient(white, aliceblue, aliceblue, gainsboro);
+}
+.docson .signature {
+padding-top: 5px;clear: left;
+}
+.docson .signature-header {
+padding-top: 3px;height: 20px;line-height: 24px;
+}
+.docson .property-name {
+float: left;font-family: "Lucida Console", Monaco, monospace;min-width: 130px;
+}
+.docson .required {
+font-weight: bold;
+}
+.docson .type-keyword {
+font-size: 80%;color: dimgray;
+}
+.docson .type-pattern {
+font-size: 80%;color: darkolivegreen;
+}
+.docson .type-enum {
+color: purple;font-family: "Lucida Console", Monaco, monospace;font-size: 90%;padding-left: 2px;
+}
+.docson .type-default {
+color: darkslategrey;font-family: "Lucida Console", Monaco, monospace;
+}
+.docson .signature-type {
+padding-left: 6px;float: left;min-width: 160px;max-width: 320px;
+}
+.docson .signature-type-any {
+font-style: italic;
+}
+.docson .signature-type-string {
+color: green;
+}
+.docson .signature-type-number {
+color: blue;
+}
+.docson .signature-type-integer {
+color: blueviolet;
+}
+.docson .signature-type-boolean {
+color: orangered;
+}
+.docson .signature-type-null {
+font-family: "Lucida Console", Monaco, monospace;color: red;
+}
+.docson .signature-type-date-time {
+color: #224466;
+}
+.docson .signature-type-email {
+color: cornflowerblue;
+}
+.docson .signature-type-hostname {
+color: darkolivegreen;
+}
+.docson .signature-type-ipv6 {
+color: darkslateblue;
+}
+.docson .signature-type-ipv4 {
+color: indigo;
+}
+.docson .signature-type-uri {
+color: saddlebrown;
+}
+.docson .signature-button {
+cursor: pointer;padding: 4px;border-radius: 4px;border: 1px solid lightgrey;-moz-border-radius: 4px;
+}
+.docson .signature-type-ref {
+color: darkblue;
+}
+.docson .signature-type-expanded {
+padding: 5px 3px 3px 5px;vertical-align: -1px;opacity: 0.6;-moz-box-shadow:    inset 1px 1px 1px darkgray;-webkit-box-shadow: inset 1px 1px 1px darkgray;box-shadow:         inset 1px 1px 1px darkgray;
+}
+.docson .signature-description {
+padding-left: 6px;padding-bottom: 3px;color: dimgray;float: left;max-width: 600px;
+}
+.docson .signature-box-container {
+clear: both;
+}
+.docson .box-container {
+float: left;padding-top: 4px;padding-left: 8px;display: none;
+}
+.docson .button {
+-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
+}
+.docson .button:hover {
+color: darkred;
+}
+@media all and (min-width: 20px) and (max-width: 500px) {
+.docson .property-name {min-width: 0px;}
+.docson .signature-type {min-width: 0px;}
+.docson .source {width: 100%;}
+.docson .box-container, .box {width: 100%;}
+}
+.docson .desc {
+padding-left: 6px;line-height: 17px;
+}
+.docson .desc p {
+margin: 0;margin-top: 3px;
+}
+.docson .desc code {
+color: purple;font-size: 90%;
+}
+
+.docson .desc table {
+margin-top: 4px;margin-bottom: 4px;border-collapse:collapse;
+}
+.docson .desc th {
+padding: 0px;font-size: 80%;font-weight: normal;background: rgba(231, 231, 231, 0.5);
+}
+.docson .desc table,
+.docson .desc th,
+.docson .desc td {
+border: 1px solid lightgrey;
+}
+.docson .desc tr > td {
+padding: 2px 6px 2px 6px;
+}
+.docson .desc h1 {
+font-size: 120%;margin-top: 0px;margin-bottom: 3px;
+}
+.docson .desc h2 {
+font-size: 115%;margin-top: 0px;margin-bottom: 3px;
+}
+.docson .desc h3 {
+font-size: 110%;margin-top: 0px;margin-bottom: 3px;
+}
+.docson .desc h4 {
+font-size: 100%;margin-top: 0px;margin-bottom: 3px;
+}
+.docson .desc pre {
+border: 1px solid lightgray;border-radius: 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;padding: 4px;margin: 3px 0px;
+}
+.docson .desc ul {
+padding-left: 16px;margin: 3px 0px;
+}
+.docson .desc ol {
+padding-left: 16px;margin: 3px 0px;
+}
+.docson .desc blockquote {
+margin: 3px 0px 3px 10px;padding-left: 6px;border-left: 1px solid lightgray;
+}
+.docson .desc img {
+vertical-align: middle;
+}
+.docson .desc hr {
+border: 0;height: 1px;background: lightgrey;color: lightgrey;width: 50%;
+}
+.docson .source {
+display: none;padding-left: 16px;padding-right: 30px;
+}
+.docson .json, .json-schema {
+font-family: "Lucida Console", Monaco, monospace;
+}
+.docson .json-punctuation {
+font-weight: bold;
+}
+.docson .json-null, .json-true, .json-false {
+font-weight: bold;
+}
+.docson .json-true {
+color: #080;
+}
+.docson .json-false {
+color: #800;
+}
+.docson .json-object-key {
+color: #246;
+}
+.docson .json-keyword {
+font-weight: bold;color: #036;
+}
+.docson .json-number {
+font-weight: bold;color: #660;
+}
+.docson .json-string {
+color: #800;
+}
+.docson .json-schema-map > .json-object-key {
+color: #080;font-style: italic;
+}
+
+/* "Fork me on GitHub" CSS ribbon v0.1.1 */
+
+.github-fork-ribbon {
+position: absolute;
+padding: 2px 0;
+background-color: #900;
+background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
+background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+-webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+font: 500 9px "Helvetica Neue", Helvetica, Arial, sans-serif;
+z-index: 9999;
+pointer-events: auto;
+}
+.github-fork-ribbon a,
+.github-fork-ribbon a:hover {
+color: #fff;
+text-decoration: none;
+text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+text-align: center;
+width: 100px;
+line-height: 12px;
+display: inline-block;
+padding: 2px 0;
+border-width: 1px 0;
+border-style: dotted;
+border-color: #fff;
+border-color: rgba(255, 255, 255, 1);
+}
+.github-fork-ribbon-wrapper {
+width: 100px;
+height: 100px;
+position: absolute;
+overflow: hidden;
+top: 0;
+z-index: 9999;
+pointer-events: none;
+}
+.github-fork-ribbon-wrapper.right {
+right: 0;
+}
+.github-fork-ribbon-wrapper.right .github-fork-ribbon {
+top: 16px;
+right: -22px;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+</style>
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
 <![endif]-->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="/js/jquery.nearest.min.js"></script>
-<script type="text/javascript" src="/js/require.min.js"></script>
+<script type="text/javascript" src="/webassets/js/jquery.nearest.min.js"></script>
+<script type="text/javascript" src="/webassets/js/require.min.js"></script>
 <script type="text/javascript">
 if (!window.console) window.console = {log: function(){}, error: function(){}};
 
@@ -85,7 +493,7 @@ $(document).ready(function(){
         $(window).scroll(debounce(update_menu, 300));
     }
 
-    require(['js/docson'], function(docson){
+    require(['webassets/js/docson'], function(docson){
         load_schema('/s.schema.json', 's_json_schema');
         load_schema('/p.schema.json', 'p_json_schema');
         load_schema('/c.schema.json', 'c_json_schema');
@@ -125,8 +533,8 @@ $(document).ready(function(){
 
     <div id="nav"><ul>
         <li><a href="https://mpds.io/#start">Start</a></li>
-        <li><a href="http://datascience.mpds.io">Manual</a></li>
-        <li><a href="http://developer.mpds.io">API</a></li>
+        <li class="nav_fluid"><a href="http://datascience.mpds.io">Manual</a></li>
+        <li class="nav_fluid"><a href="http://developer.mpds.io">API</a></li>
         <li><a href="https://mpds.io/#products">Products</a></li>
     </ul></div>
 
@@ -135,7 +543,7 @@ $(document).ready(function(){
     <div id="main">
         <div id="landing_box">
             <div id="logo_l">MPDS</div><div id="logo"></div><div id="logo_r">Materials Platform<br />for Data Science</div>
-            <div id="motto">based on the <a href="http://paulingfile.com" target="_blank" rel="noopener noreferrer">PAULING FILE</a> materials database</div>
+            <div id="motto">based on the <a href="http://paulingfile.com" target="_blank" rel="noopener noreferrer">PAULING FILE</a> experimental inorganic database</div>
         </div>
 
         <div class="spacer"></div>
@@ -341,7 +749,7 @@ $(document).ready(function(){
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are very simple examples in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that the Python example employs an external package <span class="t">httplib2</span>.</p>
+            <p class="view">Below are simple examples in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that the Python example requires an external package <span class="t">httplib2</span>.</p>
 
             <div id="example_python" class="view"></div>
 

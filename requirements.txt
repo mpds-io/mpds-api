@@ -1,0 +1,7 @@
+httplib2
+ujson
+jsonschema
+jmespath
+pandas == 0.20.1
+scipy
+ase == 3.11

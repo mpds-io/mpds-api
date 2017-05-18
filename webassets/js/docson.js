@@ -16,9 +16,9 @@
 
 var docson = docson || {};
 
-docson.templateBaseUrl="templates";
+docson.templateBaseUrl = "webassets/templates";
 
-define(["js/handlebars.min", "js/highlight", "js/jsonpointer", "js/marked", "js/traverse"], function(Handlebars, highlight, jsonpointer, marked) {
+define(["webassets/js/handlebars.min", "webassets/js/highlight", "webassets/js/jsonpointer", "webassets/js/marked", "webassets/js/traverse"], function(Handlebars, highlight, jsonpointer, marked) {
 
     var ready = $.Deferred();
     var boxTemplate;
@@ -473,7 +473,7 @@ define(["js/handlebars.min", "js/highlight", "js/jsonpointer", "js/marked", "js/
                                 if(content) {
                                     refs[item] = content;
                                     renderBox();
-                                    resolveRefsReentrant(content); 
+                                    resolveRefsReentrant(content);
                                 }
                             });
                         }
@@ -499,10 +499,10 @@ define(["js/handlebars.min", "js/highlight", "js/jsonpointer", "js/marked", "js/
                     }
                 });
             };
-            
+
             resolveRefsReentrant(schema);
             renderBox();
-            
+
             d.resolve();
         })
         return d.promise();
