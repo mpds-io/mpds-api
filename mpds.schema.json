@@ -1,0 +1,346 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Consolidated schema for all types of MPDS JSON data (S=crystal structures, P=properties, and C=phase diagrams)",
+    "version": "0.0.6",
+    "type": "array",
+    "items" : {
+    "oneOf": [
+    {
+    "type": "object",
+    "description": "Crystal structures data type",
+    "properties": {
+        "phase_id": {
+            "description": "Unique material phase identifier (according to LPF distinct phases concept), can be none",
+            "type": ["number", "null"]
+        },
+        "chemical_formula": {
+            "description": "Standard chemical formula",
+            "type": "string"
+        },
+        "prototype": {
+            "description": "Prototype system: chemical formula, Pearson symbol, and space group number",
+            "type": "string"
+        },
+        "sg_n": {
+            "description": "Space group number",
+            "type": "number",
+            "minimum": 1,
+            "maximum": 230
+        },
+        "sg_hm": {
+            "description": "International or Hermann-Mauguin notation of the space group",
+            "type": "string"
+        },
+        "cell_abc": {
+            "description": "Crystalline cell as _a_, _b_, _c_, _alpha_, _beta_, _gamma_, in angstroms and degrees",
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 636.7
+            }
+        },
+        "basis_noneq": {
+            "description": "Non-equivalent fractional atomic coordinates",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3
+            }
+        },
+        "symops": {
+            "description": "Symmetry operations for CIF, according to [IUCR](http://www.iucr.org/__data/iucr/cifdic_html/1/cif_core.dic/Ispace_group_symop_operation_xyz.html)",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "setting": {
+            "description": "Crystalline cell setting, in the most cases the standard setting is adopted, so this is omitted",
+            "type": "string",
+            "enum": ["2", "hex"]
+        },
+        "els_noneq": {
+            "description": "Valid chemical elements",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "string",
+                "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
+            }
+        },
+        "labels_noneq": {
+            "description": "Non-equivalent atomic labels, may contain important information, such as hydroxyl label",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "occs_noneq": {
+            "description": "Non-equivalent atomic site occupancies, according to [IUCR](http://www.iucr.org/__data/iucr/cifdic_html/1/cif_core.dic/Iatom_site_occupancy.html)",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "number",
+                "minimum": 0.0002,
+                "maximum": 1.0
+            }
+        },
+        "mendeleev_nums_noneq": {
+            "description": "Mendeleev numbers for chemical elements in the crystalline structure",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 236
+            }
+        },
+        "linus_pauling_nums_noneq": {
+            "description": "Legacy information",
+            "type": "array",
+            "minItems": 0
+        },
+        "entry": {
+            "description": "Internal LPF and MPDS identifier",
+            "type": "string"
+        },
+        "version": {
+            "description": "MPDS API version",
+            "type": "string",
+            "enum": ["0.0.6"]
+        },
+        "object_repr": {
+            "description": "Legacy information",
+            "type": "string"
+        },
+        "object_type": {
+            "description": "MPDS data type",
+            "type": "string",
+            "enum": ["S"]
+        },
+        "reference": {
+            "description": "Persistent URL of data",
+            "type": "string"
+        }
+    },
+    "required": ["phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "mendeleev_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
+    },
+    {
+    "type": "object",
+    "description": "Properties data type",
+    "properties": {
+        "sample": {
+            "description": "MIF's root container, according to http://citrine.io/mif",
+            "type": "object",
+            "properties": {
+                "material": {
+                    "description": "MIF's material container",
+                    "type": "object",
+                    "properties": {
+                        "chemical_formula": {
+                            "description": "Standard chemical formula (denoted as chemicalFormula in MIF)",
+                            "type": "string"
+                        },
+                        "chemical_elements": {
+                            "description": "Valid chemical elements",
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string",
+                                "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
+                            }
+                        },
+                        "condition": {
+                            "description": "MIF's information about the conditions of the system as a whole (currently contains only a space group number)",
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "scalar": {
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {"value": {"type": "number"}},
+                                            "required": ["value"]
+                                        }
+                                    },
+                                    "name": {"type": "string"}
+                                },
+                                "required": ["name", "scalar"]
+                            }
+                        },
+                        "phase_id": {
+                            "description": "Unique material phase identifier (according to LPF distinct phases concept), can be none",
+                            "type": ["number", "null"]
+                        },
+                        "entry": {
+                            "description": "Internal LPF and MPDS identifier",
+                            "type": "string"
+                        },
+                        "object_repr": {
+                            "description": "Legacy information",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["chemical_formula", "condition", "phase_id", "entry"]
+                },
+                "measurement": {
+                    "description": "MIF's measurement container",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "property": {
+                                "description": "MIF's name, value, and units of the measured property, augmented with the LPF domain-category hierarchy",
+                                "type": "object",
+                                "properties": {
+                                    "units": {"type": "string"},
+                                    "textual": {},
+                                    "scalar": {
+                                        "description": "Note that the value is represented by string if out of 2^32 bound",
+                                        "type": ["string", "number"]
+                                    },
+                                    "vector": {},
+                                    "matrix": {},
+                                    "name": {"type": "string"},
+                                    "category": {"type": "string"},
+                                    "domain": {"type": "string"}
+                                },
+                                "required": ["units", "name", "category", "domain"]
+                            },
+                            "condition": {
+                                "description": "MIF's details of the external conditions (if available) applied during a measurement",
+                                "type": "array",
+                                "minItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "units": {"type": "string"},
+                                        "scalar": {},
+                                        "range": {},
+                                        "name": {"type": "string"}
+                                    },
+                                    "required": ["units", "name"]
+                                }
+                            }
+                        },
+                        "required": ["property"]
+                    }
+                },
+                "reference": {
+                    "description": "Persistent URL of data",
+                    "type": "string"
+                }
+            },
+            "required": ["material", "measurement", "reference"]
+        },
+        "version": {
+            "description": "MPDS API version",
+            "type": "string",
+            "enum": ["0.0.6"]
+        },
+        "object_type": {
+            "description": "MPDS data type",
+            "type": "string",
+            "enum": ["P"]
+        }
+    },
+    "required": ["sample", "version", "object_type"]
+    },
+    {
+    "type": "object",
+    "description": "Phase diagrams data type",
+    "properties": {
+        "title": {
+            "description": "Phase diagram title",
+            "type": "string"
+        },
+        "naxes": {
+            "description": "Number of axes",
+            "type": "number",
+            "minimum": 2,
+            "maximum": 3
+        },
+        "arity": {
+            "description": "Elements count",
+            "type": "number",
+            "minimum": 2,
+            "maximum": 3
+        },
+        "xtitle": {
+            "description": "Title of X axis",
+            "type": "string"
+        },
+        "ytitle": {
+            "description": "Title of Y axis",
+            "type": "string"
+        },
+        "ztitle": {
+            "description": "Title of Z axis",
+            "type": ["string", "null"],
+        },
+        "xrange": {
+            "description": "Range of X axis",
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "yrange": {
+            "description": "Range of Y axis",
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "zrange": {
+            "description": "Range of Z axis",
+            "type": ["array", "null"],
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "labels": {
+            "description": "Labels for phases, as extracted from the vector image",
+            "type": "array"
+        },
+        "shapes": {
+            "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*",
+            "type": "array"
+        },
+        "entry": {
+            "description": "Internal LPF and MPDS identifier",
+            "type": "string"
+        },
+        "version": {
+            "description": "MPDS API version",
+            "type": "string",
+            "enum": ["0.0.6"]
+        },
+        "object_repr": {
+            "description": "Legacy information",
+            "type": "string"
+        },
+        "object_type": {
+            "description": "MPDS data type",
+            "type": "string",
+            "enum": ["C"]
+        },
+        "reference": {
+            "description": "Persistent URL of data",
+            "type": "string"
+        }
+    },
+    "required": ["title", "naxes", "arity", "xtitle", "ytitle", "xrange", "yrange", "labels", "shapes", "entry", "version", "object_type", "reference"]
+    }
+    ]
+    }
+}
