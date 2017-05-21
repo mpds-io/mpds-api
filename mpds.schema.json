@@ -288,7 +288,7 @@
         },
         "ztitle": {
             "description": "Title of Z axis",
-            "type": ["string", "null"],
+            "type": ["string", "null"]
         },
         "xrange": {
             "description": "Range of X axis",
