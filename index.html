@@ -54,11 +54,11 @@ li.nav_fluid{display:none;}
 /* COMMON NAVBAR END */
 
 #menu{display:none;position:fixed;left:0;top:210px;width:12.5%;height:auto;z-index:100;border-top:1px solid #ccc;padding-top:20px;}
-#menu li{text-align:left;list-style:none;}
+#menu li{text-align:left;list-style:none;letter-spacing:-0.5px;}
 #menu a{display:block;}
-#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;font-size:1.1em;padding-left:5px;line-height:2em;}
+#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:5px 0;font-size:2vmin;padding-left:5px;line-height:2.5vmin;}
 #menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
-#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;font-size:0.9em;padding-left:20px;line-height:2em;}
+#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:5px 0;font-size:1.75vmin;padding-left:20px;line-height:2.25vmin;}
 #menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
 
 .wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
@@ -71,7 +71,8 @@ span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px so
 #logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
 #notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
-h1, h2, h3{line-height:2.2em;font-size:1.5em;font-weight:bold;color:#3e3f95;}
+h1{font-size:100%;font-weight:normal;display:inline;}
+h2, h3{line-height:2.2em;font-size:1.5em;font-weight:bold;color:#3e3f95;}
 h2:first-letter , h3:first-letter {color:#900;}
 h3{line-height:2.2em;font-size:1.2em;}
 
@@ -86,7 +87,7 @@ div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 #content > table th{line-height:2.2em;border:1px solid #ddd;background:#f6f6f6;padding:4px 2px;}
 span.t{font-family:'Courier New';background:#aaa;color:#fff;padding:1px 2px;}
 
-div.blackbg{background:#666;font-size:0.9em;color:#fff;font-family:'Courier New';line-height:1.6em;margin:20px 0;padding:10px 5px;border-radius:4px;white-space:pre;}
+div.blackbg{background:#2b2b2b;font-size:0.9em;color:#fff;font-family:'Courier New';line-height:1.6em;margin:20px 0;padding:10px 5px;border-radius:4px;white-space:pre;}
 div.caption{text-align:center;font-size:0.9em;line-height:2em;color:#666;margin:20px 0 30px;font-style:italic;}
 div.caption b{font-style:normal;}
 
@@ -357,6 +358,76 @@ color: #800;
 color: #080;font-style: italic;
 }
 
+/* Code highlighting */
+
+.hljs {
+display: block;
+overflow-x: auto;
+padding: 0.5em;
+color: #fff;
+background:#2b2b2b;font-size:0.9em;font-family:'Courier New';line-height:1.6em;border-radius:4px;
+}
+
+.hljs-strong,
+.hljs-emphasis {
+color: #a8a8a2;
+}
+
+.hljs-bullet,
+.hljs-quote,
+.hljs-link,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal {
+color: #6896ba;
+}
+
+.hljs-code,
+.hljs-selector-class {
+color: #a6e22e;
+}
+
+.hljs-emphasis {
+font-weight: bold;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-attribute,
+.hljs-name,
+.hljs-variable {
+color: #cb7832;
+}
+
+.hljs-params {
+color: #b9b9b9;
+}
+
+.hljs-string {
+color: #6a8759;
+}
+
+.hljs-subst,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-symbol,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-addition {
+color: #e0c46c;
+}
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+color: #7f7f7f;
+}
+
 /* "Fork me on GitHub" CSS ribbon v0.1.1 */
 
 .github-fork-ribbon {
@@ -417,19 +488,22 @@ transform: rotate(45deg);
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
 <![endif]-->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 <script type="text/javascript" src="/webassets/js/jquery.nearest.min.js"></script>
 <script type="text/javascript" src="/webassets/js/require.min.js"></script>
 <script type="text/javascript">
 if (!window.console) window.console = {log: function(){}, error: function(){}};
 
-function load_schema(addr, el){
+function load_custom_schema(addr, el){
     $.get(addr).done(function(schema){
-    try {
-        docson.doc(el, schema);
-    } catch (e) {
-        console.error("Could not parse JSON schema!");
-    }
-    }).fail(function (xhr, status, err) {
+        for (var type in schema.definitions){
+            try {
+                docson.doc("schema_" + type, schema.definitions[type]);
+            } catch (e){
+                console.error("Could not parse JSON schema!");
+            }
+        }
+    }).fail(function(xhr, status, err){
         console.error("Could not load JSON schema");
     });
 }
@@ -494,39 +568,11 @@ $(document).ready(function(){
     }
 
     require(['webassets/js/docson'], function(docson){
-        load_schema('/s.schema.json', 's_json_schema');
-        load_schema('/p.schema.json', 'p_json_schema');
-        load_schema('/c.schema.json', 'c_json_schema');
-    });
-
-    $.ajax({
-        url: 'https://gist.github.com/blokhin/f0770a154db6cc38ff2fb594aaa1738e.json',
-        dataType: 'jsonp',
-        timeout: 1000,
-        success: function (data) {
-            $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
-            $('#json_schema_gist').append(data.div);
-            $.ajax({
-                url: 'https://gist.github.com/blokhin/5fbfa38bcaf9f44f4cab6d677c44bc99.json',
-                dataType: 'jsonp',
-                timeout: 1000,
-                success: function (data) {
-                    $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
-                    $('#example_python').append(data.div);
-                    $.ajax({
-                        url: 'https://gist.github.com/blokhin/fedfe8a7c5fb4a771115322ce2dd39ab.json',
-                        dataType: 'jsonp',
-                        timeout: 1000,
-                        success: function (data) {
-                            $(document.head).append('<link href="' + data.stylesheet + '" rel="stylesheet">');
-                            $('#example_js').append(data.div);
-                        }
-                    });
-                }
-            });
-        }
+        load_custom_schema('/mpds.schema.json', 'mpds_json_schema');
     });
 });
+
+hljs.initHighlightingOnLoad();
 </script>
 </head>
 <body class="sky">
@@ -542,7 +588,7 @@ $(document).ready(function(){
 
     <div id="main">
         <div id="landing_box">
-            <div id="logo_l">MPDS</div><div id="logo"></div><div id="logo_r">Materials Platform<br />for Data Science</div>
+            <div id="logo_l">MPDS</div><div id="logo"></div><div id="logo_r"><h1>Materials Platform<br />for Data Science</h1></div>
             <div id="motto">based on the <a href="http://paulingfile.com" target="_blank" rel="noopener noreferrer">PAULING FILE</a> experimental inorganic database</div>
         </div>
 
@@ -555,7 +601,7 @@ $(document).ready(function(){
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
-            <h3 id="Overview">&sect;1.1. Overview</h3>
+            <h3 id="Overview-1">&sect;1.1. Overview</h3>
 
             <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly.</p>
 
@@ -729,21 +775,57 @@ $(document).ready(function(){
 
             <p class="view">JSON is the first-class passenger in the MPDS API. We provide JSON schemata for all kinds of the MPDS entries in the API output:</p>
 
-            <div id="s_json_schema" class="view"></div>
+            <div id="schema_crystal_structure" class="view"></div>
 
-            <div class="caption"><b>Fig. 1.</b> Interactive JSON schema for the <strong>crystalline structures</strong> or <strong>S-entries</strong><br />(also available as a <a href="https://raw.githubusercontent.com/mpds-io/API/gh-pages/s.schema.json">separate file</a>).</div>
+            <div class="caption"><b>Fig. 1.</b> Interactive JSON schema for the <strong>crystalline structures</strong> or <strong>S-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
 
-            <div id="p_json_schema" class="view"></div>
+            <div id="schema_physical_property" class="view"></div>
 
-            <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for the <strong>physical properties</strong> or <strong>P-entries</strong><br />(also available as a <a href="https://raw.githubusercontent.com/mpds-io/API/gh-pages/p.schema.json">separate file</a>).</div>
+            <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for the <strong>physical properties</strong> or <strong>P-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
 
-            <div id="c_json_schema" class="view"></div>
+            <div id="schema_phase_diagram" class="view"></div>
 
-            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for the <strong>phase diagrams</strong> or <strong>C-entries</strong><br />(also available as a <a href="https://raw.githubusercontent.com/mpds-io/API/gh-pages/c.schema.json">separate file</a>).</div>
+            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for the <strong>phase diagrams</strong> or <strong>C-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
 
-            <p class="view">The MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using Python script. In the following example the <span class="t">jsonschema</span> Python package is used:</p>
+            <p class="view">A single consolidated JSON schema for all types of MPDS data, <i>i.e.</i> <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong> (<strong>S-</strong>, <strong>P-</strong>, and <strong>C-entries</strong>, respectively) is generally recommended for all the programmatic tasks: a <a href="http://developer.mpds.io/mpds.schema.json">separate file</a> is provided.</p>
 
-            <div id="json_schema_gist" class="view"></div>
+            <p class="view">Any MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using a Python script below. In the following example the external <span class="t">httplib2</span> and <span class="t">jsonschema</span> Python packages are used:</p>
+
+            <div id="json_validate" class="view">
+            <pre><code>#!/usr/bin/env python
+
+import sys
+import json
+import httplib2
+from jsonschema import validate, Draft4Validator
+from jsonschema.exceptions import ValidationError
+
+try: input_json = sys.argv[1]
+except IndexError: sys.exit("Usage: %s input_json" % sys.argv[0])
+
+network = httplib2.Http()
+response, content = network.request("http://developer.mpds.io/mpds.schema.json")
+assert response.status == 200
+
+schema = json.loads(content)
+Draft4Validator.check_schema(schema)
+
+target = json.loads(open(input_json).read())
+
+if not target.get("npages") or not target.get("out") or target.get("error"):
+    sys.exit("Not a valid API response")
+
+try:
+    validate(target["out"], schema)
+except ValidationError, e:
+    raise RuntimeError(
+        "The item: \r\n\r\n %s \r\n\r\n has an issue: \r\n\r\n %s" % (
+            e.instance, e.context
+        )
+    )
+
+            </code></pre>
+            </div>
 
             <div class="caption view"><b>Listing 1.</b> A Python console script for JSON validation.</div>
 
@@ -751,18 +833,107 @@ $(document).ready(function(){
 
             <p class="view">Below are simple examples in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that the Python example requires an external package <span class="t">httplib2</span>.</p>
 
-            <div id="example_python" class="view"></div>
+            <div id="example_python" class="view">
+            <pre><code>#!/usr/bin/env python
+
+from urllib import urlencode
+import httplib2
+import json
+
+
+api_key = "" # your key
+endpoint = "https://api.mpds.io/v0/download/facet"
+search = {
+    "elements": "Mn",
+    "classes": "binary, oxide",
+    "props": "isothermal bulk modulus", # see https://mpds.io/#hierarchy
+    "lattices": "cubic"
+}
+
+req = httplib2.Http()
+response, content = req.request(
+    uri=endpoint + '?' + urlencode({
+        'q': json.dumps(search),
+        'pagesize': 10
+    }),
+    method='GET',
+    headers={'Key': api_key}
+)
+
+if response.status != 200:
+    # NB 400 means wrong input, 403 means authorization issue etc.
+    # see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+    raise RuntimeError("Error code %s" % response.status)
+
+content = json.loads(content)
+
+if content.get('error'): raise RuntimeError(content['error'])
+
+print "OK, got %s hits" % len(content['out'])
+            </code></pre>
+            </div>
 
             <div class="caption view"><b>Listing 2.</b> Sample Python script for working with the MPDS API.</div>
 
-            <div id="example_js" class="view"></div>
+            <div id="example_js" class="view">
+            <pre><code>#!/usr/bin/env node
+
+var https = require('https');
+var qs = require('querystring');
+
+var api_key = ""; // your key
+var host = "api.mpds.io", port = 443, path = "/v0/download/facet";
+var search = {
+    "elements": "Mn",
+    "classes": "binary, oxide",
+    "props": "isothermal bulk modulus", // see https://mpds.io/#hierarchy
+    "lattices": "cubic"
+};
+
+https.request({
+    host: host,
+    port: port,
+    path: path + '?' + qs.stringify({q: JSON.stringify(search), pagesize: 10}),
+    method: 'GET',
+    headers: {'Key': api_key}
+}, function(response){
+    var result = '';
+    if (response.statusCode != 200){
+        // NB 400 means wrong input, 403 means authorization issue etc.
+        // see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+        return console.error('Error code: ' + response.statusCode);
+    }
+    response.on('data', function(chunk){
+        result += chunk;
+    });
+    response.on('end', function(){
+        result = JSON.parse(result);
+        if (result.error) console.error(result.error);
+        else {
+            console.log('OK, got ' + result.out.length + ' hits');
+        }
+    });
+}).on('error', function(err){
+    console.error('Network error: ' + err);
+}).end();
+            </code></pre>
+            </div>
 
             <div class="caption view"><b>Listing 3.</b> Sample JavaScript code for working with the MPDS API.</div>
 
-            <!-- h2 id="Test-menu">&sect;2. Test menu</h2 -->
-            <!-- h3 id="Testing">&sect;2.1. Testing</h3 -->
+            <h2 id="Processing-data">&sect;2. Processing data</h2>
 
-            <p style="background:#DBF2FF;">This is the draft of the MPDS API documentation, being constantly updated. Thanks for reading! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
+            <h3 id="Overview-2">&sect;2.1. Overview</h3>
+
+            <h3 id="Client-library">&sect;2.2. Client library</h3>
+
+            <h3 id="Probability-density">&sect;2.3. Probability density for some bond lengths</h3>
+
+            <h3 id="Clustering">&sect;2.4. Clustering of band gaps</h3>
+
+            <h3 id="QSAR">&sect;2.5. Structure-property correlation (QSAR-alike)</h3>
+
+            <p style="background:#DBF2FF;">Thanks for your interest! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
         </div>
     </div>
 
