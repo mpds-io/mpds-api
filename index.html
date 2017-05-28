@@ -53,12 +53,12 @@ li.nav_fluid{display:none;}
 
 /* COMMON NAVBAR END */
 
-#menu{display:none;position:fixed;left:0;top:210px;width:12.5%;height:auto;z-index:100;border-top:1px solid #ccc;padding-top:20px;}
+#menu{display:none;position:fixed;left:0;top:178px;width:12.5%;height:auto;z-index:100;}
 #menu li{text-align:left;list-style:none;letter-spacing:-0.5px;}
 #menu a{display:block;}
-#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:5px 0;font-size:2vmin;padding-left:5px;line-height:2.5vmin;}
+#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.15vmin;padding-left:5px;line-height:2.5vmin;}
 #menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
-#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:5px 0;font-size:1.75vmin;padding-left:20px;line-height:2.25vmin;}
+#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.25vmin;}
 #menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
 
 .wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
@@ -72,13 +72,13 @@ span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px so
 #notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
-h2, h3{line-height:2.2em;font-size:1.5em;font-weight:bold;color:#3e3f95;}
+h2, h3{line-height:2.2em;font-size:1.6em;font-weight:bold;color:#3e3f95;}
 h2:first-letter , h3:first-letter {color:#900;}
 h3{line-height:2.2em;font-size:1.2em;}
 
 div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 
-#content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:15px;}
+#content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:50px;}
 #content > p{line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
 #content > p:first-letter {font-size:1.6em;font-weight:bold;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
@@ -431,7 +431,7 @@ color: #7f7f7f;
 /* "Fork me on GitHub" CSS ribbon v0.1.1 */
 
 .github-fork-ribbon {
-position: absolute;
+position: fixed;
 padding: 2px 0;
 background-color: #900;
 background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
@@ -465,7 +465,7 @@ border-color: rgba(255, 255, 255, 1);
 .github-fork-ribbon-wrapper {
 width: 100px;
 height: 100px;
-position: absolute;
+position: fixed;
 overflow: hidden;
 top: 0;
 z-index: 9999;
@@ -595,21 +595,21 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. To use the MPDS API you will need a valid API key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:eb@tilde.pro">contact us</a> if you do not have an account.</p>
+            <p style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. To use the MPDS API you will need a valid API key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:sales@tilde.pro">contact us</a> if you do not have an account.</p>
 
-            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong>, <strong>BIBTEX</strong> <i>etc.</i></p>
+            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong> <i>etc.</i></p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
-            <h3 id="Overview-1">&sect;1.1. Overview</h3>
+            <h3 id="Overview-1">&sect;1.1. MPDS data structure</h3>
 
-            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly.</p>
+            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (analogous to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>.</p>
 
-            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct phases which they belong.</p>
+            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by PAULING FILE in the past 20 years to manually distinguish more than 100&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">Generally, the most frequent action is to get the data according to some criteria. We support 10 basic criteria for searching and downloading the entries:</p>
+            <p class="view">The most common action is to get the MPDS data according to some criteria. We support 10 basic criteria for searching and downloading the entries:</p>
 
             <table class="view">
                 <thead>
@@ -673,19 +673,21 @@ hljs.initHighlightingOnLoad();
                 </tbody>
             </table>
 
-            <div class="caption"><b>Table 1.</b> Categories of the requested data.</div>
+            <div class="caption"><b>Table 1.</b> Categories of the MPDS data.</div>
+
+            <p class="view">Thus, in an API request it is possible to combine all these criteria in a reasonable manner. Combination is always done implying conjunctive <span class="t">AND</span> operator. The reasonable manner means one can combine <i>e.g.</i> <strong>publication authors</strong> with <strong>publication years</strong>, but cannot combine <strong>chemical formulae</strong> with <strong>chemical elements</strong> or <strong>space group</strong> with <strong>crystal system</strong>, <i>i.e.</i> the common sense rules are implied.</p>
 
             <h3 id="REST-endpoint">&sect;1.3. REST-alike download endpoint</h3>
 
-            <p class="view">To serve data we employ the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoints, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and request header and provide the standard HTTP status codes in response. The address of the data download endpoint is the following:</p>
+            <p class="view">To serve data we employ the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoint, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and request header. We provide the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">standard HTTP status codes</a> in response. The address of the data download endpoint is the following:</p>
 
             <div class="blackbg">https://api.mpds.io/v0/download/facet</div>
 
             <p class="view">The HTTP verb to be used is always <span class="t">GET</span>. The header must always contain the <span class="t">Key</span> string with the valid MPDS API key, obtained from the corresponding <a href="https://mpds.io/#modal/menu">MPDS account</a>. A minimal <span class="t">curl</span> example looks:</p>
 
-            <div class="blackbg">curl -X GET -H "Key:a_long_and_secret_string" https://api.mpds.io/v0/download/facet</div>
+            <div class="blackbg">curl -H Key:a_long_secret_string https://api.mpds.io/v0/download/facet</div>
 
-            <p class="view">The following parameters are supported for this endpoint:</p>
+            <p class="view">The following query string parameters are supported:</p>
 
             <table class="view">
                 <thead>
@@ -699,7 +701,12 @@ hljs.initHighlightingOnLoad();
                     <tr>
                     <td><span class="t">q</span></td>
                     <td><span class="t">JSON-serialized object</span></td>
-                    <td>The object <span class="t">q</span> may contain any reasonable combination of properties, which are given in the Table 1, column "Machine-readable name".</td>
+                    <td>The object <span class="t">q</span> may contain any reasonable combination of criteria, given in the Table 1, column "Machine-readable name". Always required.</td>
+                    </tr>
+                    <tr>
+                    <td><span class="t">phases</span></td>
+                    <td><span class="t">string or integer</span></td>
+                    <td>Distinct phase identifiers (called <span class="t">phase_id</span>'s) separated by commas can be optionally supplied to limit the search. This is convenient for programmatic chained searches. A relevant <span class="t">q</span> parameter must be always given. The count of <span class="t">phase_id</span>'s cannot exceed <span class="t">1000</span>.</td>
                     </tr>
                     <tr>
                     <td><span class="t">pagesize</span></td>
@@ -730,7 +737,7 @@ hljs.initHighlightingOnLoad();
     "props": "structural properties"
 }</div>
 
-            <p class="view">Another example of the <span class="t">q</span> parameter to request <strong>physical properties</strong>:</p>
+            <p class="view">Another example of the <span class="t">q</span> parameter to request the <strong>physical properties</strong>:</p>
 
             <div class="blackbg view">{
     "elements": "Zr",
@@ -773,21 +780,19 @@ hljs.initHighlightingOnLoad();
 
             <h3 id="JSON-schemata">&sect;1.4. JSON schemata of the MPDS entries</h3>
 
-            <p class="view">JSON is the first-class passenger in the MPDS API. We provide JSON schemata for all kinds of the MPDS entries in the API output:</p>
+            <p class="view">JSON is the first-class-passenger format in the MPDS API. We provide <a href="http://developer.mpds.io/mpds.schema.json">JSON schemata</a> for all kinds of the MPDS entries in the API output. This is visualized below:</p>
 
             <div id="schema_crystal_structure" class="view"></div>
 
-            <div class="caption"><b>Fig. 1.</b> Interactive JSON schema for the <strong>crystalline structures</strong> or <strong>S-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
+            <div class="caption"><b>Fig. 1.</b> Interactive JSON schema for a <strong>crystalline structure</strong> or <strong>S-entry</strong>.</div>
 
             <div id="schema_physical_property" class="view"></div>
 
-            <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for the <strong>physical properties</strong> or <strong>P-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
+            <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for a <strong>physical property</strong> or <strong>P-entry</strong> (clickable).</div>
 
             <div id="schema_phase_diagram" class="view"></div>
 
-            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for the <strong>phase diagrams</strong> or <strong>C-entries</strong><br />(part of <a href="http://developer.mpds.io/mpds.schema.json">consolidated MPDS schema</a>).</div>
-
-            <p class="view">A single consolidated JSON schema for all types of MPDS data, <i>i.e.</i> <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong> (<strong>S-</strong>, <strong>P-</strong>, and <strong>C-entries</strong>, respectively) is generally recommended for all the programmatic tasks: a <a href="http://developer.mpds.io/mpds.schema.json">separate file</a> is provided.</p>
+            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for a <strong>phase diagram</strong> or <strong>C-entry</strong>.</div>
 
             <p class="view">Any MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using a Python script below. In the following example the external <span class="t">httplib2</span> and <span class="t">jsonschema</span> Python packages are used:</p>
 
@@ -813,7 +818,7 @@ Draft4Validator.check_schema(schema)
 target = json.loads(open(input_json).read())
 
 if not target.get("npages") or not target.get("out") or target.get("error"):
-    sys.exit("Not a valid API response")
+    sys.exit("Unexpected API response")
 
 try:
     validate(target["out"], schema)
@@ -829,9 +834,11 @@ except ValidationError, e:
 
             <div class="caption view"><b>Listing 1.</b> A Python console script for JSON validation.</div>
 
+            <p class="view">All MPDS data are expected to be valid against the supplied schemata.</p>
+
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are simple examples in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that the Python example requires an external package <span class="t">httplib2</span>.</p>
+            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. Below we provide more convenient Python client library, so these examples here serve demonstration purposes only.</p>
 
             <div id="example_python" class="view">
             <pre><code>#!/usr/bin/env python
@@ -921,19 +928,314 @@ https.request({
 
             <div class="caption view"><b>Listing 3.</b> Sample JavaScript code for working with the MPDS API.</div>
 
+            <h3 id="API-GUI">&sect;1.6. API and GUI</h3>
+
+            <p class="view">The MPDS data provided in API and <a href="https://mpds.io/#start">GUI</a> (graphical user interface) are generally the same. There are however two important points to consider.</p>
+
+            <p class="view">First, the GUI is intended for the human researchers, not for the automated processing. Therefore the data in GUI are less formatted, being thus closer to the original publications (which, of course, impedes machine analysis).</p>
+
+            <p class="view">Second, some portion of data (~10%) present in the GUI is absent in the API. This is because currently a number of MPDS entries has only textual content or even no content at all (in process of preparation), <i>i.e.</i> present little value for the data mining. However, we make our best to expose the maximum MPDS data in the API, and this is the work in progress.</p>
+
+
             <h2 id="Processing-data">&sect;2. Processing data</h2>
 
             <h3 id="Overview-2">&sect;2.1. Overview</h3>
 
+            <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): distribution density analysis, clustering and correlation search. To a certain extent they could be considered as recipes, however they aim to illustrate the informatics aspect, not the materials science aspect.</p>
+
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
-            <h3 id="Probability-density">&sect;2.3. Probability density for some bond lengths</h3>
+            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">client library</a> for Python version 2.7 and 3.6, taking care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
 
-            <h3 id="Clustering">&sect;2.4. Clustering of band gaps</h3>
+            <p class="view">The exercises below use this client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries, which are often considered as a vanity case (gentleman's set) of a modern data scientist. As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if it is not explicitly provided. For Bash:</p>
 
-            <h3 id="QSAR">&sect;2.5. Structure-property correlation (QSAR-alike)</h3>
+            <div class="blackbg">export MPDS_KEY=...</div>
 
-            <p style="background:#DBF2FF;">Thanks for your interest! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
+            <h3 id="Probability-density">&sect;2.3. Bond length analysis</h3>
+
+            <p class="view">Let us say we want to study the chemical bond of A and B elements, <i>e.g.</i> uranium and oxygen. What is the length or lengths of this bond the most frequently reported in the world literature? MPDS contains more than 2500 crystalline structures with uranium and oxygen, so why should not we perform a quick data investigation to answer this question. Doing the necessary imports in Python:</p>
+
+            <div id="exercise_a1" class="view">
+            <pre><code>#!/usr/bin/env python
+import pandas as pd
+from mpds_client import MPDSDataRetrieval</code></pre>
+            </div>
+
+            <p class="view">We use a naive brute-force approach to calculate bond lengths between particular atom types in a crystalline environment. Obviously, we are interested in neighboring atoms only, so we do not consider interatomic distances more than, let us say, 4 &#8491;. We then represent a crystalline structure with the <span class="t">ase</span>'s <span class="t">Atoms</span> class and calculate distances using its <span class="t">get_distance</span> method. Note rounding of distances marked by comment <i>NB</i> in the code:</p>
+
+            <div id="exercise_a2" class="view">
+            <pre><code>def calculate_lengths(ase_obj, elA, elB, limit=4):
+    assert elA != elB
+    lengths = []
+    for n, atom in enumerate(ase_obj):
+        if atom.symbol == elA:
+            for m, neighbor in enumerate(ase_obj):
+                if neighbor.symbol == elB:
+                    dist = round(ase_obj.get_distance(n, m), 2) # NB occurrence <-> rounding
+                    if dist < limit:
+                        lengths.append(dist)
+    return lengths</code></pre>
+            </div>
+
+            <p class="view">
+            Note that the crystalline structures are not retrieved from MPDS by default, so we need to specify additional five fields: <span class="t">cell_abc</span>, <span class="t">sg_n</span>, <span class="t">setting</span>, <span class="t">basis_noneq</span>, <span class="t">els_noneq</span>.
+
+            On top of that, we also ask for the <span class="t">phase_id</span>'s, MPDS entry numbers, and chemical formulae. Note that <span class="t">get_data</span> API client method returns a usual Python list, whereas <span class="t">get_dataframe</span> API client method returns a Pandas dataframe. We use the former below:
+            </p>
+
+            <div id="exercise_a3" class="view">
+            <pre><code>client = MPDSDataRetrieval()
+
+answer = client.get_data(
+    {"elements": "U-O", "props": "atomic structure"},
+    fields={'S':[
+            'phase_id',
+            'entry',
+            'chemical_formula',
+            'cell_abc',
+            'sg_n',
+            'setting',
+            'basis_noneq',
+            'els_noneq'
+            ]}
+)</code></pre>
+            </div>
+
+            <p class="view">
+            The <span class="t">MPDSDataRetrieval.compile_crystal</span> API client method helps us to handle the crystalline structure in the <span class="t">ase</span>'s <span class="t">Atoms</span> flavour. Of course, any other library (<i>e.g.</i> <a href="https://github.com/materialsproject/pymatgen">Pymatgen</a> or <a href="https://github.com/aiidateam/aiida_core">Aiida</a>) can be used instead. We then call the <span class="t">calculate_lengths</span> function defined earlier.
+            </p>
+
+            <div id="exercise_a4" class="view">
+            <pre><code>lengths = []
+
+for item in answer:
+    crystal = MPDSDataRetrieval.compile_crystal(item)
+    if not crystal: continue
+    lengths.extend( calculate_lengths(crystal, 'U', 'O') )</code></pre>
+            </div>
+
+            <p class="view">
+            That runs a little bit slow (about five minutes), since <span class="t">ase</span>'s <span class="t">Atoms</span> are expectedly not performing very well on dozens of thousands of bond length calculations. We may want to employ a C-extension here, but this is outside the scope of this exercise. Anyway now we have a flat list <span class="t">lengths</span>. Let's convert it into a Pandas Dataframe and find which <strong>U-O</strong> distances occur more often than the others.
+            </p>
+
+            <div id="exercise_a5" class="view">
+            <pre><code>dfrm = pd.DataFrame(sorted(lengths), columns=['length'])
+dfrm['occurrence'] = dfrm.groupby('length')['length'].transform('count')
+dfrm.drop_duplicates('length', inplace=True)</code></pre>
+            </div>
+
+            <p class="view">
+            What did we do here? We calculated the numbers of occurrences (counts) of each particular <strong>U-O</strong> length and then augmented our dataframe with this new information, creating a new column <span class="t">occurrence</span>. The reader remembers that we have rounded the interatomic distances calculated.
+            </p>
+
+            <p class="view">
+            Now it's up to the reader to visualize the result (this is absolutely a matter of taste). Below is a bar chart rendered using <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> JavaScript libraries. We provide <a href="#Visualizations">visualization exporting toolbox</a> in Python, allowing the export of the results into <strong>CSV</strong> and <strong>JSON</strong> formats and reproducing the figures, although its usage is optional.
+            </p>
+
+            <img src="/figures/1.png" alt="Probability density distribution of U-O bond length across the MPDS database" width="800" />
+
+            <div class="caption"><b>Fig. 4.</b> Distribution of U-O bond lengths across the MPDS database.</div>
+
+            <p class="view">
+            We can see now that the most frequent bond lengths between the neighboring uranium and oxygen atoms are 1.78 and 2.35 &#8491;. This excellently agrees with the well-known <a href="http://canmin.geoscienceworld.org/content/35/6/1551">study of Burns <i>et al.</i></a>, done in 1997. However, Burns considered only 105 structures, and we did more than 2500, confirming very well although his findings on the <a href="https://en.wikipedia.org/wiki/Uranyl">uranyl ion</a> geometry.
+            </p>
+
+            <h3 id="Clustering">&sect;2.4. Clustering the band gaps</h3>
+
+            <p class="view">
+            Unsupervised grouping the values into the clusters in a many-dimensional space is a classical mathematical problem. In an applied data science it is managed using such well-known algorithms as <a href="https://en.wikipedia.org/wiki/K-means_clustering"><i>k</i>-means</a> and <a href="http://scikit-learn.org/stable/modules/mixture.html">Gaussian mixtures</a>.
+            </p>
+
+            <p class="view">
+            Taking the non-conducting binary compounds, let us try to find the clusters in their band gaps and the periodic groups of their elements. That is, we obtain the band gaps and corresponding pairs of the chemical elements, forming a binary compound, and then, for the series of values <strong>group of the first element</strong> &mdash; <strong>group of the second element</strong> &mdash; <strong>band gap</strong> we apply <i>k</i>-means. Given a set of points (in our case, in a three-dimensional space), <i>k</i>-means aims to partition the points into a number of sets, in order to minimize the within-cluster sum of distance functions of each point to the cluster center.
+            </p>
+
+            <p class="view">Here we explicitly specify some fields of P-entries we are interested in. As said, all the fields are given in the <a href="#JSON-schemata">JSON schema</a>. Filtering by the units (eV), we get rid of some band gap derivatives, which are also present in the output. Then we remove a couple of unphysical values (negative or more than 20 eV) that are probably wrongly reported:</p>
+
+            <div id="exercise_b1" class="view">
+            <pre><code>#!/usr/bin/env python
+from ase.data import chemical_symbols
+from retrieve_MPDS import MPDSDataRetrieval
+from kmeans import Point, kmeans, k_from_n # standalone K-means implementation
+
+client = MPDSDataRetrieval()
+
+dfrm = client.get_dataframe(
+    {"classes": "binary", "props": "band gap"},
+    fields={'P': [
+        'sample.material.chemical_formula',
+        'sample.material.chemical_elements',
+        'sample.material.condition[0].scalar[0].value',
+        'sample.measurement[0].property.units',
+        'sample.measurement[0].property.scalar'
+    ]},
+    columns=['Formula', 'Elements', 'SG', 'Units', 'Bandgap']
+)
+dfrm = dfrm[dfrm['Units'] == 'eV']
+dfrm = dfrm[(dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20)]</code></pre></div>
+
+            <p class="view">
+            Note, that there might be different values of the band gaps reported in the literature for each particular compound. Clearly, this is because we have not specified the character of the desired values (direct or indirect band gap), but even apart of that variations are expected, <i>e.g.</i> due to slightly different experimental conditions. Here we simply take the average of all the values per a compound, although there are of course better ways to handle that:
+            </p>
+
+            <div id="exercise_b2" class="view">
+            <pre><code>avgbgfrm = dfrm.groupby('Formula')['Bandgap'].mean().to_frame().reset_index() \
+    .rename(columns={'Bandgap': 'AvgBandgap'})
+dfrm = dfrm.merge(avgbgfrm, how='outer', on='Formula')
+dfrm.drop_duplicates('Formula', inplace=True)</code></pre></div>
+
+            <p class="view">We now have almost 600 different binary compounds with the averaged band gap values. So our data are ready for clustering. But first let us define how do we get the periodic element groups:</p>
+
+            <div id="exercise_b3" class="view"><pre><code>def get_element_group(el_num):
+    if el_num == 1: return 1
+    elif el_num == 2: return 18
+
+    elif 2 < el_num < 19:
+        if (el_num - 2) % 8 == 0: return 18
+        elif (el_num - 2) % 8 <= 2: return (el_num - 2) % 8
+        else: return 10 + (el_num - 2) % 8
+
+    elif 18 < el_num < 55:
+        if (el_num - 18) % 18 == 0: return 18
+        else: return (el_num - 18) % 18
+
+    if 56 < el_num < 72: return 3 # custom group for lanthanoids
+    elif 88 < el_num < 104: return 3 # custom group for actinoids
+    elif (el_num - 54) % 32 == 0: return 18
+    elif (el_num - 54) % 32 >= 17: return (el_num - 54) % 32 - 14
+    else: return (el_num - 54) % 32</code></pre></div>
+
+            <p class="view">
+            And then:
+            </p>
+
+            <div id="exercise_b4" class="view"><pre><code>fitdata = []
+
+for n, row in dfrm.iterrows():
+    groupA, groupB = \
+        get_element_group(chemical_symbols.index(row['Elements'][0])), \
+        get_element_group(chemical_symbols.index(row['Elements'][1]))
+    fitdata.append(
+        Point(
+            sorted([groupA, groupB]) + [round(row['AvgBandgap'], 2)],
+            reference=row['Formula']
+        )
+    )
+clusters = kmeans(fitdata, k_from_n(len(fitdata)))</code></pre></div>
+
+            <p class="view">We use a standalone <i>k</i>-means Python implementation <span class="t">kmeans</span>, although the reader might want to employ <span class="t">sklearn</span> or <span class="t">scipy</span>. Note, that the <i>k</i>-means algorithm does not provide the number of clusters to divide our data. We try to guess this number from the size of our data naively using <span class="t">k_from_n</span> function. For homogeneous data this guess is likely to be wrong, but for heterogeneous data it should make sense.</p>
+
+            <p class="view">We then export the data in a flat Python list for plotting as follows. The plot below is prepared using the <a href="#Visualizations">visualization exporting toolbox</a>.</p>
+
+            <div id="exercise_b5" class="view"><pre><code>export_data = []
+
+for cluster_n, cluster in enumerate(clusters, start=1):
+    for pnt in cluster.points:
+        export_data.append(pnt.coords + [pnt.reference] + [cluster_n])</code></pre></div>
+
+            <br />
+
+            <img src="/figures/2.png" alt="Binary compounds clustering by their band gaps and constituent element groups" width="600" />
+
+            <div class="caption"><b>Fig. 5.</b> Binary compounds clustering by their band gaps and constituent element groups.</div>
+
+            <br />
+
+            <h3 id="QSAR-QSPR">&sect;2.5. Structure-property correlations</h3>
+
+            <p class="view">In this excercise we try to quantitatively estimate the relationship between a physical property of interest and the atomic structure. This is the very basic task in chemoinformatics, called QSAR/QSPR study, which stands for the quantitative structure-activity or structure-property relationship modeling. Technically, we request some physical property from MPDS and try to figure out, whether it depends on the crystalline structure, and if yes, how much.</p>
+
+            <p class="view">Here the question "how much" is answered by a correlation coefficient, which can be defined either as a measure of how well two datasets fit on a straight line (<a gref="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson coefficient</a>), or difference between concordant and discordant pairs among all possible pairs in two datasets (<a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall's tau coefficient</a>). Both Pearson and Kendall's tau correlation coefficients are defined between <span class="t">-1</span> and <span class="t">+1</span>, with <span class="t">0</span> implying no correlation. For the Pearson coefficient, values of <span class="t">-1</span> or <span class="t">+1</span> imply an exact linear relationship. Positive correlations imply that as <i>x</i> increases, so does <i>y</i>. Negative correlations imply that as <i>x</i> increases, <i>y</i> decreases. For the Kendall's tau coefficient, values close to <span class="t">+1</span> indicate strong agreement, values close to <span class="t">-1</span> indicate strong disagreement. Calculation of both these correlation coefficients is provided by <span class="t">pandas</span> Python library.</p>
+
+            <p class="view">As usual, we start with Python imports:</p>
+
+            <div id="exercise_c1" class="view"><pre><code>#!/usr/bin/env python
+from __future__ import division
+
+import numpy as np
+import pandas as pd
+from ase.data import chemical_symbols, covalent_radii
+
+from retrieve_MPDS import MPDSDataRetrieval</code></pre></div>
+
+            <p class="view">We then present two <i>descriptors</i> for the crystalline structures. The term <i>descriptor</i> stands for the way how the complex data (crystalline structures, in our case) are transformed into the compact information-rich numbers, allowing the efficient mathematical treatment of the encoded information. We employ an <a href="https://en.wikipedia.org/wiki/Atomic_packing_factor">APF</a> descriptor, as well as topological <a href="https://en.wikipedia.org/wiki/Wiener_index">Wiener index</a>, defined per a unit cell. It is up to the reader to decide, how good they are, and whether the <a href="https://doi.org/10.1103/PhysRevB.89.205118">other descriptors</a> could be additionally employed:</p>
+
+            <div id="exercise_c2" class="view"><pre><code>def get_APF(ase_obj):
+    volume = 0.0
+    for atom in ase_obj:
+        volume += 4/3 * np.pi * covalent_radii[chemical_symbols.index(atom.symbol)]**3
+    return volume/abs(np.linalg.det(ase_obj.cell))
+
+def get_Wiener(ase_obj):
+    return np.sum(ase_obj.get_all_distances()) * 0.5</code></pre></div>
+
+            <p class="view">Concerning the property being investigated, we restrict ourselves with some materials classes, in order to reduce the time needed for descriptor calculations:</p>
+
+            <div id="exercise_c3" class="view"><pre><code>client = MPDSDataRetrieval()
+
+dfrm = client.get_dataframe({
+    "classes": "transitional, oxide",
+    "props": "isothermal bulk modulus"
+})
+dfrm = dfrm[np.isfinite(dfrm['Phase'])]
+dfrm = dfrm[dfrm['Units'] == 'GPa'] # cleaning
+dfrm = dfrm[dfrm['Value'] > 0] # cleaning
+
+phases = set(dfrm['Phase'].tolist())
+answer = client.get_data(
+    {"props": "atomic structure"},
+    phases=phases,
+    fields={'S':[
+            'phase_id',
+            'entry',
+            'chemical_formula',
+            'cell_abc',
+            'sg_n',
+            'setting',
+            'basis_noneq',
+            'els_noneq'
+            ]}
+)
+descriptors = []
+
+for item in answer:
+    crystal = MPDSDataRetrieval.compile_crystal(item)
+    if not crystal: continue
+    descriptors.append(( item[0], get_APF(crystal), get_Wiener(crystal) ))
+
+descriptors = pd.DataFrame(descriptors, columns=['Phase', 'APF', 'Wiener'])</code></pre></div>
+
+            <p class="view">Now we have got the physical property values in the <span class="t">dfrm</span> dataframe and the structure descriptors in the <span class="t">descriptors</span> dataframe. The reader remembers that in MPDS the physical properties and crystalline structures are related via the distinct phase concept, <i>i.e.</i> the same phase identifiers, which we have providently saved in the <span class="t">Phase</span> columns of <span class="t">dfrm</span> and <span class="t">descriptors</span> dataframes. As the MPDS might have several crystalline structures per a physical property value (or vice versa), we take an average (mean) of all the respective quantities within a distinct phase. After that we join our dataframes using the <span class="t">Phase</span> column.</p>
+
+            <div id="exercise_c4" class="view"><pre><code>d1 = descriptors.groupby('Phase')['APF'].mean().to_frame().reset_index()
+d2 = descriptors.groupby('Phase')['Wiener'].mean().to_frame().reset_index()
+dfrm = dfrm.groupby('Phase')['Value'].mean().to_frame().reset_index()
+
+dfrm = dfrm.merge(d1, how='outer', on='Phase')
+dfrm = dfrm.merge(d2, how='outer', on='Phase')
+
+dfrm.drop('Phase', axis=1, inplace=True)
+dfrm.rename(columns={'Value': 'Prop'}, inplace=True)</code></pre></div>
+
+            <p class="view">And this is how both correlation coefficients are calculated:</p>
+
+            <div id="exercise_c5" class="view"><pre><code>corr_pearson = dfrm.corr(method='pearson')
+corr_kendall = dfrm.corr(method='kendall')
+
+print("Pearson. Prop vs. APF = \t%s" % corr_pearson.loc['Prop']['APF'])
+print("Pearson. Prop vs. Wiener = \t%s" % corr_pearson.loc['Prop']['Wiener'])
+print("Kendall Tau. Prop vs. APF = \t%s" % corr_kendall.loc['Prop']['APF'])
+print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener'])</code></pre></div>
+
+            <p class="view">Expectedly, we can see some correlation between the selected property (namely, <i>isothermal bulk modulus</i> for the <i>oxides of transitional elements</i>) and two structural descriptors. However it varies considerably with the different materials classes, since the crystalline structure also changes considerably. Using your intuition, could you suggest the <a href="https://mpds.io/#hierarchy">physical property</a> which is expected to show higher correlation with either of two structural descriptors within a certain materials class &mdash; or no correlation at all?</p>
+
+            <br />
+
+            <h3 id="Visualizations">&sect;2.6. Visualizations</h3>
+
+            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a simple exporting toolbox each of the exercises considered above may output in the end two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
+
+            <p style="background:#DBF2FF;">Thanks for your time and interest! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
         </div>
     </div>
 

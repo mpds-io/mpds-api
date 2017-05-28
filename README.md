@@ -5,4 +5,4 @@ MPDS (Materials Platform for Data Science): API and introduction for developers
 
 This repository currently contains the issue tracker and the website [developer.mpds.io](http://developer.mpds.io) with the MPDS API documentation.
 
-All the information here is opened and freely available under the [MIT license](https://en.wikipedia.org/wiki/MIT_License). If you'd like to use the MPDS API, please, feel free to contact [Dr. Evgeny Blokhin](eb@tilde.pro).
+All the information here is opened and freely available under the [MIT license](https://en.wikipedia.org/wiki/MIT_License). Please, [contact us](sales@tilde.pro), if you'd like to use the MPDS API.
