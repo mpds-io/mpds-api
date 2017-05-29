@@ -79,7 +79,7 @@ h3{line-height:2.2em;font-size:1.2em;}
 div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 
 #content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:50px;}
-#content > p{line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
+#content > p{font-size:1em;line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
 #content > p:first-letter {font-size:1.6em;font-weight:bold;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
 #content > table{width:auto;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
@@ -943,11 +943,13 @@ https.request({
 
             <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): distribution density analysis, clustering and correlation search. To a certain extent they could be considered as recipes, however they aim to illustrate the informatics aspect, not the materials science aspect.</p>
 
+            <p class="view">All the exercises discussed here can be found in the <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff">Github repository</a>.</p>
+
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
             <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">client library</a> for Python version 2.7 and 3.6, taking care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
 
-            <p class="view">The exercises below use this client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries, which are often considered as a vanity case (gentleman's set) of a modern data scientist. As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if it is not explicitly provided. For Bash:</p>
+            <p class="view">The exercises below use this client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if it is not explicitly provided. For Bash:</p>
 
             <div class="blackbg">export MPDS_KEY=...</div>
 
@@ -1043,7 +1045,7 @@ dfrm.drop_duplicates('length', inplace=True)</code></pre>
             <h3 id="Clustering">&sect;2.4. Clustering the band gaps</h3>
 
             <p class="view">
-            Unsupervised grouping the values into the clusters in a many-dimensional space is a classical mathematical problem. In an applied data science it is managed using such well-known algorithms as <a href="https://en.wikipedia.org/wiki/K-means_clustering"><i>k</i>-means</a> and <a href="http://scikit-learn.org/stable/modules/mixture.html">Gaussian mixtures</a>.
+            Unsupervised grouping the values into the clusters in a many-dimensional space is a classical mathematical problem. In an applied data science it is successfully managed using <i>e.g.</i> such algorithms as <a href="https://en.wikipedia.org/wiki/K-means_clustering"><i>k</i>-means</a> and <a href="http://scikit-learn.org/stable/modules/mixture.html">Gaussian mixtures</a>.
             </p>
 
             <p class="view">
@@ -1158,7 +1160,7 @@ from ase.data import chemical_symbols, covalent_radii
 
 from retrieve_MPDS import MPDSDataRetrieval</code></pre></div>
 
-            <p class="view">We then present two <i>descriptors</i> for the crystalline structures. The term <i>descriptor</i> stands for the way how the complex data (crystalline structures, in our case) are transformed into the compact information-rich numbers, allowing the efficient mathematical treatment of the encoded information. We employ an <a href="https://en.wikipedia.org/wiki/Atomic_packing_factor">APF</a> descriptor, as well as topological <a href="https://en.wikipedia.org/wiki/Wiener_index">Wiener index</a>, defined per a unit cell. It is up to the reader to decide, how good they are, and whether the <a href="https://doi.org/10.1103/PhysRevB.89.205118">other descriptors</a> could be additionally employed:</p>
+            <p class="view">We then present two <i>descriptors</i> for the crystalline structures. The term <i>descriptor</i> stands for the way how the complex data (crystalline structures, in our case) are transformed into the compact information-rich numbers, allowing the convenient mathematical treatment of the encoded information. We employ an <a href="https://en.wikipedia.org/wiki/Atomic_packing_factor">APF</a> descriptor, as well as topological <a href="https://en.wikipedia.org/wiki/Wiener_index">Wiener index</a>, defined per a unit cell. It is up to the reader to decide, whether the <a href="https://doi.org/10.1103/PhysRevB.89.205118">other descriptors</a> could be also employed:</p>
 
             <div id="exercise_c2" class="view"><pre><code>def get_APF(ase_obj):
     volume = 0.0
