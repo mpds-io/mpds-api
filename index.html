@@ -56,9 +56,9 @@ li.nav_fluid{display:none;}
 #menu{display:none;position:fixed;left:0;top:178px;width:12.5%;height:auto;z-index:100;}
 #menu li{text-align:left;list-style:none;letter-spacing:-0.5px;}
 #menu a{display:block;}
-#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.15vmin;padding-left:5px;line-height:2.5vmin;}
+#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.1vmin;padding-left:5px;line-height:2.5vmin;}
 #menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
-#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.25vmin;}
+#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.3vmin;}
 #menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
 
 .wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
@@ -73,13 +73,13 @@ span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px so
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
 h2, h3{line-height:2.2em;font-size:1.6em;font-weight:bold;color:#3e3f95;}
-h2:first-letter , h3:first-letter {color:#900;}
+h2:first-letter , h3:first-letter {color:#666;}
 h3{line-height:2.2em;font-size:1.2em;}
 
 div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 
 #content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:50px;}
-#content > p{font-size:1em;line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
+#content > p{font-size:1.05em;line-height:1.7em;color:#666;margin:20px 0;padding:10px 5px;border-radius:4px;background:#f9f9f9;}
 #content > p:first-letter {font-size:1.6em;font-weight:bold;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
 #content > table{width:auto;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
@@ -595,9 +595,9 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#DBF2FF;">Dear developers! We are happy to welcome you here. To use the MPDS API you will need a valid API key from your <a href="https://mpds.io/#modal/menu">MPDS account</a>. Please, <a href="mailto:sales@tilde.pro">contact us</a> if you do not have an account.</p>
+            <p style="background:#DBF2FF;">This is the description of the MPDS application programming interface (API). Its intended audience is software engineers and data scientists. To use the MPDS API the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
 
-            <p>The MPDS API described below presents all the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats, <i>e.g.</i> <strong>JSON</strong>, <strong>CIF</strong> <i>etc.</i></p>
+            <p>The MPDS API presents the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats.</p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -1049,7 +1049,7 @@ dfrm.drop_duplicates('length', inplace=True)</code></pre>
             </p>
 
             <p class="view">
-            Taking the non-conducting binary compounds, let us try to find the clusters in their band gaps and the periodic groups of their elements. That is, we obtain the band gaps and corresponding pairs of the chemical elements, forming a binary compound, and then, for the series of values <strong>group of the first element</strong> &mdash; <strong>group of the second element</strong> &mdash; <strong>band gap</strong> we apply <i>k</i>-means. Given a set of points (in our case, in a three-dimensional space), <i>k</i>-means aims to partition the points into a number of sets, in order to minimize the within-cluster sum of distance functions of each point to the cluster center.
+            Taking the non-conducting binary compounds, let us find the clusters in their band gaps and the periodic groups of their elements. That is, we obtain the band gaps and corresponding pairs of the chemical elements, forming a binary compound, and then, for the series of values <strong>group of the first element</strong> &mdash; <strong>group of the second element</strong> &mdash; <strong>band gap</strong> we apply <i>k</i>-means. Given a set of points (in our case, in a three-dimensional space), <i>k</i>-means aims to partition the points into a number of sets, in order to minimize the within-cluster sum of distance functions of each point to the cluster center.
             </p>
 
             <p class="view">Here we explicitly specify some fields of P-entries we are interested in. As said, all the fields are given in the <a href="#JSON-schemata">JSON schema</a>. Filtering by the units (eV), we get rid of some band gap derivatives, which are also present in the output. Then we remove a couple of unphysical values (negative or more than 20 eV) that are probably wrongly reported:</p>
@@ -1086,7 +1086,7 @@ dfrm = dfrm[(dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20)]</code></pre></div>
 dfrm = dfrm.merge(avgbgfrm, how='outer', on='Formula')
 dfrm.drop_duplicates('Formula', inplace=True)</code></pre></div>
 
-            <p class="view">We now have almost 600 different binary compounds with the averaged band gap values. So our data are ready for clustering. But first let us define how do we get the periodic element groups:</p>
+            <p class="view">We now have almost 600 different binary compounds with the averaged band gap values. So our data are ready for clustering. This is how we get the periodic element groups:</p>
 
             <div id="exercise_b3" class="view"><pre><code>def get_element_group(el_num):
     if el_num == 1: return 1
@@ -1145,11 +1145,11 @@ for cluster_n, cluster in enumerate(clusters, start=1):
 
             <h3 id="QSAR-QSPR">&sect;2.5. Structure-property correlations</h3>
 
-            <p class="view">In this excercise we try to quantitatively estimate the relationship between a physical property of interest and the atomic structure. This is the very basic task in chemoinformatics, called QSAR/QSPR study, which stands for the quantitative structure-activity or structure-property relationship modeling. Technically, we request some physical property from MPDS and try to figure out, whether it depends on the crystalline structure, and if yes, how much.</p>
+            <p class="view">In this excercise we quantitatively estimate the relationship between a physical property of interest and the atomic structure. This is the very basic task in chemoinformatics, called QSAR/QSPR study, which stands for the quantitative structure-activity or structure-property relationship modeling. Technically, we request some physical property from MPDS and try to figure out, whether it depends on the crystalline structure, and if yes, how much.</p>
 
             <p class="view">Here the question "how much" is answered by a correlation coefficient, which can be defined either as a measure of how well two datasets fit on a straight line (<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson coefficient</a>), or difference between concordant and discordant pairs among all possible pairs in two datasets (<a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall's tau coefficient</a>). Both Pearson and Kendall's tau correlation coefficients are defined between <span class="t">-1</span> and <span class="t">+1</span>, with <span class="t">0</span> implying no correlation. For the Pearson coefficient, values of <span class="t">-1</span> or <span class="t">+1</span> imply an exact linear relationship. Positive correlations imply that as <i>x</i> increases, so does <i>y</i>. Negative correlations imply that as <i>x</i> increases, <i>y</i> decreases. For the Kendall's tau coefficient, values close to <span class="t">+1</span> indicate strong agreement, values close to <span class="t">-1</span> indicate strong disagreement. Calculation of both these correlation coefficients is provided by <span class="t">pandas</span> Python library.</p>
 
-            <p class="view">As usual, we start with Python imports:</p>
+            <p class="view">As usual, we start with the Python imports:</p>
 
             <div id="exercise_c1" class="view"><pre><code>#!/usr/bin/env python
 from __future__ import division
@@ -1160,7 +1160,7 @@ from ase.data import chemical_symbols, covalent_radii
 
 from retrieve_MPDS import MPDSDataRetrieval</code></pre></div>
 
-            <p class="view">We then present two <i>descriptors</i> for the crystalline structures. The term <i>descriptor</i> stands for the way how the complex data (crystalline structures, in our case) are transformed into the compact information-rich numbers, allowing the convenient mathematical treatment of the encoded information. We employ an <a href="https://en.wikipedia.org/wiki/Atomic_packing_factor">APF</a> descriptor, as well as topological <a href="https://en.wikipedia.org/wiki/Wiener_index">Wiener index</a>, defined per a unit cell. It is up to the reader to decide, whether the <a href="https://doi.org/10.1103/PhysRevB.89.205118">other descriptors</a> could be also employed:</p>
+            <p class="view">We then present two <i>descriptors</i> for the crystalline structures. The term <i>descriptor</i> stands for the compact information-rich number, allowing the convenient mathematical treatment of the encoded complex data (crystalline structure, in our case). We employ an <a href="https://en.wikipedia.org/wiki/Atomic_packing_factor">APF</a> descriptor, as well as topological <a href="https://en.wikipedia.org/wiki/Wiener_index">Wiener index</a>, defined per a unit cell. It is up to the reader to check the <a href="https://doi.org/10.1103/PhysRevB.89.205118">other descriptors</a> for the crystalline structures.</p>
 
             <div id="exercise_c2" class="view"><pre><code>def get_APF(ase_obj):
     volume = 0.0
@@ -1207,7 +1207,7 @@ for item in answer:
 
 descriptors = pd.DataFrame(descriptors, columns=['Phase', 'APF', 'Wiener'])</code></pre></div>
 
-            <p class="view">Now we have got the physical property values in the <span class="t">dfrm</span> dataframe and the structure descriptors in the <span class="t">descriptors</span> dataframe. The reader remembers that in MPDS the physical properties and crystalline structures are related via the distinct phase concept, <i>i.e.</i> the same phase identifiers, which we have providently saved in the <span class="t">Phase</span> columns of <span class="t">dfrm</span> and <span class="t">descriptors</span> dataframes. As the MPDS might have several crystalline structures per a physical property value (or vice versa), we take an average (mean) of all the respective quantities within a distinct phase. After that we join our dataframes using the <span class="t">Phase</span> column.</p>
+            <p class="view">Now we have got the physical property values in the <span class="t">dfrm</span> dataframe and the structure descriptors in the <span class="t">descriptors</span> dataframe. The reader remembers that in MPDS the physical properties and crystalline structures are related via the distinct phase concept, <i>i.e.</i> the same phase identifiers, which we have saved in advance in the <span class="t">Phase</span> columns of <span class="t">dfrm</span> and <span class="t">descriptors</span> dataframes. As the MPDS might have several crystalline structures per a physical property value (or vice versa), we take an average (mean) of all the respective quantities within a distinct phase. After that we join our dataframes using the <span class="t">Phase</span> column:</p>
 
             <div id="exercise_c4" class="view"><pre><code>d1 = descriptors.groupby('Phase')['APF'].mean().to_frame().reset_index()
 d2 = descriptors.groupby('Phase')['Wiener'].mean().to_frame().reset_index()
@@ -1219,7 +1219,7 @@ dfrm = dfrm.merge(d2, how='outer', on='Phase')
 dfrm.drop('Phase', axis=1, inplace=True)
 dfrm.rename(columns={'Value': 'Prop'}, inplace=True)</code></pre></div>
 
-            <p class="view">And this is how both correlation coefficients are calculated:</p>
+            <p class="view">And this is how the both correlation coefficients are calculated:</p>
 
             <div id="exercise_c5" class="view"><pre><code>corr_pearson = dfrm.corr(method='pearson')
 corr_kendall = dfrm.corr(method='kendall')
@@ -1229,15 +1229,15 @@ print("Pearson. Prop vs. Wiener = \t%s" % corr_pearson.loc['Prop']['Wiener'])
 print("Kendall Tau. Prop vs. APF = \t%s" % corr_kendall.loc['Prop']['APF'])
 print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener'])</code></pre></div>
 
-            <p class="view">Expectedly, we can see some correlation between the selected property (namely, <i>isothermal bulk modulus</i> for the <i>oxides of transitional elements</i>) and two structural descriptors. However it varies considerably with the different materials classes, since the crystalline structure also changes considerably. Using your intuition, could you suggest the <a href="https://mpds.io/#hierarchy">physical property</a> which is expected to show higher correlation with either of two structural descriptors within a certain materials class &mdash; or no correlation at all?</p>
+            <p class="view">Expectedly, we can see some correlation between the selected property (namely, <i>isothermal bulk modulus</i> for the <i>oxides of transitional elements</i>) and two structural descriptors. However it varies considerably with the different materials classes, since the crystalline structure also changes considerably. Using the intuition, may the reader suggest the <a href="https://mpds.io/#hierarchy">physical property</a> which is expected to show higher correlation with either of two structural descriptors within a certain materials class &mdash; or no correlation at all?</p>
 
             <br />
 
             <h3 id="Visualizations">&sect;2.6. Visualizations</h3>
 
-            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/MPDSExport.py">simple exporting toolbox</a> each of the exercises considered above may output in the end two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
+            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/MPDSExport.py">simple exporting toolbox</a> each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
 
-            <p style="background:#DBF2FF;">Thanks for your time and interest! Please do not hesitate to <a href="mailto:feedback@tilde.pro">contact us</a> if you have any feedback or questions.</p>
+            <p style="background:#DBF2FF;">We thank the reader for the time and interest! Any feedback or questions are <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
     </div>
 
