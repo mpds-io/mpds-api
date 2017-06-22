@@ -942,21 +942,21 @@ https.request({
 
             <h3 id="Overview-2">&sect;2.1. Overview</h3>
 
-            <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): distribution density analysis, clustering and correlation search. To a certain extent they could be considered as recipes, however they aim to illustrate the informatics aspect, not the materials science aspect.</p>
+            <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): (<i>a</i>)&nbsp;distribution density analysis, (<i>b</i>)&nbsp;clustering and (<i>c</i>)&nbsp;correlation search. To a certain extent they could be considered as recipes, however aiming to illustrate the informatics aspect, not the materials science aspect.</p>
 
             <p class="view">All the exercises discussed here can be found in the <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff">Github repository</a>.</p>
 
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
-            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">client library</a> for Python version 2.7 and 3.6, taking care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
+            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
 
-            <p class="view">The exercises below use this client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if it is not explicitly provided. For Bash:</p>
+            <p class="view">The exercises below use the Python client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if not explicitly provided. For Bash:</p>
 
             <div class="blackbg">export MPDS_KEY=...</div>
 
             <h3 id="Probability-density">&sect;2.3. Bond length analysis</h3>
 
-            <p class="view">Let us say we want to study the chemical bond of A and B elements, <i>e.g.</i> uranium and oxygen. What is the length or lengths of this bond the most frequently reported in the world literature? MPDS contains more than 2500 crystalline structures with uranium and oxygen, so why should not we perform a quick data investigation to answer this question. Doing the necessary imports in Python:</p>
+            <p class="view">Let us say we want to study the chemical bond of A and B elements, <i>e.g.</i> uranium and oxygen. What is the length or lengths of this bond the most frequently reported in the world scientific literature? MPDS contains more than 2500 crystalline structures with uranium and oxygen, so why should not we perform a quick data investigation to answer this question. Starting with the necessary imports in Python:</p>
 
             <div id="exercise_a1" class="view">
             <pre><code>#!/usr/bin/env python
@@ -1005,14 +1005,17 @@ answer = client.get_data(
             </div>
 
             <p class="view">
-            The <span class="t">MPDSDataRetrieval.compile_crystal</span> API client method helps us to handle the crystalline structure in the <span class="t">ase</span>'s <span class="t">Atoms</span> flavour. Of course, any other library (<i>e.g.</i> <a href="https://github.com/materialsproject/pymatgen">Pymatgen</a> or <a href="https://github.com/aiidateam/aiida_core">Aiida</a>) can be used instead. We then call the <span class="t">calculate_lengths</span> function defined earlier.
+            The <span class="t">MPDSDataRetrieval.compile_crystal</span> API client method helps us to handle the crystalline structure in the <span class="t">ase</span>'s <span class="t">Atoms</span> flavor. A popular <a href="https://github.com/materialsproject/pymatgen">Pymatgen</a> library can be also used instead. Mind however that these two libraries are generally incompatible, so never mix crystalline structures in <span class="t">ase</span> and <span class="t">Pymatgen</span> flavors.</p>
+
+            <p class="view">
+            We then call the <span class="t">calculate_lengths</span> function defined earlier:
             </p>
 
             <div id="exercise_a4" class="view">
             <pre><code>lengths = []
 
 for item in answer:
-    crystal = MPDSDataRetrieval.compile_crystal(item)
+    crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal: continue
     lengths.extend( calculate_lengths(crystal, 'U', 'O') )</code></pre>
             </div>
@@ -1172,6 +1175,8 @@ from retrieve_MPDS import MPDSDataRetrieval</code></pre></div>
 def get_Wiener(ase_obj):
     return np.sum(ase_obj.get_all_distances()) * 0.5</code></pre></div>
 
+            <p class="view">Note that our descriptors generally depend on whether we use <span class="t">compile_crystal(item, 'ase')</span> or <span class="t">compile_crystal(item, 'pmg')</span>. This is because by default <span class="t">ase</span> and <span class="t">Pymatgen</span> libraries handle crystalline structures in a slightly different manner. The reader is welcomed to edit the code above for the <span class="t">Pymatgen</span> library.</p>
+
             <p class="view">Concerning the property being investigated, we restrict ourselves with some materials classes, in order to reduce the time needed for descriptor calculations:</p>
 
             <div id="exercise_c3" class="view"><pre><code>client = MPDSDataRetrieval()
@@ -1202,7 +1207,7 @@ answer = client.get_data(
 descriptors = []
 
 for item in answer:
-    crystal = MPDSDataRetrieval.compile_crystal(item)
+    crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal: continue
     descriptors.append(( item[0], get_APF(crystal), get_Wiener(crystal) ))
 
