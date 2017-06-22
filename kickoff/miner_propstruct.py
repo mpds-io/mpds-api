@@ -44,7 +44,7 @@ answer = client.get_data(
 descriptors = []
 
 for item in answer:
-    crystal = MPDSDataRetrieval.compile_crystal(item)
+    crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal: continue
     descriptors.append(( item[0], get_APF(crystal), get_Wiener(crystal) ))
 

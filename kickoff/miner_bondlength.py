@@ -28,7 +28,7 @@ answer = client.get_data(
 lengths = []
 
 for item in answer:
-    crystal = MPDSDataRetrieval.compile_crystal(item)
+    crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal: continue
     lengths.extend( calculate_lengths(crystal, 'U', 'O') )
 
