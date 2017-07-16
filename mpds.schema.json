@@ -87,7 +87,7 @@
                     "minItems": 0,
                     "items": {
                         "type": "number",
-                        "minimum": 0.0002,
+                        "minimum": 0.0001,
                         "maximum": 1.0
                     }
                 },
