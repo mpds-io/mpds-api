@@ -46,15 +46,20 @@ li.nav_fluid{display:none;}
 
 /* COMMON NAVBAR END */
 
-#menu{display:none;position:fixed;left:0;top:178px;width:12.5%;height:auto;z-index:100;}
+#menu{display:none;position:fixed;left:0;top:170px;width:12.5%;height:auto;z-index:100;}
 #menu li{text-align:left;list-style:none;letter-spacing:-0.5px;}
 #menu a{display:block;}
-#menu > ul > li a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.1vmin;padding-left:5px;line-height:2.5vmin;}
-#menu > ul > li a:hover, #menu > ul > li a.active {color:#fff;background:#900;}
-#menu > ul > li > ul > li a{text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.3vmin;}
-#menu > ul > li > ul > li a:hover, #menu > ul > li > ul > li a.active {color:#fff;background:#3e3f95;}
+#menu > ul > li > a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.1vmin;padding-left:5px;line-height:2.5vmin;}
+#menu > ul > li > a:hover, #menu > ul > li > a.active {color:#fff;background:#900;}
+#menu > ul > li > ul > li > a{text-decoration:none;color:#222;border-bottom:1px solid #222;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.3vmin;}
+#menu > ul > li > ul > li > a:hover, #menu > ul > li > ul > li > a.active {color:#fff;background:#222;}
 
-.wmbutton{cursor:pointer;font-size:1.2em;font-weight:normal;text-align:center;border:1px solid #3e3f95;text-align:center;background:#3e3f95;color:#fff;line-height:1.4em;border-radius:2px;text-decoration:none;box-shadow:inset 0 2px 2px rgba(255,255,255,0.3), inset 0 -2px 2px rgba(0,0,0,0.3), inset 0 20px 10px rgba(255,255,255,0.3), 0 0 2px 1px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.3);}
+#bookmarks{display:none;position:fixed;right:0;top:171px;width:12.5%;height:auto;z-index:100;}
+#bookmarks li{text-align:left;list-style:none;letter-spacing:-0.5px;}
+#bookmarks a{display:block;}
+#bookmarks > ul > li:first-child {border-top:1px solid #222;}
+#bookmarks > ul > li > a{text-decoration:none;color:#222;border-bottom:1px solid #222;font-size:0.9em;padding:3px 1px;line-height:2.3vmin;}
+#bookmarks > ul > li > a:hover{color:#fff;background:#222;}
 
 div.modal_dialogue{position:fixed;top:10%;left:50%;border-radius:4px;border:1px solid #999;box-shadow:15px 15px 10px -5px rgba(0,0,0,0.4);}
 div.cross{float:right;width:16px;height:16px;font-size:10px;text-align:center;cursor:pointer;background:url(data:image/gif;base64,R0lGODlhEAAQAJEAAAAAAP///1VVVf///yH5BAEAAAMALAAAAAAQABAAAAIjnI+py6L+BDRy0gqxHVqvLjGcJ3Yl+IEhQpLX+m7wMYv2PRQAOw==) no-repeat;}
@@ -65,7 +70,7 @@ span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px so
 #notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
-h2, h3{line-height:2.2em;font-size:1.6em;font-weight:bold;color:#3e3f95;}
+h2, h3{line-height:2.2em;font-size:1.6em;font-weight:bold;color:#900;}
 h2:first-letter , h3:first-letter {color:#666;}
 h3{line-height:2.2em;font-size:1.2em;}
 
@@ -100,12 +105,12 @@ div.caption b{font-style:normal;}
 #footer{width:100%;height:24px;padding-top:8px;text-align:center;font-size:0.85em;color:#888;background:#f6f6f6;border-top:1px solid #888;}
 #footer a{text-decoration:none;color:#888;border-bottom:1px solid #888;}
 #twitter{position:fixed;z-index:3;bottom:0;left:0;width:13.5%;height:32px;text-align:center;}
-#twitter a{text-decoration:none;font-size:0.85em;color:#888;line-height:32px;border-bottom:1px solid #888;font-family:Georgia;}
+#twitter a{text-decoration:none;font-size:0.85em;font-weight:bold;color:#3e3f95;line-height:32px;font-family:Arial;}
 
 /* MEDIA-QUERIES */
 
-@media all and (min-width:1000px){
-#menu{display:block;}
+@media all and (min-width:1100px){
+#menu, #bookmarks{display:block;}
 li.nav_fluid {display:inline-block;}
 }
 
@@ -561,6 +566,19 @@ $(document).ready(function(){
         $(window).scroll(debounce(update_menu, 300));
     }
 
+    if ($('#bookmarks').is(':visible')){
+        var menu = '<ul>';
+        $('div.caption').each(function(){
+            var that = $(this),
+                value = that.html(),
+                href = that.attr('data-id');
+            if (value.substr(-1, 1) == '.') value = value.substr(0, value.length - 1);
+            menu += '<li><a href="#' + href + '">' + value + '</a></li>';
+        });
+        menu += '</ul>';
+        $('#bookmarks').append(menu);
+    }
+
     require(['webassets/js/docson'], function(docson){
         load_custom_schema('/mpds.schema.json', 'mpds_json_schema');
     });
@@ -579,6 +597,8 @@ hljs.initHighlightingOnLoad();
     </ul></div>
 
     <div id="menu"></div>
+
+    <div id="bookmarks"></div>
 
     <div id="main">
         <div id="landing_box">
@@ -603,9 +623,9 @@ hljs.initHighlightingOnLoad();
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">The most common action is to get the MPDS data according to some criteria. We support 10 basic criteria for searching and downloading the entries:</p>
+            <p class="view">The most common action is to get the MPDS data according to some criteria. We support 12 basic criteria for searching and downloading the entries:</p>
 
-            <table class="view">
+            <table class="view" id="T1">
                 <thead>
                     <tr>
                     <th>Criterion</th>
@@ -640,7 +660,7 @@ hljs.initHighlightingOnLoad();
                     <td><span class="t">SrTiO3</span>, <span class="t">O3Al2</span></td>
                     </tr>
                     <tr>
-                    <td>Space group (number or Hermann-Mauguin notation)</td>
+                    <td>Space group (number or international short symbol)</td>
                     <td><span class="t">sgs</span></td>
                     <td><span class="t">Pm3m</span>, <span class="t">221</span></td>
                     </tr>
@@ -648,6 +668,16 @@ hljs.initHighlightingOnLoad();
                     <td>Prototype system ("Strukturbericht" or MPDS notation: formula, Pearson symbol, space group number)</td>
                     <td><span class="t">protos</span></td>
                     <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
+                    </tr>
+                    <tr>
+                    <td>Polyhedron atoms (center, ligands)</td>
+                    <td><span class="t">aeatoms</span></td>
+                    <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
+                    </tr>
+                    <tr>
+                    <td>Polyhedral type</td>
+                    <td><span class="t">aetype</span></td>
+                    <td><span class="t">icosahedron 12-vertex</span></td>
                     </tr>
                     <tr>
                     <td>Publication author</td>
@@ -667,7 +697,7 @@ hljs.initHighlightingOnLoad();
                 </tbody>
             </table>
 
-            <div class="caption"><b>Table 1.</b> Categories of the MPDS data.</div>
+            <div class="caption" data-id="T1"><b>Table 1.</b> Categories of MPDS data.</div>
 
             <p class="view">Thus, in an API request it is possible to combine all these criteria in a reasonable manner. Combination is always done implying conjunctive <span class="t">AND</span> operator. The reasonable manner means one can combine <i>e.g.</i> <strong>publication authors</strong> with <strong>publication years</strong>, but cannot combine <strong>chemical formulae</strong> with <strong>chemical elements</strong> or <strong>space group</strong> with <strong>crystal system</strong>, <i>i.e.</i> the common sense rules are implied.</p>
 
@@ -683,7 +713,7 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">The following query string parameters are supported:</p>
 
-            <table class="view">
+            <table class="view" id="T2">
                 <thead>
                     <tr>
                     <th>Parameter</th>
@@ -720,7 +750,7 @@ hljs.initHighlightingOnLoad();
                 </tbody>
             </table>
 
-            <div class="caption"><b>Table 2.</b> Query string parameters for the download endpoint.</div>
+            <div class="caption" data-id="T2"><b>Table 2.</b> Query string parameters for download endpoint.</div>
 
             <p class="view">An example of the <span class="t">q</span> parameter to request the <strong>crystalline structures</strong> (with the spaces and line breaks added for readability):</p>
 
@@ -739,7 +769,7 @@ hljs.initHighlightingOnLoad();
     "props": "thermal expansion"
 }</div>
 
-            <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>).</p>
+            <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>). Also other properties might be added in future.</p>
 
             <p class="view">Each kind of entries (<i>i.e.</i> S- or P-entries) has its own specific properties in <strong>JSON</strong> (see below).</p>
 
@@ -774,24 +804,24 @@ hljs.initHighlightingOnLoad();
 
             <h3 id="JSON-schemata">&sect;1.4. JSON schemata of the MPDS entries</h3>
 
-            <p class="view">JSON is the first-class-passenger format in the MPDS API. We provide <a href="http://developer.mpds.io/mpds.schema.json">JSON schemata</a> for all kinds of the MPDS entries in the API output. This is visualized below:</p>
+            <p class="view" id="L1">JSON is the first-class-passenger format in the MPDS API. We provide <a href="http://developer.mpds.io/mpds.schema.json">JSON schemata</a> for all kinds of the MPDS entries in the API output. This is visualized below:</p>
 
             <div id="schema_crystal_structure" class="view"></div>
 
-            <div class="caption"><b>Fig. 1.</b> Interactive JSON schema for a <strong>crystalline structure</strong> or <strong>S-entry</strong>.</div>
+            <div class="caption" data-id="L1" id="L2"><b>Listing 1.</b> Interactive JSON schema for crystalline structure or S-entry.</div>
 
             <div id="schema_physical_property" class="view"></div>
 
-            <div class="caption"><b>Fig. 2.</b> Interactive JSON schema for a <strong>physical property</strong> or <strong>P-entry</strong> (clickable).</div>
+            <div class="caption" data-id="L2" id="L3"><b>Listing 2.</b> Interactive JSON schema for physical property or P-entry (clickable).</div>
 
             <div id="schema_phase_diagram" class="view"></div>
 
-            <div class="caption"><b>Fig. 3.</b> Interactive JSON schema for a <strong>phase diagram</strong> or <strong>C-entry</strong>.</div>
+            <div class="caption" data-id="L3"><b>Listing 3.</b> Interactive JSON schema for phase diagram or C-entry.</div>
 
             <p class="view">Any MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using a Python script below. In the following example the external <span class="t">httplib2</span> and <span class="t">jsonschema</span> Python packages are used:</p>
 
             <div id="json_validate" class="view">
-            <pre><code>#!/usr/bin/env python
+            <pre id="L4"><code>#!/usr/bin/env python
 
 import sys
 import json
@@ -826,16 +856,16 @@ except ValidationError, e:
             </code></pre>
             </div>
 
-            <div class="caption view"><b>Listing 1.</b> A Python console script for JSON validation.</div>
+            <div class="caption view" data-id="L4"><b>Listing 4.</b> Python console script for JSON validation.</div>
 
             <p class="view">All MPDS data are expected to be valid against the supplied schemata.</p>
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. Below we provide more convenient Python client library, so these examples here serve demonstration purposes only.</p>
+            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
 
             <div id="example_python" class="view">
-            <pre><code>#!/usr/bin/env python
+            <pre id="L5"><code>#!/usr/bin/env python
 
 from urllib import urlencode
 import httplib2
@@ -874,10 +904,10 @@ print "OK, got %s hits" % len(content['out'])
             </code></pre>
             </div>
 
-            <div class="caption view"><b>Listing 2.</b> Sample Python script for working with the MPDS API.</div>
+            <div class="caption view" data-id="L5"><b>Listing 5.</b> Sample Python script for working with MPDS API.</div>
 
             <div id="example_js" class="view">
-            <pre><code>#!/usr/bin/env node
+            <pre id="L6"><code>#!/usr/bin/env node
 
 var https = require('https');
 var qs = require('querystring');
@@ -920,13 +950,13 @@ https.request({
             </code></pre>
             </div>
 
-            <div class="caption view"><b>Listing 3.</b> Sample JavaScript code for working with the MPDS API.</div>
+            <div class="caption view" data-id="L6"><b>Listing 6.</b> Sample JavaScript code for working with MPDS API.</div>
 
             <h3 id="API-GUI">&sect;1.6. API and GUI</h3>
 
             <p class="view">The MPDS data provided in API and <a href="https://mpds.io/#start">GUI</a> (graphical user interface) are generally the same. There are however two important points to consider.</p>
 
-            <p class="view">First, the GUI is intended for the human researchers, not for the automated processing. Therefore the data in GUI are less formatted, being thus closer to the original publications (which, of course, impedes machine analysis).</p>
+            <p class="view">First, the GUI is intended for the human researchers, not for the automated processing. Therefore the data in GUI are less rigorously formatted, being thus closer to the original publications (which, of course, impedes machine analysis).</p>
 
             <p class="view">Second, some portion of data (~10%) present in the GUI is absent in the API. This is because currently a number of MPDS entries has only textual content or even no content at all (in process of preparation), <i>i.e.</i> present little value for the data mining. However, we make our best to expose the maximum MPDS data in the API, and this is the work in progress.</p>
 
@@ -1031,9 +1061,9 @@ dfrm.drop_duplicates('length', inplace=True)</code></pre>
             Now it's up to the reader to visualize the result (this is absolutely a matter of taste). Below is a bar chart rendered using <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> JavaScript libraries. We provide <a href="#Visualizations">visualization exporting toolbox</a> in Python, allowing the export of the results into <strong>CSV</strong> and <strong>JSON</strong> formats and reproducing the figures, although its usage is optional.
             </p>
 
-            <img src="/figures/1.png" alt="Probability density distribution of U-O bond length across the MPDS database" width="800" />
+            <img id="F1" src="/figures/1.png" alt="Probability density distribution of U-O bond length across the MPDS database" width="800" />
 
-            <div class="caption"><b>Fig. 4.</b> Distribution of U-O bond lengths across the MPDS database.</div>
+            <div class="caption" data-id="F1"><b>Fig. 1.</b> Distribution of U-O bond lengths across MPDS database.</div>
 
             <p class="view">
             We can see now that the most frequent bond lengths between the neighboring uranium and oxygen atoms are 1.78 and 2.35 &#8491;. This excellently agrees with the well-known <a href="http://canmin.geoscienceworld.org/content/35/6/1551">study of Burns <i>et al.</i></a>, done in 1997. However, Burns considered only 105 structures, and we did more than 2500, confirming very well although his findings on the <a href="https://en.wikipedia.org/wiki/Uranyl">uranyl ion</a> geometry.
@@ -1083,7 +1113,7 @@ dfrm = dfrm[(dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20)]</code></pre></div>
 dfrm = dfrm.merge(avgbgfrm, how='outer', on='Formula')
 dfrm.drop_duplicates('Formula', inplace=True)</code></pre></div>
 
-            <p class="view">We now have almost 600 different binary compounds with the averaged band gap values. So our data are ready for clustering. This is how we get the periodic element groups:</p>
+            <p class="view">We now have almost 600 different binary compounds with the averaged values of band gap. So our data are ready for clustering. This is how we get the periodic element groups:</p>
 
             <div id="exercise_b3" class="view"><pre><code>def get_element_group(el_num):
     if el_num == 1: return 1
@@ -1105,7 +1135,7 @@ dfrm.drop_duplicates('Formula', inplace=True)</code></pre></div>
     else: return (el_num - 54) % 32</code></pre></div>
 
             <p class="view">
-            And then:
+            And this is how we define the points for clustering based on our data:
             </p>
 
             <div id="exercise_b4" class="view"><pre><code>fitdata = []
@@ -1134,9 +1164,9 @@ for cluster_n, cluster in enumerate(clusters, start=1):
 
             <br />
 
-            <img src="/figures/2.png" alt="Binary compounds clustering by their band gaps and constituent element groups" width="600" />
+            <img id="F2" src="/figures/2.png" alt="Binary compounds clustering by their band gaps and constituent element groups" width="600" />
 
-            <div class="caption"><b>Fig. 5.</b> Binary compounds clustering by their band gaps and constituent element groups.</div>
+            <div class="caption" data-id="F2"><b>Fig. 2.</b> Binary compounds clustering by their band gaps and constituent element groups.</div>
 
             <br />
 
