@@ -971,9 +971,11 @@ https.request({
 
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
-            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/python-api-client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
+            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/python-api-client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs. It is installed as any other Python library:</p>
 
-            <p class="view">The exercises below use the Python client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if not explicitly provided. For Bash:</p>
+            <div class="blackbg">pip install mpds_client</div>
+
+            <p class="view">The exercises below use this library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python API client reads the key from there, if not explicitly provided. For Bash:</p>
 
             <div class="blackbg">export MPDS_KEY=...</div>
 
