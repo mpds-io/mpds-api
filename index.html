@@ -862,7 +862,7 @@ except ValidationError, e:
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
+            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/python-api-client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
 
             <div id="example_python" class="view">
             <pre id="L5"><code>#!/usr/bin/env python
@@ -971,7 +971,7 @@ https.request({
 
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
-            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/mpds_client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
+            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/python-api-client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs.</p>
 
             <p class="view">The exercises below use the Python client library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python client reads the key from there, if not explicitly provided. For Bash:</p>
 
