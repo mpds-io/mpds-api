@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Consolidated schema for all types of MPDS JSON data (S=crystal structures, P=physical properties, and C=phase diagrams)",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "definitions": {
         "crystal_structure": {
             "type": "object",
@@ -113,7 +113,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.7"]
+                    "enum": ["0.0.8"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -244,7 +244,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.7"]
+                    "enum": ["0.0.8"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -305,11 +305,11 @@
                     "maxItems": 2
                 },
                 "labels": {
-                    "description": "Labels for phases, as extracted from the vector image",
+                    "description": "Labels for phases, as extracted from the vector image; refer to the unique material phase identifiers (*phase_id*)",
                     "type": "array"
                 },
                 "shapes": {
-                    "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*",
+                    "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*; those of type *phase* refer to labels",
                     "type": "array"
                 },
                 "entry": {
@@ -319,7 +319,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.7"]
+                    "enum": ["0.0.8"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
