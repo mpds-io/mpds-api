@@ -609,9 +609,11 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#DBF2FF;">This is the description of the MPDS application programming interface (API). Its intended audience is software engineers and data scientists. To use the MPDS API the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
+            <p style="background:#f4fbff;">This is the description of the MPDS application programming interface (API). Its intended audience is software engineers and data scientists. The MPDS API presents the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database <strong>online</strong> in the developer-friendly machine-readable formats.</p>
 
-            <p>The MPDS API presents the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database online in the developer-friendly machine-readable formats.</p>
+            <p style="background:#f4fbff;">The MPDS API is available by <a href="mailto:sales@tilde.pro">subscription</a> within the service-level agreement. To start using it the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
+
+            <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) cell parameters - temperature diagrams and cell parameters - pressure diagrams, (<i>b</i>) all data for compounds containing both Ag and K, (<i>c</i>) all data for binary compounds of oxygen. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -647,7 +649,7 @@ hljs.initHighlightingOnLoad();
                     <tr>
                     <td>Materials classes (various classes under the same name: <i>i.e.</i> minerals, chemical groups, common terms <i>etc.</i>)</td>
                     <td><span class="t">classes</span></td>
-                    <td><span class="t">perovskite</span>, <span class="t">bcc</span></td>
+                    <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
                     </tr>
                     <tr>
                     <td>Crystal system</td>
@@ -965,7 +967,7 @@ https.request({
 
             <h3 id="Overview-2">&sect;2.1. Overview</h3>
 
-            <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): (<i>a</i>)&nbsp;distribution density analysis, (<i>b</i>)&nbsp;clustering and (<i>c</i>)&nbsp;correlation search. To a certain extent they could be considered as recipes, however aiming to illustrate the informatics aspect, not the materials science aspect.</p>
+            <p class="view">To facilitate starting with the MPDS API we provide several exercises (or miniature case studies): (<i>a</i>)&nbsp;distribution density analysis, (<i>b</i>)&nbsp;clustering, and (<i>c</i>)&nbsp;correlation search. To a certain extent they could be considered as recipes, however aiming to illustrate the informatics aspect, not the materials science aspect.</p>
 
             <p class="view">All the exercises discussed here can be found in the <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff">Github repository</a>.</p>
 
@@ -1268,7 +1270,7 @@ print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener']
 
             <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/MPDSExport.py">simple exporting toolbox</a> each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
 
-            <p style="background:#DBF2FF;">We thank the reader for the time and interest! Any feedback or questions are <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
+            <p style="background:#f4fbff;">We thank the reader for the time and interest! Any feedback or questions are <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
     </div>
 
