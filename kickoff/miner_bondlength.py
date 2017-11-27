@@ -2,8 +2,7 @@
 
 import pandas as pd
 
-from mpds_client import MPDSDataRetrieval
-from MPDSExport import export_plot
+from mpds_client import MPDSDataRetrieval, MPDSExport
 
 
 def calculate_lengths(ase_obj, elA, elB, limit=4):
@@ -36,4 +35,5 @@ dfrm = pd.DataFrame(sorted(lengths), columns=['length'])
 dfrm['occurrence'] = dfrm.groupby('length')['length'].transform('count')
 dfrm.drop_duplicates('length', inplace=True)
 
-export_plot(dfrm, ['length', 'occurrence'], 'bar')
+export = MPDSExport.save_plot(dfrm, ['length', 'occurrence'], 'bar')
+print(export)

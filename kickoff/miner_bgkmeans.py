@@ -2,11 +2,10 @@
 
 from ase.data import chemical_symbols
 
-from mpds_client import MPDSDataRetrieval
+from mpds_client import MPDSDataRetrieval, MPDSExport
 
 from kmeans import Point, kmeans, k_from_n
 from element_groups import get_element_group
-from MPDSExport import export_plot
 
 
 client = MPDSDataRetrieval()
@@ -45,4 +44,5 @@ for cluster_n, cluster in enumerate(clusters, start=1):
     for pnt in cluster.points:
         export_data.append(pnt.coords + [pnt.reference] + [cluster_n])
 
-export_plot(export_data, ['groupA', 'groupB', 'bandgap', 'compound', 'cluster'], 'plot3d')
+export = MPDSExport.save_plot(export_data, ['groupA', 'groupB', 'bandgap', 'compound', 'cluster'], 'plot3d')
+print(export)
