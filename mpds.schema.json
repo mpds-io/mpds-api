@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Consolidated schema for all types of MPDS JSON data (S=crystal structures, P=physical properties, and C=phase diagrams)",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "definitions": {
         "crystal_structure": {
             "type": "object",
@@ -113,7 +113,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.8"]
+                    "enum": ["0.0.9"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -144,7 +144,7 @@
                             "type": "object",
                             "properties": {
                                 "chemical_formula": {
-                                    "description": "Standard chemical formula (denoted as chemicalFormula in MIF)",
+                                    "description": "Chemical formula (denoted as chemicalFormula in Citrine's MIF); may contain impurity element(s), denoted by fractional content or *x*; may be extended with the phase label, _e.g._ *rt*",
                                     "type": "string"
                                 },
                                 "chemical_elements": {
@@ -205,7 +205,7 @@
                                         "properties": {
                                             "units": {"type": "string"},
                                             "scalar": {
-                                                "description": "Note that the value is represented by string if out of 2^32 bound",
+                                                "description": "Note that the value is represented by string if out of 2^32 bounds",
                                                 "type": ["string", "number"]
                                             },
                                             "matrix": {},
@@ -244,7 +244,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.8"]
+                    "enum": ["0.0.9"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -258,10 +258,6 @@
             "type": "object",
             "description": "Phase diagrams data type",
             "properties": {
-                "title": {
-                    "description": "Phase diagram title",
-                    "type": "string"
-                },
                 "naxes": {
                     "description": "Number of axes",
                     "type": "number",
@@ -269,10 +265,25 @@
                     "maximum": 3
                 },
                 "arity": {
-                    "description": "Elements count",
+                    "description": "Elements count for the whole phase diagram",
                     "type": "number",
                     "minimum": 2,
                     "maximum": 3
+                },
+                "diatype": {
+                    "description": "Diagram representation type, actual for *arity* > 2",
+                    "type": "string",
+                    "enum": ["binary", "subsolidus relations", "liquidus projection", "solvus projection", "vertical section", "solidus projection", "isothermal section", "liquidus line"]
+                },
+                "chemical_elements": {
+                    "description": "Valid chemical elements",
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 5,
+                    "items": {
+                        "type": "string",
+                        "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am"]
+                    }
                 },
                 "xtitle": {
                     "description": "Title of X axis",
@@ -305,11 +316,11 @@
                     "maxItems": 2
                 },
                 "labels": {
-                    "description": "Labels for phases, as extracted from the vector image; refer to the unique material phase identifiers (*phase_id*)",
+                    "description": "Labels for phases, as extracted from the vector image; may refer to the distinct phases",
                     "type": "array"
                 },
                 "shapes": {
-                    "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*; those of type *phase* refer to labels",
+                    "description": "Plot bounds and SVG paths, as extracted from the vector image; can be of 3 self-explanatory types: *vertex*, *phase*, and *linecompound*; TO BE DOCUMENTED",
                     "type": "array"
                 },
                 "entry": {
@@ -319,7 +330,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.8"]
+                    "enum": ["0.0.9"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -335,7 +346,7 @@
                     "type": "string"
                 }
             },
-            "required": ["title", "naxes", "arity", "xtitle", "ytitle", "xrange", "yrange", "labels", "shapes", "entry", "version", "object_type", "reference"]
+            "required": ["naxes", "arity", "diatype", "chemical_elements", "xtitle", "ytitle", "xrange", "yrange", "labels", "shapes", "entry", "version", "object_type", "reference"]
         }
     },
     "type": "array",
