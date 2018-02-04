@@ -628,6 +628,8 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by PAULING FILE in the past 20 years to manually distinguish more than 100&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
 
+            <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). So then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
+
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
             <p class="view">The most common action is to get the MPDS data according to some criteria. We support 12 basic criteria for searching and downloading the entries:</p>
@@ -707,6 +709,8 @@ hljs.initHighlightingOnLoad();
             <div class="caption" data-id="T1"><b>Table 1.</b> Categories of MPDS data.</div>
 
             <p class="view">Thus, in an API request it is possible to combine all these criteria in a reasonable manner. Combination is always done implying conjunctive <span class="t">AND</span> operator. The reasonable manner means one can combine <i>e.g.</i> <strong>publication authors</strong> with <strong>publication years</strong>, but cannot combine <strong>chemical formulae</strong> with <strong>chemical elements</strong> or <strong>space group</strong> with <strong>crystal system</strong>, <i>i.e.</i> the common sense rules are implied.</p>
+
+            <p>We distinguish the single-term categories, such as the physical properties and crystal systems, and many-term categories, such as the materials classes and publication authors. A combination of terms from the single-term category is <i>not</i> supported. That is, one <i>cannot</i> search for both <span class="t">band gap</span> and <span class="t">conductivity</span>. A combination of terms from the many-term category is easily possible. That is, one <i>can</i> search for both <span class="t">binaries</span> and <span class="t">perovskites</span>.</p>
 
             <h3 id="REST-endpoint">&sect;1.3. REST-alike download endpoint</h3>
 
@@ -865,7 +869,7 @@ except ValidationError, e:
 
             <div class="caption view" data-id="L4"><b>Listing 4.</b> Python console script for JSON validation.</div>
 
-            <p class="view">All MPDS data are expected to be valid against the supplied schemata.</p>
+            <p class="view">All the MPDS data are expected to be valid against the supplied schemata.</p>
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
@@ -965,7 +969,7 @@ https.request({
 
             <p class="view">First, the GUI is intended for the human researchers, not for the automated processing. Therefore the data in GUI are less rigorously formatted, being thus closer to the original publications (which, of course, impedes machine analysis).</p>
 
-            <p class="view">Second, some portion of data (~10%) present in the GUI is absent in the API. This is because currently a number of MPDS entries has only textual content or even no content at all (in process of preparation), <i>i.e.</i> present little value for the data mining. However, we make our best to expose the maximum MPDS data in the API, and this is the work in progress.</p>
+            <p class="view">Second, some portion of data (~15%) present in the GUI is absent in the API. This is because currently a number of MPDS entries has only textual content or even no content at all (in process of preparation), <i>i.e.</i> present little value for the data mining. However, we make our best to expose the maximum MPDS data in the API, and this is the work in progress.</p>
 
 
             <h2 id="Processing-data">&sect;2. Processing data</h2>
@@ -1183,7 +1187,7 @@ for cluster_n, cluster in enumerate(clusters, start=1):
 
             <p class="view">In this excercise we quantitatively estimate the relationship between a physical property of interest and the atomic structure. This is the very basic task in chemoinformatics, called QSAR/QSPR study, which stands for the quantitative structure-activity or structure-property relationship modeling. Technically, we request some physical property from MPDS and try to figure out, whether it depends on the crystalline structure, and if yes, how much.</p>
 
-            <p class="view">Here the question "how much" is answered by a correlation coefficient, which can be defined either as a measure of how well two datasets fit on a straight line (<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson coefficient</a>), or difference between concordant and discordant pairs among all possible pairs in two datasets (<a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall's tau coefficient</a>). Both Pearson and Kendall's tau correlation coefficients are defined between <span class="t">-1</span> and <span class="t">+1</span>, with <span class="t">0</span> implying no correlation. For the Pearson coefficient, values of <span class="t">-1</span> or <span class="t">+1</span> imply an exact linear relationship. Positive correlations imply that as <i>x</i> increases, so does <i>y</i>. Negative correlations imply that as <i>x</i> increases, <i>y</i> decreases. For the Kendall's tau coefficient, values close to <span class="t">+1</span> indicate strong agreement, values close to <span class="t">-1</span> indicate strong disagreement. Calculation of both these correlation coefficients is provided by <span class="t">pandas</span> Python library.</p>
+            <p class="view">Here the question "how much" is answered by a correlation coefficient, which can be defined either as a measure of how well two datasets fit on a straight line (<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson coefficient</a>), or difference between concordant and discordant pairs among all the possible pairs in two datasets (<a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall's tau coefficient</a>). Both Pearson and Kendall's tau correlation coefficients are defined between <span class="t">-1</span> and <span class="t">+1</span>, with <span class="t">0</span> implying no correlation. For the Pearson coefficient, values of <span class="t">-1</span> or <span class="t">+1</span> imply an exact linear relationship. Positive correlations imply that as <i>x</i> increases, so does <i>y</i>. Negative correlations imply that as <i>x</i> increases, <i>y</i> decreases. For the Kendall's tau coefficient, values close to <span class="t">+1</span> indicate strong agreement, values close to <span class="t">-1</span> indicate strong disagreement. Calculation of both these correlation coefficients is provided by <span class="t">pandas</span> Python library.</p>
 
             <p class="view">As usual, we start with the Python imports:</p>
 
@@ -1275,7 +1279,7 @@ print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener']
 
             <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/MPDSExport.py">simple exporting toolbox</a> each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
 
-            <p style="background:#f4fbff;">We thank the reader for the time and interest! Any feedback or questions are <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
+            <p style="background:#f4fbff;">We thank the reader for the time and interest! Any questions or feedback is <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
     </div>
 
