@@ -614,9 +614,9 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#f4fbff;">This is the description of the MPDS application programming interface (API). Its intended audience is software engineers and data scientists. The MPDS API presents the scientific data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> materials database <strong>online</strong> in the developer-friendly machine-readable formats.</p>
+            <p style="background:#f4fbff;">The MPDS application programming interface (API) presents the materials data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> database <i>online</i> in the developer-friendly machine-readable formats, suitable for the automated processing. The intended audience of the MPDS API is software engineers and data scientists.</p>
 
-            <p style="background:#f4fbff;">The MPDS API is available by <a href="mailto:sales@tilde.pro">subscription</a> within the service-level agreement. To start using it the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
+            <p style="background:#f4fbff;">The MPDS API is available by subscription within the service-level agreement. To start using it the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
 
             <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) cell parameters - temperature diagrams and cell parameters - pressure diagrams, (<i>b</i>) all data for compounds containing both Ag and K, (<i>c</i>) all data for binary compounds of oxygen. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
@@ -971,6 +971,7 @@ https.request({
 
             <p class="view">Second, some portion of data (~15%) present in the GUI is absent in the API. This is because currently a number of MPDS entries has only textual content or even no content at all (in process of preparation), <i>i.e.</i> present little value for the data mining. However, we make our best to expose the maximum MPDS data in the API, and this is the work in progress.</p>
 
+            <p class="view">To summarize, the API differs from GUI in the following: (<i>a</i>) machine-readable (and to a certain extent <i>machine-understandable</i>), (<i>b</i>) programmer-friendly, pluggable and integration-ready, (<i>c</i>) massively exposing the data, <i>i.e.</i> all the MPDS content can be analyzed in minutes. Thus, thanks to the API, the MPDS platform can be used in variety of the other scientific ways, which we had never designed. So the researchers get unprecedented flexibility and power, which is unthinkable within the GUI.</p>
 
             <h2 id="Processing-data">&sect;2. Processing data</h2>
 
@@ -1067,7 +1068,7 @@ dfrm.drop_duplicates('length', inplace=True)</code></pre>
             </div>
 
             <p class="view">
-            What did we do here? We calculated the numbers of occurrences (counts) of each particular <strong>U-O</strong> length and then augmented our dataframe with this new information, creating a new column <span class="t">occurrence</span>. The reader remembers that we have rounded the interatomic distances calculated.
+            What did we do here? We calculated the numbers of occurrences (counts) of each particular <strong>U-O</strong> length and then augmented our dataframe with this new information, creating a new column <span class="t">occurrence</span>. (The reader remembers that we have rounded the interatomic distances calculated.)
             </p>
 
             <p class="view">
