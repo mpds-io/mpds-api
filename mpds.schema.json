@@ -1,14 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Consolidated schema for all types of MPDS JSON data (S=crystal structures, P=physical properties, and C=phase diagrams)",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "definitions": {
         "crystal_structure": {
             "type": "object",
             "description": "Crystal structures data type",
             "properties": {
+                "phase": {
+                    "description": "Unique material phase (according to the LPF distinct phases concept), can be none",
+                    "type": ["string", "null"]
+                },
                 "phase_id": {
-                    "description": "Unique material phase identifier (according to LPF distinct phases concept), can be none",
+                    "description": "Unique material phase identifier (according to the LPF distinct phases concept), can be none",
                     "type": ["number", "null"]
                 },
                 "chemical_formula": {
@@ -113,7 +117,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.9"]
+                    "enum": ["0.0.10"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -125,11 +129,22 @@
                     "enum": ["S"]
                 },
                 "reference": {
-                    "description": "Persistent URL of data",
-                    "type": "string"
+                    "description": "Persistent URLs of data",
+                    "type": "object",
+                    "properties": {
+                        "entry": {
+                            "description": "Persistent URL of the entry",
+                            "type": "string"
+                        },
+                        "phase": {
+                            "description": "Persistent URL of the distinct phase",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["entry"]
                 }
             },
-            "required": ["phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "mendeleev_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
+            "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "mendeleev_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
         },
         "physical_property": {
             "type": "object",
@@ -157,7 +172,7 @@
                                     }
                                 },
                                 "condition": {
-                                    "description": "MIF's information about the conditions of the system as a whole (currently contains only a space group number)",
+                                    "description": "MIF's information about the inherent conditions of the system as a whole (currently contains only a space group number)",
                                     "type": "array",
                                     "minItems": 1,
                                     "items": {
@@ -177,8 +192,12 @@
                                         "required": ["name", "scalar"]
                                     }
                                 },
+                                "phase": {
+                                    "description": "Unique material phase (according to the LPF distinct phases concept), can be none",
+                                    "type": ["string", "null"]
+                                },
                                 "phase_id": {
-                                    "description": "Unique material phase identifier (according to LPF distinct phases concept), can be none",
+                                    "description": "Unique material phase identifier (according to the LPF distinct phases concept), can be none",
                                     "type": ["number", "null"]
                                 },
                                 "entry": {
@@ -190,7 +209,7 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["chemical_formula", "condition", "phase_id", "entry"]
+                            "required": ["chemical_formula", "condition", "phase", "phase_id", "entry"]
                         },
                         "measurement": {
                             "description": "MIF's measurement container",
@@ -199,6 +218,11 @@
                             "items": {
                                 "type": "object",
                                 "properties": {
+                                    "data_type": {
+                                        "description": "MIF's dataType, controlled either by the *dtype* parameter or by *machine-learning* class keyword",
+                                        "type": "string",
+                                        "enum": ["peer_reviewed", "machine_learning", "ab_initio"]
+                                    },
                                     "property": {
                                         "description": "MIF's name, value, and units of the measured property, augmented with the LPF domain-category hierarchy",
                                         "type": "object",
@@ -231,12 +255,23 @@
                                         }
                                     }
                                 },
-                                "required": ["property"]
+                                "required": ["data_type", "property"]
                             }
                         },
                         "reference": {
-                            "description": "Persistent URL of data",
-                            "type": "string"
+                            "description": "Persistent URLs of data",
+                            "type": "object",
+                            "properties": {
+                                "entry": {
+                                    "description": "Persistent URL of the entry",
+                                    "type": "string"
+                                },
+                                "phase": {
+                                    "description": "Persistent URL of the distinct phase",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["entry"]
                         }
                     },
                     "required": ["material", "measurement", "reference"]
@@ -244,7 +279,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.9"]
+                    "enum": ["0.0.10"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -271,7 +306,7 @@
                     "maximum": 8
                 },
                 "diatype": {
-                    "description": "Diagram representation type, actual for *arity* > 2",
+                    "description": "Diagram representation type, mostly actual for the *arity* > 2",
                     "type": "string",
                     "enum": ["binary", "subsolidus relations", "liquidus projection", "solvus projection", "vertical section", "solidus projection", "isothermal section", "liquidus line"]
                 },
@@ -279,7 +314,7 @@
                     "description": "Valid chemical elements",
                     "type": "array",
                     "minItems": 2,
-                    "maxItems": 5,
+                    "maxItems": 8,
                     "items": {
                         "type": "string",
                         "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
@@ -330,7 +365,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.9"]
+                    "enum": ["0.0.10"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -342,8 +377,15 @@
                     "enum": ["C"]
                 },
                 "reference": {
-                    "description": "Persistent URL of data",
-                    "type": "string"
+                    "description": "Persistent URLs of data",
+                    "type": "object",
+                    "properties": {
+                        "entry": {
+                            "description": "Persistent URL of the entry",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["entry"]
                 }
             },
             "required": ["naxes", "arity", "diatype", "chemical_elements", "xtitle", "ytitle", "xrange", "yrange", "labels", "shapes", "entry", "version", "object_type", "reference"]
