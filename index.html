@@ -87,7 +87,7 @@ div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
 #content > table{width:auto;margin:20px 0;font-size:0.9em;text-align:left;color:#666;border-collapse:collapse;border-spacing:0;}
 #content > table td{line-height:2em;border:1px solid #ddd;padding:4px 2px;}
-#content > table th{line-height:2.2em;border:1px solid #ddd;background:#f6f6f6;padding:4px 2px;}
+#content > table th{line-height:2.2em;border:1px solid #ddd;background:#f6f6f6;padding:4px 2px;font-size:1.1em;}
 span.t{font-family:'Courier New',Courier;background:#aaa;color:#fff;padding:1px 2px;}
 
 div.blackbg{background:#2b2b2b;font-size:0.9em;color:#fff;font-family:'Courier New',Courier;line-height:1.6em;margin:20px 0;padding:10px 5px;border-radius:4px;white-space:pre;}
@@ -618,7 +618,7 @@ hljs.initHighlightingOnLoad();
 
             <p style="background:#f4fbff;">The MPDS API is available by subscription within the service-level agreement. To start using it the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
 
-            <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) cell parameters - temperature diagrams and cell parameters - pressure diagrams, (<i>b</i>) all data for compounds containing both Ag and K, (<i>c</i>) all data for binary compounds of oxygen. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
+            <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) <strong>cell parameters - temperature diagrams</strong> and <strong>cell parameters - pressure diagrams</strong>, (<i>b</i>) all data for compounds containing <strong>both Ag and K</strong>, (<i>c</i>) all data for <strong>binary</strong> compounds of <strong>oxygen</strong>, and (<i>d</i>) all data generated via <strong>machine learning</strong>. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -630,6 +630,8 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). So then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
 
+            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not served in the API by default. So far only the P-entries (8 physical properties) were predicted and thus can be of the machine-learning data type. See below how to allow these data in the API outputs.</p>
+
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
             <p class="view">The most common action is to get the MPDS data according to some criteria. We support 12 basic criteria for searching and downloading the entries:</p>
@@ -637,14 +639,14 @@ hljs.initHighlightingOnLoad();
             <table class="view" id="T1">
                 <thead>
                     <tr>
-                    <th>Criterion</th>
+                    <th>Facet</th>
                     <th>Machine-readable name</th>
                     <th>Examples</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Physical properties (from <a href="https://mpds.io/#hierarchy">MPDS physical properties hierarchy</a>)</td>
+                    <td>Physical properties (see the <a href="https://mpds.io/#hierarchy">MPDS physical properties hierarchy</a>)</td>
                     <td><span class="t">props</span></td>
                     <td><span class="t">conductivity</span></td>
                     </tr>
@@ -744,6 +746,11 @@ hljs.initHighlightingOnLoad();
                     <td>Distinct phase identifiers (called <span class="t">phase_id</span>'s) separated by commas can be optionally supplied to limit the search. This is convenient for programmatic chained searches. A relevant <span class="t">q</span> parameter must be always given. The count of <span class="t">phase_id</span>'s cannot exceed <span class="t">1000</span>.</td>
                     </tr>
                     <tr>
+                    <td><span class="t">dtype</span></td>
+                    <td><span class="t">integer</span></td>
+                    <td>Data type. Possible values: <span class="t">1</span> or <span class="t">MPDSDataTypes.PEER_REVIEWED</span> (original data), <span class="t">2</span> or <span class="t">MPDSDataTypes.MACHINE_LEARNING</span> (data generated via machine learning), and <span class="t">3</span> or <span class="t">MPDSDataTypes.ALL</span> (both mentioned types). Default value: <span class="t">1</span> (original data).</td>
+                    </tr>
+                    <tr>
                     <td><span class="t">pagesize</span></td>
                     <td><span class="t">integer</span></td>
                     <td>The maximum number of hits per a single response (pagination). Default value: <span class="t">10</span>. Allowed values: <span class="t">10</span>, <span class="t">100</span>, <span class="t">500</span>, and <span class="t">1000</span>.</td>
@@ -780,7 +787,7 @@ hljs.initHighlightingOnLoad();
     "props": "thermal expansion"
 }</div>
 
-            <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>). Also other properties might be added in future.</p>
+            <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>). Some other properties might be added in future.</p>
 
             <p class="view">Each kind of entries (<i>i.e.</i> S- or P-entries) has its own specific properties in <strong>JSON</strong> (see below).</p>
 
@@ -809,7 +816,7 @@ hljs.initHighlightingOnLoad();
     "page": 0
 }</div>
 
-            <p class="view">The output in <span class="t">cif</span> format presents nothing more than concatenated <strong>CIF</strong>s in plain text.</p>
+            <p class="view">The output in <span class="t">cif</span> format presents nothing more than concatenated <strong>CIF</strong>s in a plain text.</p>
 
             <p class="view">The response for a correctly understood request will always have the status code <span class="t">200</span>, whereas the status codes <span class="t">400</span> ("Wrong parameters") or <span class="t">403</span> ("Forbidden") may signal about an error in the request. Generally, checking the response status code should be always done first.</p>
 
@@ -819,15 +826,15 @@ hljs.initHighlightingOnLoad();
 
             <div id="schema_crystal_structure" class="view"></div>
 
-            <div class="caption" data-id="L1" id="L2"><b>Listing 1.</b> Interactive JSON schema for crystalline structure or S-entry.</div>
+            <div class="caption" data-id="L1" id="L2"><b>Listing 1.</b> Interactive JSON schema for crystalline structure or S-entry (<span class="t">object</span>s are clickable).</div>
 
             <div id="schema_physical_property" class="view"></div>
 
-            <div class="caption" data-id="L2" id="L3"><b>Listing 2.</b> Interactive JSON schema for physical property or P-entry (clickable).</div>
+            <div class="caption" data-id="L2" id="L3"><b>Listing 2.</b> Interactive JSON schema for physical property or P-entry (<span class="t">object</span>s are clickable).</div>
 
             <div id="schema_phase_diagram" class="view"></div>
 
-            <div class="caption" data-id="L3"><b>Listing 3.</b> Interactive JSON schema for phase diagram or C-entry.</div>
+            <div class="caption" data-id="L3"><b>Listing 3.</b> Interactive JSON schema for phase diagram or C-entry (<span class="t">object</span>s are clickable).</div>
 
             <p class="view">Any MPDS API JSON output can be validated against the above schemata <i>e.g.</i> using a Python script below. In the following example the external <span class="t">httplib2</span> and <span class="t">jsonschema</span> Python packages are used:</p>
 
@@ -1127,7 +1134,7 @@ dfrm = dfrm[(dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20)]</code></pre></div>
 dfrm = dfrm.merge(avgbgfrm, how='outer', on='Formula')
 dfrm.drop_duplicates('Formula', inplace=True)</code></pre></div>
 
-            <p class="view">We now have almost 600 different binary compounds with the averaged values of band gap. So our data are ready for clustering. This is how we get the periodic element groups:</p>
+            <p class="view">We now have a lot of different binary compounds with the averaged values of band gap. So our data are ready for clustering. This is how we get the periodic element groups:</p>
 
             <div id="exercise_b3" class="view"><pre><code>def get_element_group(el_num):
     if el_num == 1: return 1
@@ -1272,13 +1279,13 @@ print("Pearson. Prop vs. Wiener = \t%s" % corr_pearson.loc['Prop']['Wiener'])
 print("Kendall Tau. Prop vs. APF = \t%s" % corr_kendall.loc['Prop']['APF'])
 print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener'])</code></pre></div>
 
-            <p class="view">Expectedly, we can see some correlation between the selected property (namely, <i>isothermal bulk modulus</i> for the <i>oxides of transitional elements</i>) and two structural descriptors. However it varies considerably with the different materials classes, since the crystalline structure also changes considerably. Using the intuition, may the reader suggest the <a href="https://mpds.io/#hierarchy">physical property</a> which is expected to show higher correlation with either of two structural descriptors within a certain materials class &mdash; or no correlation at all?</p>
+            <p class="view">Expectedly, we can see some correlation between the selected property (namely, <i>isothermal bulk modulus</i> for the <i>oxides of transitional elements</i>) and two structural descriptors. However it varies considerably with the different materials classes, since the crystalline structure also changes considerably. Using the intuition, may the reader suggest the <a href="https://mpds.io/#hierarchy">physical property</a> showing higher correlation with either of two structural descriptors within a certain materials class &mdash; or no correlation at all?</p>
 
             <br />
 
             <h3 id="Visualizations">&sect;2.6. Visualizations</h3>
 
-            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a <a href="https://github.com/mpds-io/API/tree/gh-pages/kickoff/MPDSExport.py">simple exporting toolbox</a> each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
+            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a simple exporting toolbox in our Python client library each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
 
             <p style="background:#f4fbff;">We thank the reader for the time and interest! Any questions or feedback is <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
