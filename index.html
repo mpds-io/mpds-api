@@ -488,9 +488,6 @@ right: -22px;
 transform: rotate(45deg);
 }
 </style>
-<!--[if lt IE 9]>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
-<![endif]-->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 <script type="text/javascript" src="/webassets/js/jquery.nearest.min.js"></script>
@@ -903,7 +900,8 @@ req = httplib2.Http()
 response, content = req.request(
     uri=endpoint + '?' + urlencode({
         'q': json.dumps(search),
-        'pagesize': 10
+        'pagesize': 10,
+        'dtype': 2 # see query string parameters documentation
     }),
     method='GET',
     headers={'Key': api_key}
@@ -942,7 +940,7 @@ var search = {
 https.request({
     host: host,
     port: port,
-    path: path + '?' + qs.stringify({q: JSON.stringify(search), pagesize: 10}),
+    path: path + '?' + qs.stringify({q: JSON.stringify(search), pagesize: 10, dtype: 2}),
     method: 'GET',
     headers: {'Key': api_key}
 }, function(response){
@@ -997,6 +995,17 @@ https.request({
             <p class="view">The exercises below use this library. Some of them might also employ <span class="t">numpy</span>, <span class="t">scipy</span>, and <span class="t">pandas</span> libraries (a popular data science toolbox). As a necessary preparation, we save the MPDS API key in an environment of our terminal session. Later the Python API client reads the key from there, if not explicitly provided. For Bash:</p>
 
             <div class="blackbg">export MPDS_KEY=...</div>
+
+            <p class="view">Note, that there are two fundamental data types at the MPDS: <strong>peer-reviewed</strong> and <strong>machine-learning</strong>. By default only the peer-reviewed data are always supplied in the API. To change this using the Python library, one has to setup a <span class="t">dtype</span> attribute in advance. Below first both data types are switched on, then only the machine-learning type is enabled:</p>
+
+            <div class="blackbg">from mpds_client import MPDSDataRetrieval, MPDSDataTypes
+client = MPDSDataRetrieval()
+client.dtype = MPDSDataTypes.ALL
+...
+client.dtype = MPDSDataTypes.MACHINE_LEARNING
+...</div>
+
+            <p class="view">In fact, the data type is controlled by a client with the <span class="t">dtype</span> query string parameter.</p>
 
             <h3 id="Probability-density">&sect;2.3. Bond length analysis</h3>
 
