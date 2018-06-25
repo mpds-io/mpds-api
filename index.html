@@ -611,9 +611,7 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#f4fbff;">The MPDS application programming interface (API) presents the materials data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> database <i>online</i> in the developer-friendly machine-readable formats, suitable for the automated processing. The intended audience of the MPDS API is software engineers and data scientists.</p>
-
-            <p style="background:#f4fbff;">The MPDS API is available by subscription within the service-level agreement. To start using it the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:sales@tilde.pro">contact us</a> for opening the API-enabled MPDS account.</p>
+            <p style="background:#f4fbff;">The MPDS application programming interface (API) presents the materials data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> database <i>online</i> in the developer-friendly machine-readable formats, suitable for the automated processing. The intended audience of this API is software engineers and data scientists. The API is available by a subscription (SLA). To start using the API the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:mpds-api@tilde.pro">contact us</a> for opening such the account.</p>
 
             <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) <strong>cell parameters - temperature diagrams</strong> and <strong>cell parameters - pressure diagrams</strong>, (<i>b</i>) all data for compounds containing <strong>both Ag and K</strong>, (<i>c</i>) all data for <strong>binary</strong> compounds of <strong>oxygen</strong>, and (<i>d</i>) all data generated via <strong>machine learning</strong>. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
@@ -627,7 +625,7 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). So then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
 
-            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not served in the API by default. So far only the P-entries (8 physical properties) were predicted and thus can be of the machine-learning data type. See below how to allow these data in the API outputs.</p>
+            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (8 physical properties) were predicted and thus can be of the machine-learning data type. See below how to allow these data in the API outputs.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
@@ -643,7 +641,7 @@ hljs.initHighlightingOnLoad();
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Physical properties (see the <a href="https://mpds.io/#hierarchy">MPDS physical properties hierarchy</a>)</td>
+                    <td>Physical properties (see the <a href="https://mpds.io/#hierarchy">MPDS physical properties hierarchy</a>,<br />numerical properties specifically)</td>
                     <td><span class="t">props</span></td>
                     <td><span class="t">conductivity</span></td>
                     </tr>
@@ -653,7 +651,7 @@ hljs.initHighlightingOnLoad();
                     <td><span class="t">Cs</span>, <span class="t">Fr, O</span></td>
                     </tr>
                     <tr>
-                    <td>Materials classes (various classes under the same name: <i>i.e.</i> minerals, chemical groups, common terms <i>etc.</i>)</td>
+                    <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://datascience.mpds.io/#L1">examples</a>)</td>
                     <td><span class="t">classes</span></td>
                     <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
                     </tr>
@@ -670,10 +668,10 @@ hljs.initHighlightingOnLoad();
                     <tr>
                     <td>Space group (number or international short symbol)</td>
                     <td><span class="t">sgs</span></td>
-                    <td><span class="t">Pm3m</span>, <span class="t">221</span></td>
+                    <td><span class="t">221</span>, <span class="t">Pm-3m</span></td>
                     </tr>
                     <tr>
-                    <td>Prototype system ("Strukturbericht" or MPDS notation: formula, Pearson symbol, space group number)</td>
+                    <td>Prototype system (<a href="https://datascience.mpds.io/#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
                     <td><span class="t">protos</span></td>
                     <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
                     </tr>
@@ -683,7 +681,7 @@ hljs.initHighlightingOnLoad();
                     <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
                     </tr>
                     <tr>
-                    <td>Polyhedral type</td>
+                    <td>Polyhedral type (see <a href="https://datascience.mpds.io/#L4">all supported types</a>)</td>
                     <td><span class="t">aetype</span></td>
                     <td><span class="t">icosahedron 12-vertex</span></td>
                     </tr>
