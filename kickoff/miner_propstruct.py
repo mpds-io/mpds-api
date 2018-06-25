@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+"""
+MPDS API usage example:
+the relationship between a physical property and the atomic structure,
+using the Pearson and Kendall's tau coefficients
+
+https://developer.mpds.io/#QSAR-QSPR
+"""
 
 from __future__ import division
 

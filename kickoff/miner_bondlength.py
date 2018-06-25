@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+"""
+MPDS API usage example:
+the uranium-oxygen chemical bond length distribution
+
+https://developer.mpds.io/#Probability-density
+"""
 
 import pandas as pd
 

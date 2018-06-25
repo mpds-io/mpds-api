@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+"""
+MPDS API usage example:
+clustering the band gaps of binary compounds
+
+https://developer.mpds.io/#Clustering
+"""
 
 from ase.data import chemical_symbols
 
