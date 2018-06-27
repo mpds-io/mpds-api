@@ -54,7 +54,7 @@ li.nav_fluid{display:none;}
 #menu{display:none;position:fixed;left:0;top:170px;width:12.5%;height:auto;z-index:100;}
 #menu li{text-align:left;list-style:none;letter-spacing:-0.5px;}
 #menu a{display:block;}
-#menu > ul > li > a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2.1vmin;padding-left:5px;line-height:2.5vmin;}
+#menu > ul > li > a{text-decoration:none;color:#900;border-bottom:1px solid #900;padding:4px 0;font-size:2vmin;padding-left:5px;line-height:2.5vmin;}
 #menu > ul > li > a:hover, #menu > ul > li > a.active {color:#fff;background:#900;}
 #menu > ul > li > ul > li > a{text-decoration:none;color:#222;border-bottom:1px solid #222;padding:4px 0;font-size:1.8vmin;padding-left:18px;line-height:2.3vmin;}
 #menu > ul > li > ul > li > a:hover, #menu > ul > li > ul > li > a.active {color:#fff;background:#222;}
@@ -76,12 +76,12 @@ span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px so
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
 h2, h3{line-height:2.2em;font-size:1.6em;font-weight:bold;color:#900;}
-h2:first-letter , h3:first-letter {color:#666;}
+h2:first-letter , h3:first-letter {color:#222;}
 h3{line-height:2.2em;font-size:1.2em;}
 
 div.spacer{width:790px;margin:0 auto;height:1px;border-top:1px solid #ccc;}
 
-#content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:50px;}
+#content{width:790px;margin:0 auto;background:#fff;padding:0 15px 40px;border-radius:15px;}
 #content > p{font-size:1.05em;line-height:1.7em;color:#666;margin:18px 0;padding:20px 6px;border-radius:4px;background:#f9f9f9;}
 #content > p:first-letter {font-size:1.6em;font-weight:bold;}
 #content a{color:#222;text-decoration:none;border-bottom:1px solid #222;}
@@ -615,7 +615,7 @@ hljs.initHighlightingOnLoad();
 
             <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) <strong>cell parameters - temperature diagrams</strong> and <strong>cell parameters - pressure diagrams</strong>, (<i>b</i>) all data for compounds containing <strong>both Ag and K</strong>, (<i>c</i>) all data for <strong>binary</strong> compounds of <strong>oxygen</strong>, and (<i>d</i>) all data generated via <strong>machine learning</strong>. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
-            <p style="background:#fdffe8;">The impatient tech-savvy reader may also explore Jupyter notebooks in <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">Binder</a> and (or) kickoff Python demos in <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">GitHub</a>. Nevertheless reading at least the next section is highly recommended.</p>
+            <p style="background:#fdffe8;">The impatient tech-savvy reader may also explore Jupyter notebooks in <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">Binder</a> and (or) kickoff Python demos in <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">GitHub</a>. <strong>Important</strong>: using the API keys within the third-party Jupyter environment is potentially insecure and should be done with the great care (see <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/notebooks">notebooks</a>).</p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -986,7 +986,7 @@ https.request({
 
             <p class="view">There is also a number of <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/notebooks">Jupyter notebooks</a>: (<i>a</i>)&nbsp;basic plotting using the periodic table, (<i>b</i>)&nbsp;machine-learning and peer-reviewed data, (<i>c</i>)&nbsp;unusual materials phases from the machine learning, (<i>d</i>)&nbsp;pVT-data and EoS fitting. They can be launched online from GitHub using <i>e.g.</i> <a href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">Binder environment</a>.</p>
 
-            <p class="view" style="background:#f4fbff;">The reader now may decide, whether to follow a text with the code listings below ("classical way"), or to download and run the <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">Python scripts</a> ("hardcore way"), or play with the Jupyter notebooks <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">interactively online</a> ("ultra-modern way").</p>
+            <p class="view" style="background:#fdffe8;">The reader now may decide, whether to follow a text with the code listings below ("classical way"), or to download and run the <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">Python scripts</a> ("Python way"), or play with the Jupyter notebooks <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">interactively online</a> ("ultra-modern way"). <strong>Important</strong>: using the API keys within the third-party Jupyter environment is potentially insecure and should be done with the great care (see <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/notebooks">notebooks</a>).</p>
 
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
