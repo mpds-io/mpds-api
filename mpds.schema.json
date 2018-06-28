@@ -95,8 +95,8 @@
                         "maximum": 1.0
                     }
                 },
-                "mendeleev_nums_noneq": {
-                    "description": "Mendeleev numbers for chemical elements in the crystalline structure",
+                "periodic_nums_noneq": {
+                    "description": "Periodic numbers (not to confuse with the atomic numbers) for chemical elements in the crystalline structure",
                     "type": "array",
                     "minItems": 0,
                     "items": {
@@ -144,7 +144,7 @@
                     "required": ["entry"]
                 }
             },
-            "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "mendeleev_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
+            "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "periodic_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
         },
         "physical_property": {
             "type": "object",
@@ -209,7 +209,7 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["chemical_formula", "condition", "phase", "phase_id", "entry"]
+                            "required": ["chemical_formula", "chemical_elements", "condition", "phase", "phase_id", "entry"]
                         },
                         "measurement": {
                             "description": "MIF's measurement container",
