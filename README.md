@@ -1,15 +1,15 @@
 Materials Platform for Data Science: API
 ==========
 
-The API stands for the *application programming interface*, a way to get the MPDS scientific data automatically in a high-throughput manner for the machine analysis. The possible applications are high-throughput simulations, machine learning and other *data-intensive* techniques.
+The API stands for the *application programming interface*, a way to get the MPDS scientific data automatically in a high-throughput manner for the machine analysis. The possible applications are high-throughput simulations, machine learning and other *data-intensive* techniques in materials science.
 
 ![MPDS: Materials Platform for Data Science](https://raw.githubusercontent.com/mpds-io/mpds-api/gh-pages/figures/materials_platform_for_data_science.png "MPDS: Materials Platform for Data Science")
 
 Here you will find:
 
-- an issue tracker for the MPDS API
-- the website [developer.mpds.io](https://developer.mpds.io) with the documentation
-- the kickoff Python scripts:
+- issue tracker for the MPDS API
+- website [developer.mpds.io](https://developer.mpds.io) with the documentation
+- kickoff Python scripts:
 
     - [The uranium-oxygen chemical bond length distribution](https://github.com/mpds-io/mpds-api/blob/gh-pages/kickoff/miner_bondlength.py)
     - [Clustering the band gaps of binary compounds](https://github.com/mpds-io/mpds-api/blob/gh-pages/kickoff/miner_bgkmeans.py)
@@ -22,13 +22,13 @@ Here you will find:
     - [Advanced MPDS API usage: unusual materials phases from the machine learning](https://github.com/mpds-io/mpds-api/blob/gh-pages/notebooks/3_mpds_ml_scan.ipynb)
     - [Advanced MPDS API usage: pVT-data and EoS fitting](https://github.com/mpds-io/mpds-api/blob/gh-pages/notebooks/4_eos_fit.ipynb)
 
-All the information here is freely available under the [MIT](https://en.wikipedia.org/wiki/MIT_License) and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) licenses.
+All information here is freely available under the [MIT](https://en.wikipedia.org/wiki/MIT_License) and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) licenses.
 
-[Apply](https://mpds.io/open-data-api), if you'd like to use this API with the open MPDS data:
+[Apply](https://mpds.io/open-data-api) if you'd like to use this API with the open MPDS data:
 
-- `cell parameters _vs._ temperature and pressure diagrams` (about 6k entries)
+- `cell parameters vs. temperature and pressure diagrams` (about 6k entries)
 - `all compounds containing both Ag and K` (about 250 entries)
 - `all binary compounds of oxygen` (about 6k entries)
 - `all data generated via machine-learning` (about 900k entries)
 
-Contact us at <mpds-api@tilde.pro>, if you'd like to use this API with the all MPDS data.
+Contact us at <mpds-api@tilde.pro> if you'd like to use this API with the all MPDS data.
