@@ -615,7 +615,7 @@ hljs.initHighlightingOnLoad();
 
             <p style="background:#f4fbff;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) <strong>cell parameters - temperature diagrams</strong> and <strong>cell parameters - pressure diagrams</strong>, (<i>b</i>) all data for compounds containing <strong>both Ag and K</strong>, (<i>c</i>) all data for <strong>binary</strong> compounds of <strong>oxygen</strong>, and (<i>d</i>) all data generated via <strong>machine learning</strong>. Please, <a href="https://mpds.io/open-data-api">fill in the form</a> to get the API access to these data.</p>
 
-            <p style="background:#fdffe8;">The impatient tech-savvy reader may also explore Jupyter notebooks in <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">Binder</a> and (or) kickoff Python demos in <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">GitHub</a>. <strong>Important</strong>: using the API keys within the third-party Jupyter environment is potentially insecure and should be done with the great care (see <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/notebooks">notebooks</a>).</p>
+            <p style="background:#fdffe8;">The impatient tech-savvy reader may also explore Jupyter notebooks in <a target="_blank" href="https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks">Binder</a> and (or) kickoff Python demos in <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff">GitHub</a>. <strong>Important</strong>: using the API keys within the third-party Jupyter environment is potentially insecure and should be done with the greatest care (see <a href="https://github.com/mpds-io/mpds-api/tree/gh-pages/notebooks">notebooks</a>).</p>
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
@@ -815,7 +815,7 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">The output in <span class="t">cif</span> format presents nothing more than concatenated <strong>CIF</strong>s in a plain text.</p>
 
-            <p class="view">The response for a correctly understood request will always have the status code <span class="t">200</span>, whereas the status codes <span class="t">400</span> ("Wrong parameters") or <span class="t">403</span> ("Forbidden") may signal about an error in the request. Generally, checking the response status code should be always done first.</p>
+            <p class="view">The response for a correctly understood request will always have the status code <span class="t">200</span>, whereas the status codes <span class="t">400</span> ("Wrong parameters") or <span class="t">403</span> ("Forbidden") may signal about an error in the request. Also, <span class="t">429</span> ("Too many requests") tells that the request rate should be decreased. Generally, checking the response status code should be always done first.</p>
 
             <h3 id="JSON-schemata">&sect;1.4. JSON schemata of the MPDS entries</h3>
 
@@ -1296,7 +1296,9 @@ print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener']
 
             <h3 id="Visualizations">&sect;2.6. Visualizations</h3>
 
-            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a simple exporting toolbox in our Python client library each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>. By default these files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
+            <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a simple exporting toolbox in our Python client library each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>.</p>
+
+            <p class="view">By default these two files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom self-explanatory layout suitable for <a href="https://mpds.io/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="https://mpds.io/visavis">Vis-&agrave;-vis</a>.</p>
 
             <p style="background:#f4fbff;">We thank the reader for the time and interest! Any questions or feedback is <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
