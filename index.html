@@ -498,6 +498,8 @@ if (!window.console) window.console = {log: function(){}, error: function(){}};
 function load_custom_schema(addr, el){
     $.get(addr).done(function(schema){
         for (var type in schema.definitions){
+            if (type == "input_query")
+                continue;
             try {
                 docson.doc("schema_" + type, schema.definitions[type]);
             } catch (e){
