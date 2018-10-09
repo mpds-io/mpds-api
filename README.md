@@ -24,7 +24,7 @@ Here you will find:
 
 All information here is freely available under the [MIT](https://en.wikipedia.org/wiki/MIT_License) and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) licenses.
 
-[Apply](https://mpds.io/open-data-api) if you'd like to use this API with the open MPDS data:
+Login via [GitHub](https://mpds.io/github_oauth.html) if you'd like to use this API with the open MPDS data:
 
 - `cell parameters vs. temperature and pressure diagrams` (about 6k entries)
 - `all compounds containing both Ag and K` (about 250 entries)
