@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "description": "Defines the MPDS API input queries (q-parameter) and output data (S=crystal structures, P=physical properties, and C=phase diagrams)",
-    "version": "0.0.11",
+    "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
+    "version": "1.0.0",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -189,7 +189,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.11"]
+                    "enum": ["1.0.0"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -231,7 +231,7 @@
                             "type": "object",
                             "properties": {
                                 "chemical_formula": {
-                                    "description": "Chemical formula (denoted as chemicalFormula in Citrine's MIF); may contain impurity element(s), denoted by fractional content or *x*; may be extended with the phase label, e.g. *rt*",
+                                    "description": "Chemical formula (denoted as chemicalFormula in Citrine's MIF); may contain impurity element(s), denoted by fractional content or *x*; can be extended with the phase label, e.g. *rt*",
                                     "type": "string"
                                 },
                                 "chemical_elements": {
@@ -351,7 +351,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.11"]
+                    "enum": ["1.0.0"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -380,7 +380,7 @@
                 "diatype": {
                     "description": "Phase diagram type (mostly actual for the *arity* > 2, i.e. ternaries, quaternaries etc.)",
                     "type": "string",
-                    "enum": ["binary", "subsolidus relations", "liquidus projection", "solvus projection", "vertical section", "solidus projection", "isothermal section", "liquidus line"]
+                    "enum": ["binary", "subsolidus relations", "liquidus projection", "solvus projection", "solidus projection", "vertical section", "isothermal section"]
                 },
                 "chemical_elements": {
                     "description": "Valid chemical elements of the phase diagram",
@@ -392,59 +392,119 @@
                         "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
                     }
                 },
-                "a_title": {
-                    "description": "Ternary plot only: the first component (left triangle corner)",
+                "title_a": {
+                    "description": "Triangular plot only: the first component (left triangle corner)",
                     "type": "string"
                 },
-                "a_range": {
-                    "description": "Ternary plot only: the first component range",
+                "range_a": {
+                    "description": "Triangular plot only: the first component range",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "b_title": {
-                    "description": "Ternary plot only: the second component (upper triangle corner)",
+                "title_b": {
+                    "description": "Triangular plot only: the second component (upper triangle corner)",
                     "type": "string"
                 },
-                "b_range": {
-                    "description": "Ternary plot only: the second component range",
+                "range_b": {
+                    "description": "Triangular plot only: the second component range",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "c_title": {
-                    "description": "Ternary plot only: the third component (right triangle corner)",
+                "title_c": {
+                    "description": "Triangular plot only: the third component (right triangle corner)",
                     "type": "string"
                 },
-                "c_range": {
-                    "description": "Ternary plot only: the third component range",
+                "range_c": {
+                    "description": "Triangular plot only: the third component range",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "comp_title": {
-                    "description": "Binary plot only: composition (X-axis) title",
-                    "type": "string"
+                "comp_a": {
+                    "description": "Triangular plot only: left triangle corner composition as element_A -> content_A, element_B -> content_B etc.",
+                    "type": "object"
+                },
+                "comp_b": {
+                    "description": "Triangular plot only: upper triangle corner composition as element_A -> content_A, element_B -> content_B etc.",
+                    "type": "object"
+                },
+                "comp_c": {
+                    "description": "Triangular plot only: right triangle corner composition as element_A -> content_A, element_B -> content_B etc.",
+                    "type": "object"
                 },
                 "comp_range": {
-                    "description": "Binary plot only: composition (X-axis) range",
+                    "description": "Rectangular plot only: composition (X-axis) range",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2
                 },
+                "comp_start": {
+                    "description": "Rectangular plot only: left edge composition as element_A -> content_A, element_B -> content_B etc.",
+                    "type": "object"
+                },
+                "comp_end": {
+                    "description": "Rectangular plot only: right edge composition as element_A -> content_A, element_B -> content_B etc.",
+                    "type": "object"
+                },
                 "temp": {
-                    "description": "Binary plot: temperature (Y-axis) range; ternary plot: isotherm value; always in Celsius; non-applicable for some *diatypes*",
+                    "description": "Rectangular plot: temperature range (Y-axis); triangular plot: isotherm value(s) or none for *projection* *diatypes*; always in Celsius;",
                     "type": "array",
                     "minItems": 1,
                     "maxItems": 2
                 },
                 "labels": {
-                    "description": "Labels, as extracted from the phase diagram vector image; may refer to the distinct phases by *phase_id*",
-                    "type": "array"
+                    "description": "Labels, as extracted from the phase diagram vector image; can be referred by *reflabel* attribute of *shapes*; contain title and coordinates",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {"type": "array"}
                 },
                 "shapes": {
-                    "description": "Objects for SVG paths, as extracted from the phase diagram vector image. Can be of 3 types: *phase*, *compound*, and *drawing*. The *phase* and *compound* objects are physically meaningful. They have 3 attributes: *path*, *reflabel*, and *nphases*. The *drawing* objects are only used for visualizations. They have only *path* attribute.",
-                    "type": "array"
+                    "description": "Phase areas data, as extracted from the phase diagram vector image",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "kind": {
+                                "description": "Shape kind: *phase* and *compound* is semantically meaningful (has several attributes), whereas *drawing* is used for visualization only (has only *svgpath* attribute)",
+                                "type": "string",
+                                "enum": ["phase", "compound", "drawing"]
+                            },
+                            "svgpath": {
+                                "description": "Phase areas represented in SVG standard notation, see http://www.w3.org/TR/SVG/paths.html",
+                                "type": "string"
+                            },
+                            "nphases": {
+                                "description": "Coexisting phases count",
+                                "type": "number",
+                                "minimum": 1,
+                                "maximum": 5
+                            },
+                            "label": {
+                                "description": "Label, as extracted from the phase diagram vector image; can be none",
+                                "type": "string"
+                            },
+                            "reflabel": {
+                                "description": "A reference to *labels* item, which should be used for visualization only; can be none",
+                                "type": ["number", "null"]
+                            },
+                            "phase_id": {
+                                "description": "Unique material phase identifier (according to the LPF distinct phases concept), can be none; only relevant for *nphases* = 1",
+                                "type": ["number", "null"]
+                            },
+                            "is_solid": {
+                                "description": "Label for a state of aggregation, showing an absense of liquid or gas phases; can be absent",
+                                "type": "boolean"
+                            },
+                            "is_ordered": {
+                                "description": "Label showing if a crystalline structure of *solid* is ordered (daltonide); only relevant for *nphases* = 1; can be absent",
+                                "type": "boolean"
+                            }
+                        },
+                        "required": ["kind", "svgpath"]
+                    }
                 },
                 "entry": {
                     "description": "Internal LPF and MPDS identifier",
@@ -453,7 +513,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["0.0.11"]
+                    "enum": ["1.0.0"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
