@@ -3,4 +3,4 @@ pandas >= 0.20.1
 ase >= 3.14.1
 mpds_client >= 0.0.17
 shapely[vectorized]
-svg.path
+svg.path==3.0
