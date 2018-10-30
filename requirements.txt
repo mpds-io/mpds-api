@@ -1,4 +1,6 @@
 setuptools >= 35.0.1
 pandas >= 0.20.1
 ase >= 3.14.1
-mpds_client==0.0.17
+mpds_client >= 0.0.17
+shapely[vectorized]
+svg.path
