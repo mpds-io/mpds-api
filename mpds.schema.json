@@ -106,7 +106,7 @@
                     "type": "string"
                 },
                 "cell_abc": {
-                    "description": "Crystalline cell as _a_, _b_, _c_, _alpha_, _beta_, _gamma_, in angstroms and degrees",
+                    "description": "Standardized crystal cell as _a_, _b_, _c_, _alpha_, _beta_, _gamma_, in angstroms and degrees",
                     "type": "array",
                     "minItems": 6,
                     "maxItems": 6,
@@ -214,9 +214,21 @@
                         }
                     },
                     "required": ["entry"]
+                },
+                "d": {
+                    "description": "Density, in Mg/m3 (zero if unknown)",
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 50
+                },
+                "v": {
+                    "description": "Standardized cell volume, in cubic angstroms",
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 1000000
                 }
             },
-            "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "periodic_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference"]
+            "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "periodic_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference", "d", "v"]
         },
         "physical_property": {
             "type": "object",
