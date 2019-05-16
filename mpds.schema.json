@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -189,7 +189,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.0"]
+                    "enum": ["1.0.2"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -303,7 +303,7 @@
                                 "type": "object",
                                 "properties": {
                                     "data_type": {
-                                        "description": "MIF's dataType, controlled either by the *dtype* parameter or by *machine-learning* class keyword",
+                                        "description": "MIF's dataType, controlled either by the *dtype* request parameter or by *machine-learning* class keyword",
                                         "type": "string",
                                         "enum": ["peer_reviewed", "machine_learning", "ab_initio"]
                                     },
@@ -363,7 +363,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.0"]
+                    "enum": ["1.0.2"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -525,7 +525,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.0"]
+                    "enum": ["1.0.2"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
