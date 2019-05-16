@@ -71,7 +71,7 @@ div.cross{float:right;width:16px;height:16px;font-size:10px;text-align:center;cu
 span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;}
 
 #response{white-space:pre;}
-#logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
+#logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://raw.githubusercontent.com/mpds-io/tutorial/gh-pages/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
 #notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
@@ -98,7 +98,7 @@ div.caption b{font-style:normal;}
 
 #landing_box{width:590px;margin:0 auto;height:170px;padding:20px 0;}
 #logo_l{float:left;width:230px;margin-left:15px;font-size:3em;text-align:right;padding-top:38px;letter-spacing:24px;color:#555;font-weight:normal;}
-#logo{float:left;width:140px;height:130px;background:url(https://raw.githubusercontent.com/mpds-io/datascience/gh-pages/mpds.png) center center no-repeat;background-size:85%;}
+#logo{float:left;width:140px;height:130px;background:url(https://raw.githubusercontent.com/mpds-io/tutorial/gh-pages/mpds.png) center center no-repeat;background-size:85%;}
 #logo a{display:block;width:100%;height:100%;border:0;}
 #logo_r{float:left;width:175px;margin-left:15px;font-size:1.2em;line-height:1.3em;text-align:left;font-weight:normal;padding-top:42px;color:#555;}
 #motto{clear:both;width:100%;height:33px;text-align:left;padding-top:20px;padding-left:80px;letter-spacing:0.5px;font-size:0.95em;color:#333;}
@@ -488,8 +488,8 @@ right: -22px;
 transform: rotate(45deg);
 }
 </style>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://mpds.io/jquery.min.js"></script>
+<script type="text/javascript" src="/webassets/js/highlight.min.js"></script>
 <script type="text/javascript" src="/webassets/js/jquery.nearest.min.js"></script>
 <script type="text/javascript" src="/webassets/js/require.min.js"></script>
 <script type="text/javascript">
@@ -567,7 +567,7 @@ $(document).ready(function(){
         menu += '</ul>';
         $('#menu').append(menu);
 
-        $(window).scroll(debounce(update_menu, 300));
+        $(window).scroll(debounce(update_menu, 500));
     }
 
     if ($('#bookmarks').is(':visible')){
@@ -595,7 +595,7 @@ hljs.initHighlightingOnLoad();
 
     <div id="nav"><ul>
         <li><a href="https://mpds.io/#start">Start</a></li>
-        <li class="nav_fluid"><a href="http://datascience.mpds.io">Tutorial</a></li>
+        <li class="nav_fluid"><a href="http://tutorial.mpds.io">Tutorial</a></li>
         <li class="nav_fluid"><a href="http://developer.mpds.io">API</a></li>
         <li><a href="https://mpds.io/#products">Products</a></li>
     </ul></div>
@@ -613,7 +613,7 @@ hljs.initHighlightingOnLoad();
         <div class="spacer"></div>
 
         <div id="content">
-            <p style="background:#f4fbff;">The MPDS application programming interface (API) presents the materials data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> database <i>online</i> in the machine-readable formats, suitable for automated processing. The intended audience of this API is software engineers and data scientists. The API is available by a subscription (SLA). To start using the API the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:mpds-api@tilde.pro">contact us</a> for opening such the account.</p>
+            <p style="background:#f4fbff;">The MPDS application programming interface (API) presents the materials data of the <a href="http://paulingfile.com" target="_blank">PAULING FILE</a> database <i>online</i> in the machine-readable formats, suitable for automated processing. The intended audience is software engineers and data scientists. The API is available by a subscription (SLA). To start using the API the reader needs a valid API key from the <a href="https://mpds.io/#modal/menu">MPDS account</a>. We encourage to <a href="mailto:mpds-api@tilde.pro">contact us</a> for opening such the account.</p>
 
             <p style="background:#fdffe8;">Some parts of data are opened and freely available. In particular, these are: (<i>a</i>) <strong>cell parameters - temperature diagrams</strong> and <strong>cell parameters - pressure diagrams</strong>, (<i>b</i>) all data for compounds containing <strong>both Ag and K</strong>, (<i>c</i>) all data for <strong>binary</strong> compounds of <strong>oxygen</strong>, and (<i>d</i>) all data generated via <strong>machine learning</strong>. Please, login via <a target="_blank" href="https://mpds.io/github_oauth.html" rel="nofollow noopener noreferrer">GitHub</a> to get the API access to these data.</p>
 
@@ -623,17 +623,17 @@ hljs.initHighlightingOnLoad();
 
             <h3 id="Overview-1">&sect;1.1. MPDS data structure</h3>
 
-            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (analogous to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>.</p>
+            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (similar to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>.</p>
 
-            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by PAULING FILE in the past 20 years to manually distinguish more than 100&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
+            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by the PAULING FILE team in the past 20 years to manually distinguish more than 100&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
 
-            <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). So then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
+            <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). Then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and the C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
 
-            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (8 physical properties) were predicted and thus can be of the machine-learning data type. See below how to allow these data in the API outputs.</p>
+            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (8 physical properties) were predicted and thus can be of the machine-learning data type. See below how to enable these data in the API outputs.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">The most common action is to get the MPDS data according to some criteria. We support 12 basic criteria for searching and downloading the entries:</p>
+            <p class="view">The most common task is to get the MPDS data according to some criteria. We support 12 basic criteria for searching and downloading the entries:</p>
 
             <table class="view" id="T1">
                 <thead>
@@ -652,10 +652,10 @@ hljs.initHighlightingOnLoad();
                     <tr>
                     <td>Chemical elements</td>
                     <td><span class="t">elements</span></td>
-                    <td><span class="t">Cs</span>, <span class="t">Fr, O</span></td>
+                    <td><span class="t">Cs</span>, <span class="t">Fr-O</span></td>
                     </tr>
                     <tr>
-                    <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://datascience.mpds.io/#L1">examples</a>)</td>
+                    <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://tutorial.mpds.io/#L1">examples</a>)</td>
                     <td><span class="t">classes</span></td>
                     <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
                     </tr>
@@ -675,7 +675,7 @@ hljs.initHighlightingOnLoad();
                     <td><span class="t">221</span>, <span class="t">Pm-3m</span></td>
                     </tr>
                     <tr>
-                    <td>Prototype system (<a href="https://datascience.mpds.io/#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
+                    <td>Prototype system (<a href="https://tutorial.mpds.io/#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
                     <td><span class="t">protos</span></td>
                     <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
                     </tr>
@@ -685,7 +685,7 @@ hljs.initHighlightingOnLoad();
                     <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
                     </tr>
                     <tr>
-                    <td>Polyhedral type (see <a href="https://datascience.mpds.io/#L4">all supported types</a>)</td>
+                    <td>Polyhedral type (see <a href="https://tutorial.mpds.io/#L4">all supported types</a>)</td>
                     <td><span class="t">aetype</span></td>
                     <td><span class="t">icosahedron 12-vertex</span></td>
                     </tr>
@@ -879,7 +879,7 @@ except ValidationError, e:
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages could be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/python-api-client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
+            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages can be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/python-api-client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
 
             <div id="example_python" class="view">
             <pre id="L5"><code>#!/usr/bin/env python
@@ -903,7 +903,7 @@ response, content = req.request(
     uri=endpoint + '?' + urlencode({
         'q': json.dumps(search),
         'pagesize': 10,
-        'dtype': 2 # see query string parameters documentation
+        'dtype': 2 # see parameters documentation above
     }),
     method='GET',
     headers={'Key': api_key}
