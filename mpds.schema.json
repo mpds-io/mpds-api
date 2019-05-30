@@ -58,6 +58,14 @@
                 "years": {
                     "description": "Original publication years; MULTIPLE: combination of several terms is allowed (e.g. 1990-2018, maximum timespan is 50 years)",
                     "type": ["string", "number"]
+                },
+                "geos": {
+                    "description": "*Country* or *city* (*areas* such as lands, cantons, etc. are currently not fully supported); SINGLE: combination of several terms is not allowed",
+                    "type": "string"
+                },
+                "orgs": {
+                    "description": "Organization, hosting the research (this field is currently not fully standardized); SINGLE: combination of several terms is not allowed",
+                    "type": "string"
                 }
             },
             "anyOf": [
@@ -72,7 +80,9 @@
                 {"required": ["aetype"]},
                 {"required": ["authors"]},
                 {"required": ["codens"]},
-                {"required": ["years"]}
+                {"required": ["years"]},
+                {"required": ["geos"]},
+                {"required": ["orgs"]}
             ]
         },
         "crystal_structure": {
@@ -133,11 +143,6 @@
                     "items": {
                         "type": "string"
                     }
-                },
-                "setting": {
-                    "description": "Crystalline cell setting, in the most cases the standard setting is adopted, so this is omitted",
-                    "type": "string",
-                    "enum": ["2", "hex"]
                 },
                 "els_noneq": {
                     "description": "Valid chemical elements",
