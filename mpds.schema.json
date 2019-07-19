@@ -229,7 +229,7 @@
                 "v": {
                     "description": "Standardized cell volume, in cubic angstroms",
                     "type": "number",
-                    "minimum": 0.5,
+                    "minimum": 0.01,
                     "maximum": 1000000
                 }
             },
