@@ -308,7 +308,7 @@
                                 "type": "object",
                                 "properties": {
                                     "data_type": {
-                                        "description": "MIF's dataType, controlled either by the *dtype* request parameter or by *machine-learning* class keyword",
+                                        "description": "MIF's dataType, controlled either by the *dtype* request parameter or by a suitable *classes* keyword",
                                         "type": "string",
                                         "enum": ["peer_reviewed", "machine_learning", "ab_initio"]
                                     },
