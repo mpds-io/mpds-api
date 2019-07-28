@@ -13,14 +13,12 @@ from mpds_client import MPDSDataRetrieval
 
 from numpy import linspace
 from shapely.geometry import Polygon
-from svg.path import parse_path, Path, Line, CubicBezier, QuadraticBezier
-from svg.path.path import Move
+from svg.path import parse_path, Path, Move, Line, CubicBezier, QuadraticBezier
 
 
 # Within this tolerance, a phase near a pure element
 # will be considered as unary (not a binary compound)
 ELEMENT_TOL = 12.5
-
 
 def deCasteljau(points, u, k=None, i=None, dim=None):
     """
@@ -49,7 +47,7 @@ def linearize_path(path, nsections=4):
     """
     In the MPDS API, phases at the phase diagrams are represented
     as the systems of parametric equations in an SVG format (called "paths").
-    Here these paths are converted to the polygon exterior points.
+    Here these paths are converted to the polygon points.
     """
     points = []
     for seg in path:
@@ -99,15 +97,14 @@ def almost_equal(x, y, tol=0.1):
     return True if abs(x - y) < tol else False
 
 
-if __name__ == "__main__":
-
-    client = MPDSDataRetrieval()
-
-    starttime = time.time()
-
+def get_nonformers(api_client):
+    """
+    Main procedure
+    for phase diagram extraction and massage
+    """
     formers, nonformers = set(), set()
 
-    for pd in client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
+    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
 
         # Only full-composition diagrams
         if pd['comp_range'] != [0, 100]:
@@ -162,8 +159,17 @@ if __name__ == "__main__":
         else: nonformers.add(fingerprint)
 
     nonformers -= formers
+    return nonformers
+
+
+if __name__ == "__main__":
+
+    starttime = time.time()
+
+    nonformers = get_nonformers(MPDSDataRetrieval())
 
     print("Binary nonformers:", len(nonformers))
     for pair in sorted(list(nonformers)):
         print(pair)
+
     print("Done in %1.2f sc" % (time.time() - starttime))
