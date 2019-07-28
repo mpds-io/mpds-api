@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -187,6 +187,19 @@
                     "type": "array",
                     "minItems": 0
                 },
+                "wyck_noneq": {
+                    "description": "Wyckoff positions",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ssym_noneq": {
+                    "description": "Site symmetries",
+                    "type": "array",
+                    "minItems": 0
+                },
                 "entry": {
                     "description": "Internal LPF and MPDS identifier",
                     "type": "string"
@@ -194,7 +207,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.2"]
+                    "enum": ["1.0.3"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -231,6 +244,30 @@
                     "type": "number",
                     "minimum": 0.01,
                     "maximum": 1000000
+                },
+                "r_factors": {
+                    "description": "R factors (if available); in high quality determinations must be less than 0.03",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "condition": {
+                    "description": "Temperature (K) and pressure (GPa) for cell and structure determination (if non-standard)",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "comments": {
+                    "description": "Editors' comments concerning the data extraction and processing",
+                    "type": "array",
+                    "minItems": 0,
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "required": ["phase", "phase_id", "chemical_formula", "prototype", "sg_n", "sg_hm", "cell_abc", "basis_noneq", "symops", "els_noneq", "labels_noneq", "occs_noneq", "periodic_nums_noneq", "linus_pauling_nums_noneq", "entry", "version", "object_type", "reference", "d", "v"]
@@ -368,7 +405,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.2"]
+                    "enum": ["1.0.3"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -530,7 +567,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.2"]
+                    "enum": ["1.0.3"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
