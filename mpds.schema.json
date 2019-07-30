@@ -559,7 +559,7 @@
                             "chemical_elements": {
                                 "description": "Valid chemical elements of the *phase* or *compound*; only relevant for *nphases* = 1; can be absent",
                                 "type": "array",
-                                "minItems": 1,
+                                "minItems": 0,
                                 "maxItems": 8,
                                 "items": {
                                     "type": "string",
