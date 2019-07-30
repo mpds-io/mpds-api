@@ -545,7 +545,7 @@
                                 "type": ["number", "null"]
                             },
                             "phase_id": {
-                                "description": "Unique material phase identifier (according to the LPF distinct phases concept), can be none; only relevant for *nphases* = 1",
+                                "description": "Unique material phase identifier (according to the LPF distinct phases concept); only relevant for *nphases* = 1; can be none;",
                                 "type": ["number", "null"]
                             },
                             "is_solid": {
@@ -555,6 +555,16 @@
                             "is_ordered": {
                                 "description": "Label showing if a crystalline structure of *solid* is ordered (daltonide); only relevant for *nphases* = 1; can be absent",
                                 "type": "boolean"
+                            },
+                            "chemical_elements": {
+                                "description": "Valid chemical elements of the *phase* or *compound*; only relevant for *nphases* = 1; can be absent",
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 8,
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
+                                }
                             }
                         },
                         "required": ["kind", "svgpath"]
