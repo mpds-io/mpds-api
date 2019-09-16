@@ -13,7 +13,7 @@ from mpds_client import MPDSDataRetrieval
 
 from numpy import linspace
 from shapely.geometry import Polygon
-from svg.path import parse_path, Path, Move, Line, CubicBezier, QuadraticBezier
+from svg.path import parse_path, Move, Line, CubicBezier, QuadraticBezier
 
 
 # Within this tolerance, a phase near a pure element
