@@ -552,10 +552,6 @@
                                 "description": "Label for a state of aggregation, showing an absense of liquid or gas phases; can be absent",
                                 "type": "boolean"
                             },
-                            "is_ordered": {
-                                "description": "Label showing if a crystalline structure of *solid* is ordered (daltonide); only relevant for *nphases* = 1; can be absent",
-                                "type": "boolean"
-                            },
                             "chemical_elements": {
                                 "description": "Valid chemical elements of the *phase* or *compound*; only relevant for *nphases* = 1; can be absent",
                                 "type": "array",
