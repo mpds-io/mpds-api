@@ -126,10 +126,6 @@ def get_nonformers(api_client):
             if not area.get('is_solid'):
                 continue
 
-            # Discard non-stoichiometric phases
-            if area.get('is_ordered') is False:
-                continue
-
             if area.get('nphases') == 1:
 
                 points = linearize_path(parse_path(area['svgpath']))
