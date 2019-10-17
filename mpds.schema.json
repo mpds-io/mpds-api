@@ -258,7 +258,7 @@
                     "type": "array",
                     "minItems": 0,
                     "items": {
-                        "type": "number"
+                        "type": ["number", "null"]
                     }
                 },
                 "comments": {
