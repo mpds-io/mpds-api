@@ -240,7 +240,7 @@
                     "maximum": 50
                 },
                 "v": {
-                    "description": "Standardized cell volume, in cubic angstroms",
+                    "description": "Standardized cell volume, in cubic nanometers",
                     "type": "number",
                     "minimum": 0.01,
                     "maximum": 1000000
