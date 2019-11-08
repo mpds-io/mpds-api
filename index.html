@@ -1048,7 +1048,7 @@ from mpds_client import MPDSDataRetrieval</code></pre>
             </div>
 
             <p class="view">
-            Note that the crystalline structures are not retrieved from MPDS by default, so we need to specify additional five fields: <span class="t">cell_abc</span>, <span class="t">sg_n</span>, <span class="t">setting</span>, <span class="t">basis_noneq</span>, <span class="t">els_noneq</span>.
+            Note that the crystalline structures are not retrieved from MPDS by default, so we need to specify additional four fields: <span class="t">cell_abc</span>, <span class="t">sg_n</span>, <span class="t">basis_noneq</span>, <span class="t">els_noneq</span>.
 
             On top of that, we also ask for the <span class="t">phase_id</span>'s, MPDS entry numbers, and chemical formulae. Note that <span class="t">get_data</span> API client method returns a usual Python list, whereas <span class="t">get_dataframe</span> API client method returns a Pandas dataframe. We use the former below:
             </p>
@@ -1064,7 +1064,6 @@ answer = client.get_data(
             'chemical_formula',
             'cell_abc',
             'sg_n',
-            'setting',
             'basis_noneq',
             'els_noneq'
             ]}
@@ -1266,7 +1265,6 @@ answer = client.get_data(
             'chemical_formula',
             'cell_abc',
             'sg_n',
-            'setting',
             'basis_noneq',
             'els_noneq'
             ]}

@@ -45,7 +45,7 @@ phases = set(dfrm['Phase'].tolist())
 answer = client.get_data(
     {"props": "atomic structure"},
     phases=phases,
-    fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'setting', 'basis_noneq', 'els_noneq']}
+    fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'basis_noneq', 'els_noneq']}
 )
 
 descriptors = []

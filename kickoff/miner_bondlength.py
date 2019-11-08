@@ -27,7 +27,7 @@ client = MPDSDataRetrieval()
 
 answer = client.get_data(
     {"elements": "U-O", "props": "atomic structure"},
-    fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'setting', 'basis_noneq', 'els_noneq']}
+    fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'basis_noneq', 'els_noneq']}
 )
 
 lengths = []
