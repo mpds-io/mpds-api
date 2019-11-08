@@ -757,7 +757,7 @@ hljs.initHighlightingOnLoad();
                     <tr>
                     <td><span class="t">dtype</span></td>
                     <td><span class="t">integer</span></td>
-                    <td>Data type. Possible values: <span class="t">1</span> or <span class="t">MPDSDataTypes.PEER_REVIEWED</span> (original data), <span class="t">2</span> or <span class="t">MPDSDataTypes.MACHINE_LEARNING</span> (data generated via machine learning), and <span class="t">7</span> or <span class="t">MPDSDataTypes.ALL</span> (both mentioned types). Default value: <span class="t">1</span> (original data).</td>
+                    <td>Data type. Possible values: <span class="t">1</span> or <span class="t">MPDSDataTypes.PEER_REVIEWED</span> (original data), <span class="t">2</span> or <span class="t">MPDSDataTypes.MACHINE_LEARNING</span> (data generated via machine learning), <span class="t">4</span> or <span class="t">MPDSDataTypes.AB_INITIO</span> (in-house simulations data), and <span class="t">7</span> or <span class="t">MPDSDataTypes.ALL</span> (all mentioned types). Default value: <span class="t">1</span> (original data).</td>
                     </tr>
                     <tr>
                     <td><span class="t">pagesize</span></td>
@@ -1010,7 +1010,7 @@ https.request({
 
             <div class="blackbg">export MPDS_KEY=...</div>
 
-            <p class="view">Note, that there are two fundamental data types at the MPDS: <strong>peer-reviewed</strong> and <strong>machine-learning</strong>. By default only the peer-reviewed data are always supplied in the API. To change this using the Python library, one has to setup a <span class="t">dtype</span> attribute in advance. Below first both data types are switched on, then only the machine-learning type is enabled:</p>
+            <p class="view">Note, that there are three fundamental data types at the MPDS concerning the data origin: <strong>peer-reviewed</strong>, <strong>in-house machine-learning</strong>, and <strong>in-house first-principles simulations</strong>. By default only the peer-reviewed data are always supplied in the API. To change this using the Python library, one has to setup the <span class="t">dtype</span> attribute in advance. As seen below, at first all the data types are enabled, then only the machine-learning type is enabled:</p>
 
             <div class="blackbg">from mpds_client import MPDSDataRetrieval, MPDSDataTypes
 client = MPDSDataRetrieval()
@@ -1019,7 +1019,7 @@ client.dtype = MPDSDataTypes.ALL
 client.dtype = MPDSDataTypes.MACHINE_LEARNING
 ...</div>
 
-            <p class="view">In fact, the data type is controlled by a client with the <span class="t">dtype</span> query string parameter.</p>
+            <p class="view">The data type is set up by a client with the <span class="t">dtype</span> query string parameter.</p>
 
             <h3 id="Probability-density">&sect;2.3. Bond length analysis</h3>
 
