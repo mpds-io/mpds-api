@@ -71,7 +71,7 @@ div.cross{float:right;width:16px;height:16px;font-size:10px;text-align:center;cu
 span.href{cursor:pointer;text-decoration:none;color:#3e3f95;border-bottom:1px solid #3e3f95;}
 
 #response{white-space:pre;}
-#logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://raw.githubusercontent.com/mpds-io/tutorial/gh-pages/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
+#logo_bg{display:none;width:250px;height:250px;position:fixed;z-index:-1;right:5px;bottom:20px;background:url(https://tutorial.mpds.io/mpds.png) left top no-repeat;background-size:100%;opacity:0.1;}
 #notifybox{z-index:201;position:fixed;top:12px;right:4px;min-width:150px;background:#fc6;border-radius:5px;padding:20px 25px;font-size:1.2em;line-height:1.45em;}
 #main{width:100%;min-height:100%;height:auto !important;height:100%;margin-bottom:-33px;}
 h1{font-size:100%;font-weight:normal;display:inline;}
@@ -488,10 +488,10 @@ right: -22px;
 transform: rotate(45deg);
 }
 </style>
-<script type="text/javascript" src="/webassets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/webassets/js/highlight.min.js"></script>
-<script type="text/javascript" src="/webassets/js/jquery.nearest.min.js"></script>
-<script type="text/javascript" src="/webassets/js/require.min.js"></script>
+<script type="text/javascript" src="https://developer.mpds.io/webassets/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://developer.mpds.io/webassets/js/highlight.min.js"></script>
+<script type="text/javascript" src="https://developer.mpds.io/webassets/js/jquery.nearest.min.js"></script>
+<script type="text/javascript" src="https://developer.mpds.io/webassets/js/require.min.js"></script>
 <script type="text/javascript">
 if (!window.console) window.console = {log: function(){}, error: function(){}};
 
@@ -583,8 +583,11 @@ $(document).ready(function(){
         $('#bookmarks').append(menu);
     }
 
+    require.config({
+        baseUrl: 'https://developer.mpds.io'
+    });
     require(['webassets/js/docson'], function(docson){
-        load_custom_schema('/mpds.schema.json', 'mpds_json_schema');
+        load_custom_schema('https://developer.mpds.io/mpds.schema.json', 'mpds_json_schema');
     });
 });
 
@@ -1104,7 +1107,7 @@ dfrm.drop_duplicates('length', inplace=True)</code></pre>
             Now it's up to the reader to visualize the result (this is absolutely a matter of taste). Below is a bar chart rendered using <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> JavaScript libraries. We provide <a href="#Visualizations">visualization exporting toolbox</a> in Python, allowing the export of the results into <strong>CSV</strong> and <strong>JSON</strong> formats and reproducing the figures, although its usage is optional.
             </p>
 
-            <img id="F1" src="/figures/1.png" alt="Probability density distribution of U-O bond length across the MPDS database" width="800" />
+            <img id="F1" src="https://developer.mpds.io/figures/1.png" alt="Probability density distribution of U-O bond length across the MPDS database" width="800" />
 
             <div class="caption" data-id="F1"><b>Fig. 1.</b> Distribution of U-O bond lengths across MPDS database.</div>
 
@@ -1207,7 +1210,7 @@ for cluster_n, cluster in enumerate(clusters, start=1):
 
             <br />
 
-            <img id="F2" src="/figures/2.png" alt="Binary compounds clustering by their band gaps and constituent element groups" width="600" />
+            <img id="F2" src="https://developer.mpds.io/figures/2.png" alt="Binary compounds clustering by their band gaps and constituent element groups" width="600" />
 
             <div class="caption" data-id="F2"><b>Fig. 2.</b> Binary compounds clustering by their band gaps and constituent element groups.</div>
 

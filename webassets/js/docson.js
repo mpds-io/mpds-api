@@ -16,7 +16,7 @@
 
 var docson = docson || {};
 
-docson.templateBaseUrl = "webassets/templates";
+docson.templateBaseUrl = "https://developer.mpds.io/webassets/templates";
 
 define(["webassets/js/handlebars.min", "webassets/js/highlight", "webassets/js/jsonpointer", "webassets/js/marked", "webassets/js/traverse"], function(Handlebars, highlight, jsonpointer, marked) {
 
