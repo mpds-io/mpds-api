@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -207,7 +207,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.3"]
+                    "enum": ["1.0.4"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -240,10 +240,10 @@
                     "maximum": 50
                 },
                 "v": {
-                    "description": "Standardized cell volume, in cubic nanometers",
+                    "description": "Standardized cell volume, in cubic angstroms",
                     "type": "number",
-                    "minimum": 0.01,
-                    "maximum": 1000000
+                    "minimum": 5,
+                    "maximum": 600000
                 },
                 "r_factors": {
                     "description": "R factors (if available); in high quality determinations must be less than 0.03",
@@ -405,7 +405,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.3"]
+                    "enum": ["1.0.4"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -573,7 +573,7 @@
                 "version": {
                     "description": "MPDS API version",
                     "type": "string",
-                    "enum": ["1.0.3"]
+                    "enum": ["1.0.4"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
