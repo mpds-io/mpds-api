@@ -2,5 +2,5 @@ setuptools >= 35.0.1
 pandas >= 0.20.1
 ase == 3.17.0
 mpds_client >= 0.0.17
-shapely[vectorized]
+shapely[vectorized]==1.7.0
 git+https://github.com/regebro/svg.path#egg=svg.path
