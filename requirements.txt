@@ -4,4 +4,4 @@ ase == 3.17.0
 mpds_client >= 0.0.17
 shapely[vectorized]
 svg.path
-scipy == 1.2.3
+scipy==1.4.1
