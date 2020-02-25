@@ -6,90 +6,29 @@ find binary elemental systems producing no compounds,
 i.e. non-formers. Typical non-former cases are
 complete insolubility systems (elements "hate" each other)
 and continuous solid solution systems (elements "love" each other).
+
+NB shapely (libgeos-dev) is required.
 """
 
+import re
 import time
 from mpds_client import MPDSDataRetrieval
 
 from numpy import linspace
-from shapely.geometry import Polygon
-from svg.path import parse_path, Move, Line, CubicBezier, QuadraticBezier
 
 
 # Within this tolerance, a phase near a pure element
 # will be considered as unary (not a binary compound)
 ELEMENT_TOL = 12.5
 
-def deCasteljau(points, u, k=None, i=None, dim=None):
-    """
-    De Casteljau's algorithm splits Bezier curves polynomials into linear parts;
-    https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
-    """
-    if k == None:
-        k = len(points)-1
-        i = 0
-        dim = len(points[0])
 
-    if k == 0:
-        return points[i]
-
-    a = deCasteljau(points, u, k=k-1, i=i, dim=dim)
-    b = deCasteljau(points, u, k=k-1, i=i+1, dim=dim)
-    result = []
-
-    for j in range(dim):
-        result.append((1-u) * a[j] + u * b[j])
-
-    return tuple(result)
-
-
-def linearize_path(path, nsections=4):
-    """
-    In the MPDS API, phases at the phase diagrams are represented
-    as the systems of parametric equations in an SVG format (called "paths").
-    Here these paths are converted to the polygon points.
-    """
+def pd_svg_to_points(shape_str):
     points = []
-    for seg in path:
-        if isinstance(seg, Line):
-            if seg.start == seg.end:
-                continue
-            points += [
-                [seg.start.real, seg.start.imag],
-                [seg.end.real, seg.end.imag]
-            ]
-
-        elif isinstance(seg, Move):
-            points += [[seg.start.real, seg.start.imag]]
-
-        elif isinstance(seg, QuadraticBezier):
-            # quadratic to cubic Bezier control coeffs conversion
-            cp1x = seg.start.real + 2/3 * (seg.control.real - seg.start.real)
-            cp1y = seg.start.imag + 2/3 * (seg.control.imag - seg.start.imag)
-            cp2x = seg.end.real + 2/3 * (seg.control.real - seg.end.real)
-            cp2y = seg.end.imag + 2/3 * (seg.control.imag - seg.end.imag)
-            controls = [
-                [seg.start.real, seg.start.imag],
-                [cp1x, cp1y],
-                [cp2x, cp2y],
-                [seg.end.real, seg.end.imag]
-            ]
-            for coeff in linspace(0, 1, nsections):
-                points += [ deCasteljau(controls, coeff) ]
-
-        elif isinstance(seg, CubicBezier):
-            controls = [
-                [seg.start.real, seg.start.imag],
-                [seg.control1.real, seg.control1.imag],
-                [seg.control2.real, seg.control2.imag],
-                [seg.end.real, seg.end.imag]
-            ]
-            for coeff in linspace(0, 1, nsections):
-                points += [ deCasteljau(controls, coeff) ]
-
-        else:
-            raise RuntimeError('Unexpected SVG primitive!')
-
+    for point in re.split(' L | M ', shape_str.lstrip('M ').rstrip(' Z')):
+        points.append([
+            float(coord)
+            for coord in point.split(',')
+        ])
     return points
 
 
@@ -102,6 +41,8 @@ def get_nonformers(api_client):
     Main procedure
     for phase diagram extraction and massage
     """
+    from shapely.geometry import Polygon
+
     formers, nonformers = set(), set()
 
     for pd in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
@@ -128,7 +69,7 @@ def get_nonformers(api_client):
 
             if area.get('nphases') == 1:
 
-                points = linearize_path(parse_path(area['svgpath']))
+                points = pd_svg_to_points(area['svgpath'])
                 if len(points) == 2:
                     # This is a line compound
                     x0, y0 = points[0]

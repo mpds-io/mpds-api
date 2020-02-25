@@ -10,6 +10,8 @@ The following MPDS API JSON fields are considered:
 - shapes: nphases
 - shapes: is_solid
 - shapes: svgpath
+
+NB shapely (libgeos-dev) is required.
 """
 import sys
 import numpy
@@ -17,7 +19,7 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 from mpds_client import MPDSDataRetrieval
 
-from miner_nonformers import parse_path, linearize_path
+from miner_nonformers import pd_svg_to_points
 
 
 MARGIN_EDGES_COMP = 0.1
@@ -62,11 +64,10 @@ if __name__ == "__main__":
                     print("ANOTHER LIQUID OR GAS PHASE WAS FOUND, THE PD SHAPE IS TOO COMPLEX")
                     continue
 
-                points = linearize_path(parse_path(area['svgpath']))
                 done_liquidus = True
-
                 liquidus_line = []
-                for point in points:
+
+                for point in pd_svg_to_points(area['svgpath']):
 
                     # NB the line out of polygon extraction algorithm must be improved;
                     # this is just a quick and dirty example based on

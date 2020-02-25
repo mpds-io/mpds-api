@@ -6,7 +6,6 @@ import sys
 import numpy
 from numpy.linalg import det
 from mpds_client import MPDSDataRetrieval
-from mpds_ml_labs.struct_utils import json_to_ase # https://github.com/mpds-io/mpds-ml-labs
 
 
 supported_arities = {1: 'unary', 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary'}
@@ -54,7 +53,7 @@ def get_cell_v_for_t(elements, t0=250, t1=350):
 
         if item[0] == 'P':
             # P-entry, TODO: consider temperature
-            if item[5] < t0 or item[5] > t1:
+            if item[5] and (item[5] < t0 or item[5] > t1):
                 print('Phase %s, P: OUT OF BOUNDS TEMPERATURE: %s K (%s)' % (item[1], item[5], item[6]))
 
         else:
@@ -63,11 +62,9 @@ def get_cell_v_for_t(elements, t0=250, t1=350):
                 print('Phase %s, S: OUT OF BOUNDS TEMPERATURE: %s K (%s)' % (item[1], item[5][0], item[6]))
                 continue
 
-            ase_obj, error = json_to_ase(item[7:])
-            if error:
-                print("Structure compilation error: %s" % error)
+            ase_obj = MPDSDataRetrieval.compile_crystal(item, 'ase')
+            if not ase_obj:
                 continue
-
             n_metal_atoms = len([p for p in ase_obj if p.symbol == elements[0]])
             phases_volumes.setdefault(item[1], []).append(det(ase_obj.cell) / n_metal_atoms)
 
