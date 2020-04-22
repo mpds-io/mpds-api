@@ -3,26 +3,31 @@
 MPDS API usage example:
 using the machine-readable phase diagrams
 find binary elemental systems producing no compounds,
-i.e. non-formers. Typical non-former cases are
-complete insolubility systems (elements "hate" each other)
-and continuous solid solution systems (elements "love" each other).
+i.e. non-formers. Typical non-former cases are:
+
+- complete insolubility systems (e.g. La-Mn, elements "too much hate" each other)
+- continuous solid solution systems (e.g. Au-Cu, elements "too much love" each other).
 
 NB shapely (libgeos-dev) is required.
 """
 
+import os
 import re
 import time
+import json
 from mpds_client import MPDSDataRetrieval
 
-from numpy import linspace
 
-
-# Within this tolerance, a phase near a pure element
-# will be considered as unary (not a binary compound)
-ELEMENT_TOL = 12.5
+# Within this composition tolerance (%), a phase near a pure element
+# will be considered as unary (not a binary) compound
+ELEMENT_TOL = 15
 
 
 def pd_svg_to_points(shape_str):
+    """
+    Only SVG commands L, M, and Z are used
+    in the *svgpath* phase diagrams JSON field
+    """
     points = []
     for point in re.split(' L | M ', shape_str.lstrip('M ').rstrip(' Z')):
         points.append([
@@ -43,7 +48,7 @@ def get_nonformers(api_client):
     """
     from shapely.geometry import Polygon
 
-    formers, nonformers = set(), set()
+    true_nonformers, maybe_nonformers, formers = set(), set(), set()
 
     for pd in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
 
@@ -56,6 +61,7 @@ def get_nonformers(api_client):
             continue
 
         fingerprint = tuple(sorted(pd['chemical_elements']))
+        #print('|'*50 + pd['entry'])
 
         for area in pd['shapes']:
 
@@ -81,7 +87,8 @@ def get_nonformers(api_client):
 
                 # Here we have a continuous solid solution case, e.g. Au-Cu
                 if almost_equal(x1 - x0, 100):
-                    continue
+                    true_nonformers.add(fingerprint)
+                    break
 
                 # Here we discard the elementary phases
                 # which may spread over a relatively large range
@@ -90,23 +97,29 @@ def get_nonformers(api_client):
                     continue
 
                 formers.add(fingerprint)
+                break
 
             # Here we have no single phases: complete insolubility case, e.g. La-Mn
 
-        else: nonformers.add(fingerprint)
+        else: maybe_nonformers.add(fingerprint)
 
-    nonformers -= formers
-    return nonformers
+    # different pd's may give different impression, so we compare globally
+    true_nonformers |= (maybe_nonformers - formers)
+    return true_nonformers
 
 
 if __name__ == "__main__":
+
+    OUTPUT = "mpds_bin_nonformers.json"
+    assert not os.path.exists(OUTPUT), "%s exists!" % OUTPUT
 
     starttime = time.time()
 
     nonformers = get_nonformers(MPDSDataRetrieval())
 
     print("Binary nonformers:", len(nonformers))
-    for pair in sorted(list(nonformers)):
-        print(pair)
+    f = open(OUTPUT, "w")
+    f.write(json.dumps(sorted(list(nonformers)), indent=4))
+    f.close()
 
     print("Done in %1.2f sc" % (time.time() - starttime))
