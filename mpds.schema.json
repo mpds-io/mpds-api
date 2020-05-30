@@ -6,7 +6,7 @@
         "input_query": {
             "type": "object",
             "description": "A query string parameter *q*",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "props": {
                     "description": "Any of the three levels of the physical properties (domains, categories and properties per se, see https://mpds.io/#hierarchy); SINGLE: combination of several terms is not supported",
@@ -275,7 +275,7 @@
         "physical_property": {
             "type": "object",
             "description": "Physical properties data type",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "sample": {
                     "description": "Citrine's MIF root container, according to https://github.com/CitrineInformatics/mif-documentation",
@@ -426,7 +426,7 @@
         "phase_diagram": {
             "type": "object",
             "description": "Phase diagrams data type",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "naxes": {
                     "description": "Number of axes",
