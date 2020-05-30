@@ -4,4 +4,4 @@ ase
 mpds_client
 shapely[vectorized]
 svg.path
-scipy
+scipy==1.4.1
