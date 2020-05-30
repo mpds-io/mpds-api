@@ -35,12 +35,13 @@ if __name__ == "__main__":
 
     api_client = MPDSDataRetrieval()
 
-    plt.xlabel('C')
-    plt.ylabel('T')
+    plt.xlabel('Composition')
+    plt.ylabel('Temperature')
     plt.annotate(ela, xy=(-0.05, -0.1), xycoords='axes fraction')
     plt.annotate(elb, xy=(1.05, -0.1), xycoords='axes fraction')
+    ymin, ymax = 500, 700
 
-    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary", "elements": "-".join(elements)}, fields={}):
+    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary", "elements": "-".join(elements)}, fields={}): # fields={} means all fields
         # Consider only full-composition diagrams
         if pd['comp_range'] != [0, 100]:
             continue
@@ -51,7 +52,8 @@ if __name__ == "__main__":
 
         print("*"*50, pd['entry'], "*"*50)
         done_liquidus = False
-        plt.axis([0, 100, pd['temp'][0], pd['temp'][1]])
+        if pd['temp'][0] < ymin: ymin = pd['temp'][0]
+        if pd['temp'][1] > ymax: ymax = pd['temp'][1]
 
         for area in pd['shapes']:
             # Discard the paths without the semantic meaning
@@ -77,12 +79,16 @@ if __name__ == "__main__":
                        point[0] < pd['comp_range'][1] - MARGIN_EDGES_COMP:
                         liquidus_line.append(point)
 
+                if not liquidus_line:
+                    continue
+
                 liquidus_line.sort(key=lambda x: x[0])
                 #print(liquidus_line)
                 x, y = numpy.transpose(numpy.array(liquidus_line)).tolist()
                 plt.plot(x, y, c=numpy.random.rand(3,), lw=1, label=pd['entry'])
                 #plt.scatter(x, y, c=numpy.random.rand(3,), s=3, label=pd['entry'])
 
+    plt.axis([0, 100, ymin, ymax])
     plt.legend()
     plt.title('Reported liquidus lines for %s system' % "-".join(elements))
     plt.savefig('liquidus_%s.png' % "-".join(elements), dpi=250)
