@@ -1,7 +1,7 @@
 setuptools
 pandas
 ase
-mpds_client
+mpds_client==0.0.22
 shapely[vectorized]
 svg.path
 scipy
