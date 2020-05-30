@@ -390,25 +390,9 @@
                                 },
                                 "required": ["data_type", "property"]
                             }
-                        },
-                        "reference": {
-                            "description": "Persistent URLs of data",
-                            "type": "object",
-                            "additionalProperties": false,
-                            "properties": {
-                                "entry": {
-                                    "description": "Persistent URL of the entry",
-                                    "type": "string"
-                                },
-                                "phase": {
-                                    "description": "Persistent URL of the distinct phase",
-                                    "type": "string"
-                                }
-                            },
-                            "required": ["entry"]
                         }
                     },
-                    "required": ["material", "measurement", "reference"]
+                    "required": ["material", "measurement"]
                 },
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
@@ -419,9 +403,25 @@
                     "description": "MPDS data type",
                     "type": "string",
                     "enum": ["P"]
+                },
+                "reference": {
+                    "description": "Persistent URLs of data",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "entry": {
+                            "description": "Persistent URL of the entry",
+                            "type": "string"
+                        },
+                        "phase": {
+                            "description": "Persistent URL of the distinct phase",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["entry"]
                 }
             },
-            "required": ["sample", "version", "object_type"]
+            "required": ["sample", "version", "object_type", "reference"]
         },
         "phase_diagram": {
             "type": "object",
