@@ -1,4 +1,4 @@
-setuptools
+setuptools==47.1.1
 pandas
 ase
 mpds_client
