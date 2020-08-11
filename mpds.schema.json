@@ -149,10 +149,7 @@
                     "description": "Valid chemical elements",
                     "type": "array",
                     "minItems": 0,
-                    "items": {
-                        "type": "string",
-                        "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
-                    }
+                    "items": {"$ref": "#/definitions/chemical_elements"}
                 },
                 "labels_noneq": {
                     "description": "Non-equivalent atomic labels, may contain important information, such as hydroxyl label",
@@ -295,10 +292,7 @@
                                     "description": "Valid chemical elements",
                                     "type": "array",
                                     "minItems": 1,
-                                    "items": {
-                                        "type": "string",
-                                        "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
-                                    }
+                                    "items": {"$ref": "#/definitions/chemical_elements"}
                                 },
                                 "condition": {
                                     "description": "MIF's information about the inherent conditions of the system as a whole (currently contains only a space group number)",
@@ -386,6 +380,10 @@
                                                 }
                                             }
                                         }
+                                    },
+                                    "raw_data": {
+                                        "description": "For *ab_initio* *data_type*: URL of the LZMA 7z-archive with the raw simulation outputs and logs",
+                                        "type": "string"
                                     }
                                 },
                                 "required": ["data_type", "property"]
@@ -450,10 +448,7 @@
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 8,
-                    "items": {
-                        "type": "string",
-                        "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
-                    }
+                    "items": {"$ref": "#/definitions/chemical_elements"}
                 },
                 "title_a": {
                     "description": "Triangular plot only: the first component (left triangle corner)",
@@ -512,10 +507,15 @@
                     "type": "object"
                 },
                 "temp": {
-                    "description": "Rectangular plot: temperature range (Y-axis); triangular plot: isotherm value(s) or none for *projection* *diatypes*; always in Celsius;",
+                    "description": "Rectangular plot: temperature range (Y-axis); triangular plot: isotherm value(s) or none for *projection* *diatypes*; always in Celsius; lower value refers to an axis and can be less than -273.15",
                     "type": "array",
                     "minItems": 0,
-                    "maxItems": 2
+                    "maxItems": 2,
+                    "items": {
+                        "type": ["number", "null"],
+                        "minimum": -500,
+                        "maximum": 6000
+                    }
                 },
                 "labels": {
                     "description": "Labels, as extracted from the phase diagram vector image; can be referred by *reflabel* attribute of *shapes*; contain title and coordinates",
@@ -571,10 +571,19 @@
                                 "type": "array",
                                 "minItems": 0,
                                 "maxItems": 8,
-                                "items": {
-                                    "type": "string",
-                                    "enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
-                                }
+                                "items": {"$ref": "#/definitions/chemical_elements"}
+                            },
+                            "reference": {
+                                "description": "Persistent URLs of data",
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "phase": {
+                                        "description": "Persistent URL of the distinct phase",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["phase"]
                             }
                         },
                         "required": ["kind", "svgpath"]
@@ -612,7 +621,8 @@
                 }
             },
             "required": ["naxes", "arity", "diatype", "chemical_elements", "temp", "labels", "shapes", "entry", "version", "object_type", "reference"]
-        }
+        },
+        "chemical_elements": {"enum": ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]}
     },
     "type": "array",
     "items": {
