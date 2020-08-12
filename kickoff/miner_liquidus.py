@@ -10,8 +10,6 @@ The following MPDS API JSON fields are considered:
 - shapes: nphases
 - shapes: is_solid
 - shapes: svgpath
-
-NB shapely (libgeos-dev) is required.
 """
 import sys
 import numpy

@@ -3,5 +3,4 @@ pandas
 ase
 mpds_client
 shapely[vectorized]
-svg.path
 scipy
