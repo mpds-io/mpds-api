@@ -66,6 +66,10 @@
                 "orgs": {
                     "description": "Organization, hosting the research (this field is currently not fully standardized); SINGLE: combination of several terms is not supported",
                     "type": "string"
+                },
+                "numeric": {
+                    "description": "Numerical search using the *props* category terms; CURRENTLY NOT SUPPORTED IN THE API, PROVISIONED FOR FUTURE",
+                    "type": "array"
                 }
             },
             "anyOf": [
@@ -82,7 +86,8 @@
                 {"required": ["codens"]},
                 {"required": ["years"]},
                 {"required": ["geos"]},
-                {"required": ["orgs"]}
+                {"required": ["orgs"]},
+                {"required": ["numeric"]}
             ]
         },
         "crystal_structure": {
