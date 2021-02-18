@@ -648,6 +648,7 @@ hljs.initHighlightingOnLoad();
                     <th>Facet</th>
                     <th>Machine-readable name</th>
                     <th>Examples</th>
+                    <th>Case sensitivity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -655,71 +656,85 @@ hljs.initHighlightingOnLoad();
                     <td>Physical properties (see the <a href="https://mpds.io/#hierarchy">MPDS physical properties hierarchy</a>,<br />numerical properties specifically)</td>
                     <td><span class="t">props</span></td>
                     <td><span class="t">conductivity</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Chemical elements</td>
                     <td><span class="t">elements</span></td>
                     <td><span class="t">Cs</span>, <span class="t">Fr-O</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://tutorial.mpds.io/#L1">examples</a>)</td>
                     <td><span class="t">classes</span></td>
                     <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Crystal system</td>
                     <td><span class="t">lattices</span></td>
                     <td><span class="t">orthorhombic</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Chemical formula</td>
                     <td><span class="t">formulae</span></td>
                     <td><span class="t">SrTiO3</span>, <span class="t">O3Al2</span>, <span class="t">A2B</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Space group (number or international short symbol)</td>
                     <td><span class="t">sgs</span></td>
                     <td><span class="t">221</span>, <span class="t">Pm-3m</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Prototype system (<a href="https://tutorial.mpds.io/#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
                     <td><span class="t">protos</span></td>
                     <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
+                    <td align="center">yes</td>
                     </tr>
                     <tr>
                     <td>Polyhedron atoms (center, ligands)</td>
                     <td><span class="t">aeatoms</span></td>
                     <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Polyhedral type (see <a href="https://tutorial.mpds.io/#L4">all supported types</a>)</td>
                     <td><span class="t">aetypes</span></td>
                     <td><span class="t">icosahedron 12-vertex</span></td>
+                    <td align="center">yes</td>
                     </tr>
                     <tr>
                     <td>Publication author</td>
                     <td><span class="t">authors</span></td>
                     <td><span class="t">Evarestov</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>CODEN (code of publication journal, see <a href="http://cassi.cas.org">CODEN index</a>)</td>
                     <td><span class="t">codens</span></td>
                     <td><span class="t">PPCPFQ</span></td>
+                    <td align="center">no</td>
                     </tr>
                     <tr>
                     <td>Publication years</td>
                     <td><span class="t">years</span></td>
                     <td><span class="t">1960-1990</span></td>
+                    <td align="center">&mdash;</td>
                     </tr>
                     <tr>
                     <td>Author location</td>
                     <td><span class="t">geos</span></td>
                     <td><span class="t">United Arab Emirates</span></td>
+                    <td align="center">yes</td>
                     </tr>
                     <tr>
                     <td>Author organization</td>
                     <td><span class="t">orgs</span></td>
                     <td><span class="t">CSIRO</span></td>
+                    <td align="center">yes</td>
                     </tr>
                 </tbody>
             </table>
@@ -729,6 +744,8 @@ hljs.initHighlightingOnLoad();
             <p class="view">Thus, in an API request it is possible to combine all these criteria in a reasonable manner. Combination is always done implying conjunctive <span class="t">AND</span> operator. The reasonable manner means one can combine <i>e.g.</i> <strong>publication authors</strong> with <strong>publication years</strong>, but cannot combine <strong>chemical formulae</strong> with <strong>chemical elements</strong> or <strong>space group</strong> with <strong>crystal system</strong>, <i>i.e.</i> the common sense rules are implied.</p>
 
             <p>We distinguish the single-term categories, such as the physical properties and crystal systems, and many-term categories, such as the materials classes and publication authors. A combination of terms from the single-term category is <i>not</i> supported. That is, one <i>cannot</i> search for both <span class="t">band gap</span> and <span class="t">conductivity</span>. A combination of terms from the many-term category is easily possible. That is, one <i>can</i> search for both <span class="t">binaries</span> and <span class="t">perovskites</span>.</p>
+
+            <p>The single-term categories are <span class="t">props</span>, <span class="t">lattices</span>, <span class="t">formulae</span>, <span class="t">sgs</span>, <span class="t">protos</span>, <span class="t">aeatoms</span>, <span class="t">codens</span>, <span class="t">geos</span>, and <span class="t">orgs</span>. The many-term categories are <span class="t">elements</span>, <span class="t">classes</span>, <span class="t">aetypes</span>, <span class="t">authors</span>, and <span class="t">years</span>.</p>
 
             <h3 id="REST-endpoint">&sect;1.3. REST-alike download endpoint</h3>
 
