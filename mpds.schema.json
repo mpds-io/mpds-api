@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -210,7 +210,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.6"]
+                    "enum": ["1.0.7"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -400,7 +400,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.6"]
+                    "enum": ["1.0.7"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -601,7 +601,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.6"]
+                    "enum": ["1.0.7"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
