@@ -632,11 +632,13 @@ hljs.initHighlightingOnLoad();
 
             <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (similar to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>.</p>
 
-            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by the PAULING FILE team in the past 20 years to manually distinguish more than 100&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
+            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by the PAULING FILE team in the past 20 years to manually distinguish about 200&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has an integer identifier called <span class="t">phase_id</span>.</p>
 
             <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). Then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and the C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
 
             <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (10 physical properties) were predicted and thus can be of the machine-learning data type. For some of these properties we also provide in-house <i>ab&nbsp;initio</i> modeling data, based on the experimental (carefully relaxed) crystalline structures. See below how to enable all these data in the API outputs.</p>
+
+            <p style="background:#f4fbff;">Starting from April 2021, we support the Optimade unified access interface. The Optimade stands for the Open Databases Integration for Materials Design and defines a standardized way for a programmatic access to any online materials database. Please, refer to the <a href="https://www.optimade.org">Optimade website</a> for the details.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
@@ -1116,7 +1118,7 @@ for item in answer:
             </div>
 
             <p class="view">
-            That runs a little bit slow (about five minutes), since <span class="t">ase</span>'s <span class="t">Atoms</span> are expectedly not performing very well on dozens of thousands of bond length calculations. We may want to employ a C-extension here, but this is outside the scope of this exercise. Anyway now we have a flat list <span class="t">lengths</span>. Let's convert it into a Pandas Dataframe and find which <strong>U-O</strong> distances occur more often than the others.
+            That runs a little bit slow (about five minutes), since <span class="t">ase</span>'s <span class="t">Atoms</span> are expectedly not performing very well on dozens of thousands of bond length calculations. We may want to either use the <span class="t">ase</span>'s <span class="t">neighbor_list</span> method, or employ a C-extension, but this is outside the scope of this exercise. Anyway now we have a flat list <span class="t">lengths</span>. Let's convert it into a Pandas Dataframe and find which <strong>U-O</strong> distances occur more often than the others.
             </p>
 
             <div id="exercise_a5" class="view">
