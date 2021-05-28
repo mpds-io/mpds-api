@@ -1,0 +1,1 @@
+This is just to handle redirects correctly.
