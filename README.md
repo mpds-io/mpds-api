@@ -16,6 +16,7 @@ Here you will find:
     - [Statistical relationship of physical property and crystalline structure](https://github.com/mpds-io/mpds-api/blob/gh-pages/kickoff/miner_propstruct.py)
     - [Retrieval of binary systems producing no compounds](https://github.com/mpds-io/mpds-api/blob/gh-pages/kickoff/miner_nonformers.py)
     - [Calculating the Pilling-Bedworth ratio of metals](https://github.com/mpds-io/mpds-api/blob/gh-pages/kickoff/miner_pb_ratio.py)
+    - and more, just see the [MPDS API kickoff scripts](https://github.com/mpds-io/mpds-api/tree/gh-pages/kickoff) folder
 
 - MPDS API Jupyter notebooks: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/mpds-io/mpds-api/gh-pages?filepath=notebooks)
 
