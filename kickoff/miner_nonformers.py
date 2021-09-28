@@ -43,8 +43,8 @@ def almost_equal(x, y, tol=0.1):
 
 def get_nonformers(api_client):
     """
-    Main procedure
-    for phase diagram extraction and massage
+    Main procedure:
+    phase diagram extraction and massage
     """
     from shapely.geometry import Polygon
 
