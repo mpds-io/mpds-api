@@ -374,6 +374,7 @@
                                         "minItems": 1,
                                         "items": {
                                             "type": "object",
+                                            "additionalProperties": true,
                                             "properties": {
                                                 "units": {"type": "string"},
                                                 "scalar": {"type": "number"},
