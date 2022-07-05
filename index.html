@@ -920,7 +920,7 @@ except ValidationError, e:
 
             <h3 id="Example-scripts">&sect;1.5. Example scripts</h3>
 
-            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages can be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/python-api-client">Python client library</a>, so these examples here serve demonstration purposes only.</p>
+            <p class="view">Below are simple examples for the MPDS data retrieval in two programming languages: <strong>Python</strong> and <strong>JavaScript</strong>. More languages can be added by request. Note, that here the Python example requires an external package <span class="t">httplib2</span>. We provide more convenient <a href="https://github.com/mpds-io/python-api-client">Python client library</a> (see the next sections), so these examples here serve demonstration purposes only.</p>
 
             <div id="example_python" class="view">
             <pre id="L5"><code>#!/usr/bin/env python
@@ -1033,7 +1033,7 @@ https.request({
 
             <h3 id="Client-library">&sect;2.2. Client library</h3>
 
-            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/python-api-client">client library</a> for Python versions 2.7 and 3.6. This library takes care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs. It is installed as any other Python library:</p>
+            <p class="view">As mentioned, any programming language, able to execute HTTP requests and handle the JSON output, can be employed. However, one of the most frequently used languages in data processing is Python. Therefore we provide a <a href="https://github.com/mpds-io/python-api-client">Python library</a>, taking care of many aspects of the MPDS API, such as pagination, error handling, validation, proper data extraction and more. We encourage our users to adopt this library for their needs. It is installed as any other Python library:</p>
 
             <div class="blackbg">pip install mpds_client</div>
 
@@ -1339,7 +1339,7 @@ print("Kendall Tau. Prop vs. Wiener = \t%s" % corr_kendall.loc['Prop']['Wiener']
 
             <p class="view">Although the reader is encouraged to visualize the data using his habitual tools, we provide a set of helper utilities. Using a simple exporting toolbox in our Python client library each of the exercises considered above may output two files for the further plotting: <strong>CSV</strong> and <strong>JSON</strong>.</p>
 
-            <p class="view">By default these two files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc or Excel), and <strong>JSON</strong> has a custom self-explanatory layout suitable for <a href="/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="/visavis">Vis-&agrave;-vis</a>.</p>
+            <p class="view">By default these two files are written in a system-wide temporary directory <span class="t">/tmp</span> (subdirectory <span class="t">_MPDS</span>). <strong>CSV</strong> is commonly used in the electronic sheets (such as OpenOffice Calc), and <strong>JSON</strong> has a custom self-explanatory layout suitable for <a href="/visavis">Vis-&agrave;-vis web-viewer</a>. This is quite unsophisticated browser-based JavaScript application, heavily used inside the MPDS GUI. It employs <a href="https://plot.ly">Plotly</a> and <a href="https://d3js.org">D3</a> visualization libraries. <strong>JSON</strong> produced with the exporting toolbox may be simply drag-n-dropped in the browser window with the loaded <a href="/visavis">Vis-&agrave;-vis</a>.</p>
 
             <p style="background:#f4fbff;">We thank the reader for the time and interest! Any questions or feedback is <a href="mailto:feedback@tilde.pro">very welcomed and greatly appreciated</a>.</p>
         </div>
