@@ -450,7 +450,7 @@
                     "enum": ["binary", "subsolidus relations", "liquidus projection", "solvus projection", "solidus projection", "vertical section", "isothermal section"]
                 },
                 "chemical_elements": {
-                    "description": "Valid chemical elements of the phase diagram",
+                    "description": "Valid chemical elements of the phase diagram (always alphabetically sorted)",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 8,
