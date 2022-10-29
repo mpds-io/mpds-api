@@ -4,3 +4,4 @@ ase
 mpds_client
 shapely[vectorized]
 scipy
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
