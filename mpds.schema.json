@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Defines the MPDS API input queries (q-parameter) and output data (S = crystal structures, P = physical properties, and C = phase diagrams)",
-    "version": "1.0.7",
+    "version": "1.2.0",
     "definitions": {
         "input_query": {
             "type": "object",
@@ -210,7 +210,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.7"]
+                    "enum": ["1.2.0"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
@@ -263,6 +263,32 @@
                         "type": ["number", "null"]
                     }
                 },
+                "preparation": {
+                    "description": "Controlled text container for the synthesis description, cf. *physical_property* -> *sample* -> *material* -> *condition*",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "synthesis": {"type": "string"},
+                        "crucible": {"type": "string"},
+                        "atmosphere": {"type": "string"},
+                        "solvent": {"type": "string"},
+                        "crystal_growth": {"type": "string"},
+                        "mineral": {"type": "string"},
+                        "starting_materials": {
+                            "type": "array",
+                            "minItems": 0,
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "formula": {"type": "string"},
+                                    "purity": {"type": ["string", "null"]},
+                                    "descr": {"type": ["string", "null"]}
+                                }
+                            }
+                        }
+                    }
+                },
                 "comments": {
                     "description": "Editors' comments concerning the data extraction and processing",
                     "type": "array",
@@ -300,7 +326,7 @@
                                     "items": {"$ref": "#/definitions/chemical_elements"}
                                 },
                                 "condition": {
-                                    "description": "MIF's information about the inherent conditions of the system as a whole (currently contains only a space group number)",
+                                    "description": "The inherent conditions and provenance of the system as a whole",
                                     "type": "array",
                                     "minItems": 1,
                                     "items": {
@@ -308,6 +334,7 @@
                                         "properties": {
                                             "scalar": {
                                                 "type": "array",
+                                                "description": "Numerical value container",
                                                 "minItems": 1,
                                                 "items": {
                                                     "type": "object",
@@ -315,9 +342,10 @@
                                                     "required": ["value"]
                                                 }
                                             },
-                                            "name": {"type": "string"}
+                                            "text": {"type": "string", "description": "Controlled text content (e.g. preparation), cf. *crystal_structure* -> *preparation*"},
+                                            "name": {"type": "string", "description": "Feature name"}
                                         },
-                                        "required": ["name", "scalar"]
+                                        "required": ["name"]
                                     }
                                 },
                                 "phase": {
@@ -401,7 +429,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.7"]
+                    "enum": ["1.2.0"]
                 },
                 "object_type": {
                     "description": "MPDS data type",
@@ -602,7 +630,7 @@
                 "version": {
                     "description": "MPDS API version, w.r.t. this data type",
                     "type": "string",
-                    "enum": ["1.0.7"]
+                    "enum": ["1.2.0"]
                 },
                 "object_repr": {
                     "description": "Legacy information",
