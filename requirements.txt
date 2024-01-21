@@ -4,4 +4,5 @@ ase
 mpds_client
 shapely[vectorized]
 scipy
+fonttools >= 4.43.0
 pillow >= 10.2.0
