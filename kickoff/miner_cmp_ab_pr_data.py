@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
-Extract and cache the MPDS data of different types (i.e. harvesting approaches):
+Extract and cache the MPDS data of different types (i.e. of different harvesting approaches):
 peer_reviewed experimental vs. in-house ab initio modeling
 for the further comparison
 """
