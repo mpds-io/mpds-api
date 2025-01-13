@@ -863,6 +863,8 @@ $(document).ready(function(){
     "props": "thermal expansion"
 }</div>
 
+            <p class="view">Please, note: we do not support querying by entry IDs in the API intentionally. The entries might be updated or changed with time, therefore do not rely on their IDs in the data mining in mass manner. Use <a href="https://mpds.io/entry/S377634">GUI</a> to extract particular entries by their IDs.</p>
+
             <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>). Some other properties might be added in future.</p>
 
             <p class="view">Each kind of entries (<i>i.e.</i> S- or P-entries) has its own specific properties in <strong>JSON</strong> (see below).</p>
