@@ -664,21 +664,21 @@ $(document).ready(function(){
 
             <h2 id="Downloading-data">&sect;1. Downloading data</h2>
 
-            <h3 id="Overview-1">&sect;1.1. MPDS data structure</h3>
+            <h3 id="Overview-1">&sect;1.1. MPDS data model</h3>
 
-            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (similar to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>.</p>
+            <p class="view">The standard unit of the MPDS data is an <strong>entry</strong>. All the MPDS entries are subdivided into three kinds: <strong>crystalline structures</strong>, <strong>physical properties</strong>, and <strong>phase diagrams</strong>. They are called S-, P- or C-entries, correspondingly. Entries have persistent identifiers (similar to DOIs), <i>e.g.</i> <span class="t">S377634</span>, <span class="t">P600028</span>, <span class="t">C100027</span>. These identifiers are used in the stable URLs, <i>e.g.</i> <span class="t">https://mpds.io/entry/C100027</span> and therefore citable, their persistence is guaranteed.</p>
 
-            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by the PAULING FILE team in the past 20 years to manually distinguish about 200&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has the permanent integer identifier called <span class="t">phase_id</span>.</p>
+            <p class="view">Another dimension of the MPDS data is the <strong>distinct phases</strong>. The three kinds of entries are interlinked via the distinct materials phases they belong. A tremendous work was done by the PAULING FILE team in the past 20 years to manually distinguish about 200&nbsp;000 inorganic materials phases, appearing in the literature. Each phase has a unique combination of (<i>a</i>) chemical formula, (<i>b</i>) space group, (<i>c</i>) Pearson symbol. Each phase has the permanent integer identifier called <span class="t">phase_id</span>, also used in the stable citable URLs, <i>e.g.</i> <span class="t">https://mpds.io/phase_id/7268</span>. An analogous concept is the Materials Project IDs, such as <span class="t">mp-2657</span>, matching the MPDS <span class="t">phase_id</span> <span class="t">7268</span>.</p>
 
             <p class="view">Consider the following example of the <strong>entries</strong> and <strong>distinct phases</strong>. There can be the following distinct phases for the titanium dioxide: rutile with the space group <i>136</i> (let us say, <span class="t">phase_id&nbsp;1</span>), anatase with the space group <i>141</i> (<span class="t">phase_id&nbsp;2</span>), and brookite with the space group <i>61</i> (<span class="t">phase_id&nbsp;3</span>). Then the S- and P-entries for the titanium dioxide must refer to either <span class="t">1</span>, or <span class="t">2</span>, or <span class="t">3</span>, and the C-entries must refer to <span class="t">1</span>, <span class="t">2</span>, and <span class="t">3</span> simultaneously.</p>
 
-            <p class="view">Our new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (10 physical properties) were predicted and thus can be of the machine-learning data type. For some of these properties we also provide our in-house <strong><i>ab&nbsp;initio</i> calculations</strong> data, based on the experimental (carefully relaxed) crystalline structures. See below how to enable all these data in the API outputs.</p>
+            <p class="view">Our relatively new development is the <strong>machine-learning</strong> data generated from the original <strong>peer-reviewed</strong> data for the less known phases. Such data are always clearly attributed and not supplied by default. So far only the P-entries (10 physical properties) were predicted and thus can be of the machine-learning data type. For some of these properties we also provide our in-house <strong><i>ab&nbsp;initio</i> calculations</strong> data, based on the experimental (carefully relaxed) crystalline structures. See below how to enable all these new data types in our API outputs.</p>
 
             <p>Additionally we support the Optimade unified access interface. The Optimade stands for the Open Databases Integration for Materials Design and defines a standardized way for a programmatic access to any online materials database. Please, refer to the <a href="https://www.optimade.org">Optimade website</a> for the details.</p>
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">The most common task is to get the MPDS data according to some criteria. We support 14 basic criteria for searching and downloading the entries:</p>
+            <p class="view">The most common task is to get the MPDS data according to some search criteria. We support 14 basic criteria for searching and downloading the entries:</p>
 
             <table class="view" id="T1">
                 <thead>
@@ -787,7 +787,7 @@ $(document).ready(function(){
 
             <h3 id="REST-endpoint">&sect;1.3. REST-alike download endpoint</h3>
 
-            <p class="view">To serve data we employ the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoint, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and request header. We provide the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">standard HTTP status codes</a> in response. The address of the data download endpoint is the following:</p>
+            <p class="view">To serve data we employ the single <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>-alike endpoint, following the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> protocol basics. We support input parameters in the query string and request header. We provide the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">standard HTTP status codes</a> in response. The address of the data download endpoint is the following:</p>
 
             <div class="blackbg">https://api.mpds.io/v0/download/facet</div>
 
@@ -863,7 +863,7 @@ $(document).ready(function(){
     "props": "thermal expansion"
 }</div>
 
-            <p class="view">Please, note: we do not support querying by entry IDs in the API intentionally. The entries might be updated or changed with time, therefore we advice not to rely on their IDs in the data mining in mass manner. Use <a href="https://mpds.io/entry/S377634">GUI</a> to extract particular entries by their IDs.</p>
+            <p class="view">Please, note: we do not support querying by entry IDs in the API intentionally. Although the entry IDs are stable, the entry contents might be updated, changed, or deactivated with time, therefore we advice not to rely on their IDs in the API data mining in the mass manner. Use <a href="https://mpds.io/entry/S377634">GUI</a> to get the particular entries by their IDs.</p>
 
             <p class="view">By default the response has <span class="t">json</span> format, containing the following properties: <span class="t">out</span> (list <i>i.e.</i> array of the MPDS entries), <span class="t">npages</span> (number of pages in the selected or default pagination), <span class="t">page</span> (current page number), <span class="t">count</span> (total number of hits), and <span class="t">error</span> (should be <span class="t">null</span>). Some other properties might be added in future.</p>
 
