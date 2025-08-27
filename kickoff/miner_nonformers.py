@@ -23,7 +23,7 @@ from mpds_client import MPDSDataRetrieval
 ELEMENT_TOL = 15
 
 
-def pd_svg_to_points(shape_str):
+def pl_svg_to_points(shape_str):
     """
     Only SVG commands L, M, and Z are used
     in the *svgpath* phase diagrams JSON field
@@ -50,20 +50,20 @@ def get_nonformers(api_client):
 
     true_nonformers, maybe_nonformers, formers = set(), set(), set()
 
-    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
+    for pl in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
 
         # Only full-composition diagrams
-        if pd['comp_range'] != [0, 100]:
+        if pl['comp_range'] != [0, 100]:
             continue
 
         # Only a relatively large temperature range
-        if pd['temp'][1] - pd['temp'][0] < 300:
+        if pl['temp'][1] - pl['temp'][0] < 300:
             continue
 
-        fingerprint = tuple(sorted(pd['chemical_elements']))
-        #print('|'*50 + pd['entry'])
+        fingerprint = tuple(sorted(pl['chemical_elements']))
+        #print('|'*50 + pl['entry'])
 
-        for area in pd['shapes']:
+        for area in pl['shapes']:
 
             # Discard paths without the semantic meaning
             if area['kind'] == 'drawing':
@@ -75,7 +75,7 @@ def get_nonformers(api_client):
 
             if area.get('nphases') == 1:
 
-                points = pd_svg_to_points(area['svgpath'])
+                points = pl_svg_to_points(area['svgpath'])
                 if len(points) == 2:
                     # This is a line compound
                     x0, _ = points[0]
@@ -103,7 +103,7 @@ def get_nonformers(api_client):
 
         else: maybe_nonformers.add(fingerprint)
 
-    # different pd's may give different impression, so we compare globally
+    # different pl's may give different impression, so we compare globally
     true_nonformers |= (maybe_nonformers - formers)
     return true_nonformers
 
