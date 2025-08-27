@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 
 import io
+import logging
 
 import requests
+from etransport_raw import \
+    analyze_raw  # this is given in the supplied file "etransport_raw.py"
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
-
-from etransport_raw import analyze_raw # this is given in the supplied file "etransport_raw.py"
+from py7zlib import Archive7z
 
 # the raw simulation data on the MPDS are in 7z format
 # so we need the latest dev version of pylzma
 # pip install git+https://github.com/fancycode/pylzma
 # then py7zlib is available
 
-from py7zlib import Archive7z
 
 
 mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.AB_INITIO)
@@ -23,6 +24,7 @@ for entry in mpds_api.get_data({'props': 'electrical conductivity'}, fields={}):
 
     p = requests.get(archive_url)
     if p.status_code != 200:
+        logging.critical('ARCHIVE %s IS UNAVAILABLE' % archive_url)
         continue
 
     print('Analyzing the raw data for %s' % entry['sample']['material']['entry'])
