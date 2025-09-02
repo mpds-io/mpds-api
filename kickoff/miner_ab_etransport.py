@@ -4,16 +4,16 @@ import io
 import logging
 
 import requests
-from etransport_raw import \
-    analyze_raw  # this is given in the supplied file "etransport_raw.py"
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
-from py7zlib import Archive7z
+
+from etransport_raw import analyze_raw # this is given in the supplied file "etransport_raw.py"
 
 # the raw simulation data on the MPDS are in 7z format
-# so we need the latest dev version of pylzma
+# so we need e.g. the latest dev version of the pylzma package
 # pip install git+https://github.com/fancycode/pylzma
 # then py7zlib is available
 
+from py7zlib import Archive7z
 
 
 mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.AB_INITIO)
