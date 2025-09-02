@@ -47,7 +47,7 @@ for row in dfrm.iter_rows(named=True):
     groupB = get_element_group(chemical_symbols.index(row['Elements'][1]))
     fitdata.append(Point(sorted([groupA, groupB]) + [round(row['AvgBandgap'], 2)], reference=row['Formula']))
 
-# clastering by kmeans
+# clustering by kmeans
 clusters = kmeans(fitdata, k_from_n(len(fitdata)))
 
 for cluster_n, cluster in enumerate(clusters, start=1):
