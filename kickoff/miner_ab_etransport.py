@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import io
+import logging
 
 import requests
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes

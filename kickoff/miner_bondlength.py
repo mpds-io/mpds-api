@@ -6,7 +6,7 @@ the uranium-oxygen chemical bond length distribution
 https://developer.mpds.io/#Probability-density
 """
 
-import pandas as pd
+import polars as pl
 
 from mpds_client import MPDSDataRetrieval, MPDSExport
 
@@ -37,9 +37,11 @@ for item in answer:
     if not crystal: continue
     lengths.extend( calculate_lengths(crystal, 'U', 'O') )
 
-dfrm = pd.DataFrame(sorted(lengths), columns=['length'])
-dfrm['occurrence'] = dfrm.groupby('length')['length'].transform('count')
-dfrm.drop_duplicates('length', inplace=True)
+dfrm = (
+    pl.DataFrame({"length": sorted(lengths)})
+    .with_columns(pl.col("length").count().over("length").alias("occurrence"))
+    .unique(subset=["length"])
+)
 
 export = MPDSExport.save_plot(dfrm, ['length', 'occurrence'], 'bar')
 print(export)

@@ -25,6 +25,7 @@ MARGIN_EDGES_TEMP = 5
 
 if __name__ == "__main__":
     try:
+        # for example - 'Fe', 'Li'
         ela, elb = list(set([sys.argv[1], sys.argv[2]]))
     except IndexError:
         raise RuntimeError('Chemical element symbols should be given.')
