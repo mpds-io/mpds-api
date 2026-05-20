@@ -9,18 +9,20 @@ https://developer.mpds.io/#Probability-density
 import polars as pl
 
 from mpds_client import MPDSDataRetrieval, MPDSExport
-
+from ase.neighborlist import NeighborList
 
 def calculate_lengths(ase_obj, elA, elB, limit=4):
     assert elA != elB
+    nlist = NeighborList([limit / 2] * len(ase_obj), self_interaction=False, bothways=True)
+    nlist.update(ase_obj)
     lengths = []
     for n, atom in enumerate(ase_obj):
         if atom.symbol == elA:
-            for m, neighbor in enumerate(ase_obj):
-                if neighbor.symbol == elB:
-                    dist = round(ase_obj.get_distance(n, m), 2) # NB occurrence <-> rounding
-                    if dist < limit:
-                        lengths.append(dist)
+            indices, _ = nlist.get_neighbors(n)
+            for m in indices:
+                if ase_obj[m].symbol == elB:
+                    dist = round(ase_obj.get_distance(n,m), 2)
+                    lengths.append(dist)
     return lengths
 
 client = MPDSDataRetrieval()
