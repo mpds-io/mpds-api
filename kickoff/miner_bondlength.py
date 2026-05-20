@@ -10,6 +10,7 @@ import polars as pl
 
 from mpds_client import MPDSDataRetrieval, MPDSExport
 from ase.neighborlist import neighbor_list
+from query_utils import normalize_query
 
 def calculate_lengths(ase_obj, elA, elB, limit=4):
     assert elA != elB
@@ -28,7 +29,7 @@ def calculate_lengths(ase_obj, elA, elB, limit=4):
 client = MPDSDataRetrieval()
 
 answer = client.get_data(
-    {"elements": "U-O", "props": "atomic structure"},
+    normalize_query({"elements": "U-O", "props": "atomic structure"}),
     fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'basis_noneq', 'els_noneq']}
 )
 

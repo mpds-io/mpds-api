@@ -13,6 +13,7 @@ import numpy as np
 import polars as pl
 from ase.data import covalent_radii, chemical_symbols
 from mpds_client import MPDSDataRetrieval
+from query_utils import normalize_query
 
 def get_APF(ase_obj):
     """
@@ -34,14 +35,14 @@ def get_Wiener(ase_obj):
 
 client = MPDSDataRetrieval()
 
-data = client.get_dataframe({"classes": "transitional, oxide", "props": "isothermal bulk modulus"})
+data = client.get_dataframe(normalize_query({"classes": "transitional, oxide", "props": "isothermal bulk modulus"}))
 data = data.filter(pl.col("Phase").is_not_null())
 data = data.filter(pl.col("Units") == "GPa")
 data = data.filter(pl.col("Value") > 0)
 
 phases = set(data.select("Phase").to_series())
 answer = client.get_data(
-    {"props": "atomic structure"},
+    normalize_query({"props": "atomic structure"}),
     phases=phases,
     fields={
         'S': ['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'basis_noneq', 'els_noneq']

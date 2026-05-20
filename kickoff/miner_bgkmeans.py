@@ -12,12 +12,13 @@ from mpds_client import MPDSDataRetrieval, MPDSExport
 
 from kmeans import Point, kmeans, k_from_n
 from element_groups import get_element_group
+from query_utils import normalize_query
 
 
 client = MPDSDataRetrieval()
 
 dfrm = client.get_dataframe(
-    {"classes": "binary", "props": "band gap"},
+    normalize_query({"classes": "binary", "props": "band gap"}),
     fields={'P': [
         'sample.material.chemical_formula',
         'sample.material.chemical_elements',
