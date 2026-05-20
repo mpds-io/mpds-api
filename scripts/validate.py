@@ -23,7 +23,7 @@ if not target.get("npages") or not target.get("out") or target.get("error"):
 
 try:
     validate(target["out"], schema)
-except ValidationError, e:
+except ValidationError as e:
     raise RuntimeError(
         "The item: \r\n\r\n %s \r\n\r\n has an issue: \r\n\r\n %s" % (
             e.instance, e.context
