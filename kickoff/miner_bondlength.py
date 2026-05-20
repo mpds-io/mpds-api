@@ -9,7 +9,7 @@ https://developer.mpds.io/#Probability-density
 import polars as pl
 
 from mpds_client import MPDSDataRetrieval, MPDSExport
-from ase.neighborlist import neighbor_list
+from ase.neighborlist import NeighborList
 
 def calculate_lengths(ase_obj, elA, elB, limit=4):
     assert elA != elB
