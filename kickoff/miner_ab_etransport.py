@@ -7,6 +7,7 @@ import requests
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
 
 from etransport_raw import analyze_raw # this is given in the supplied file "etransport_raw.py"
+from query_utils import normalize_query
 
 # the raw simulation data on the MPDS are in 7z format
 # so we need e.g. the latest dev version of the pylzma package
@@ -18,7 +19,7 @@ from py7zlib import Archive7z
 
 mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.AB_INITIO)
 
-for entry in mpds_api.get_data({'props': 'electrical conductivity'}, fields={}):
+for entry in mpds_api.get_data(normalize_query({'props': 'electrical conductivity'}), fields={}):
 
     archive_url = entry['sample']['measurement'][0]['raw_data'] # this is the raw data archive field in the MPDS JSON P-entries
 

@@ -18,6 +18,7 @@ plt.switch_backend('agg')
 from mpds_client import MPDSDataRetrieval
 
 from miner_nonformers import pd_svg_to_points
+from query_utils import normalize_query
 
 
 MARGIN_EDGES_COMP = 0.1
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     plt.annotate(elb, xy=(1.05, -0.1), xycoords='axes fraction')
     ymin, ymax = 500, 700
 
-    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary", "elements": "-".join(elements)}, fields={}): # fields={} means all fields
+    for pd in api_client.get_data(normalize_query({"props": "phase diagram", "classes": "binary", "elements": elements}), fields={}): # fields={} means all fields
         # Consider only full-composition diagrams
         if pd['comp_range'] != [0, 100]:
             continue

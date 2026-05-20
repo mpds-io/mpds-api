@@ -16,6 +16,7 @@ import re
 import time
 import json
 from mpds_client import MPDSDataRetrieval
+from query_utils import normalize_query
 
 
 # Within this composition tolerance (%), a phase near a pure element
@@ -50,7 +51,7 @@ def get_nonformers(api_client):
 
     true_nonformers, maybe_nonformers, formers = set(), set(), set()
 
-    for pl in api_client.get_data({"props": "phase diagram", "classes": "binary"}, fields={}):
+    for pl in api_client.get_data(normalize_query({"props": "phase diagram", "classes": "binary"}), fields={}):
 
         # Only full-composition diagrams
         if pl['comp_range'] != [0, 100]:

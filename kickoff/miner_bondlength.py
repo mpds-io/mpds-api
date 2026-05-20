@@ -28,7 +28,7 @@ def calculate_lengths(ase_obj, elA, elB, limit=4):
 client = MPDSDataRetrieval()
 
 answer = client.get_data(
-    {"elements": "U-O", "props": "atomic structure"},
+    normalize_query({"elements": "U-O", "props": "atomic structure"}),
     fields={'S':['phase_id', 'entry', 'chemical_formula', 'cell_abc', 'sg_n', 'basis_noneq', 'els_noneq']}
 )
 
