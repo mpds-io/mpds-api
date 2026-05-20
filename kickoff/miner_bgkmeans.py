@@ -28,7 +28,7 @@ dfrm = client.get_dataframe(
     ]},
     columns=['Formula', 'Elements', 'SG', 'Units', 'Bandgap']
 )
-dfrm = dfrm.filter((dfrm['Units'] == 'eV') & (dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20))
+dfrm = dfrm.filter((dfrm['Units'] == 'eV') & (dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20) & dfrm['Elements'].is_not_null())
 
 # group by 'Formula' and calculate mean Bandgap
 avgbgfrm = dfrm.group_by('Formula').agg(

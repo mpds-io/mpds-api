@@ -52,6 +52,8 @@ answer = client.get_data(
 descriptors = []
 
 for item in answer:
+    if not item:
+        continue
     crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal:
         continue

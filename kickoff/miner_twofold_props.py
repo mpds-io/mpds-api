@@ -22,6 +22,8 @@ for deck in mpds_api.get_data(normalize_query({'props': 'temperature for congrue
     'sample.material.chemical_formula',
     'sample.measurement[0].property.scalar'
 ]}):
+    if not deck:
+        continue
     if deck[2] > (1800 + 273):
         phase_for_formula[deck[0]] = deck[1]
         phase_for_val_a.setdefault(deck[0], []).append(deck[2]) # why list? each phase might have > 1 value
@@ -31,6 +33,8 @@ for deck in mpds_api.get_data(normalize_query({'props': 'linear thermal expansio
     # we don't need *chemical_formula* now, since we have phase_id's
     'sample.measurement[0].property.scalar'
 ]}):
+    if not deck:
+        continue
     phase_for_val_b.setdefault(deck[0], []).append(deck[1] * 1E5) # why list? each phase might have > 1 value
 
 # now we just re-group and show the results (but we can do much more!)
