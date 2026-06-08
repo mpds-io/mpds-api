@@ -10,14 +10,14 @@ Warning: ML data should be considered with a grain of salt
 
 import numpy as np
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
-from query_utils import normalize_query
+
 
 mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.MACHINE_LEARNING) # NB MPDSDataTypes.ALL
 
 phase_for_formula = {}
 phase_for_val_a, phase_for_val_b = {}, {}
 
-for deck in mpds_api.get_data(normalize_query({'props': 'temperature for congruent melting', 'classes': 'oxide'}), fields={'P': [
+for deck in mpds_api.get_data({'props': 'temperature for congruent melting', 'classes': 'oxide'}, fields={'P': [
     'sample.material.phase_id',
     'sample.material.chemical_formula',
     'sample.measurement[0].property.scalar'
@@ -28,7 +28,7 @@ for deck in mpds_api.get_data(normalize_query({'props': 'temperature for congrue
         phase_for_formula[deck[0]] = deck[1]
         phase_for_val_a.setdefault(deck[0], []).append(deck[2]) # why list? each phase might have > 1 value
 
-for deck in mpds_api.get_data(normalize_query({'props': 'linear thermal expansion coefficient'}), phases=phase_for_val_a.keys(), fields={'P': [
+for deck in mpds_api.get_data({'props': 'linear thermal expansion coefficient'}, phases=phase_for_val_a.keys(), fields={'P': [
     'sample.material.phase_id',
     # we don't need *chemical_formula* now, since we have phase_id's
     'sample.measurement[0].property.scalar'

@@ -1,12 +1,9 @@
 import os
-import sys
 import time
 
 import ujson as json
 from mpds_client import MPDSDataRetrieval, APIError, MPDSDataTypes
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'kickoff'))
-from query_utils import normalize_query
 
 
 class DataExportMPDS:
@@ -51,7 +48,7 @@ class DataExportMPDS:
         for year in range(1890, 2025):
             time.sleep(1.0)
             try:
-                for entry in self.client.get_data(normalize_query({"props": "atomic structure", "years": str(year)}),
+                for entry in self.client.get_data({"props": "atomic structure", "years": str(year)},
                 fields={}):
                     fp.write(json.dumps(entry, escape_forward_slashes=False) + "\n")
             except APIError as error:
@@ -71,7 +68,7 @@ class DataExportMPDS:
         for year in range(1890, 2025):
             time.sleep(1.0)
             try:
-                for entry in self.client.get_data(normalize_query({"props": "phase diagram", "years": str(year)}),
+                for entry in self.client.get_data({"props": "phase diagram", "years": str(year)},
                 fields={}):
                     fp.write(json.dumps(entry, escape_forward_slashes=False) + "\n")
             except APIError as error:
@@ -91,7 +88,7 @@ class DataExportMPDS:
         for year in range(1890, 2025):
             time.sleep(1.0)
             try:
-                for entry in self.client.get_data(normalize_query({"props": "physical properties", "years": str(year)}),
+                for entry in self.client.get_data({"props": "physical properties", "years": str(year)},
                 fields={}):
                     fp.write(json.dumps(entry, escape_forward_slashes=False) + "\n")
             except APIError as error:
@@ -105,7 +102,7 @@ class DataExportMPDS:
         self.client.dtype = MPDSDataTypes.MACHINE_LEARNING
         fp = open(os.path.join(DataExportMPDS.export_dir, "physical_properties_machine_learning.jsonl"), "w")
         for props in DataExportMPDS.ml_properties_supported:
-            for entry in self.client.get_data(normalize_query({"props": props}), fields={}):
+            for entry in self.client.get_data({"props": props}, fields={}):
                 fp.write(json.dumps(entry, escape_forward_slashes=False) + "\n")
         fp.close()
 
@@ -115,7 +112,7 @@ class DataExportMPDS:
         self.client.dtype = MPDSDataTypes.AB_INITIO
         fp = open(os.path.join(DataExportMPDS.export_dir, "physical_properties_ab_initio.jsonl"), "w")
         # TODO more data will require splitting
-        for entry in self.client.get_data(normalize_query({"props": "physical properties"}), fields={}):
+        for entry in self.client.get_data({"props": "physical properties"}, fields={}):
             fp.write(json.dumps(entry, escape_forward_slashes=False) + "\n")
         fp.close()
 

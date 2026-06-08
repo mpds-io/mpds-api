@@ -9,7 +9,7 @@ import pickle
 import math
 
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
-from query_utils import normalize_query
+
 
 
 result_cache = 'mpds_cmp_ab_pr.pkl'
@@ -251,7 +251,7 @@ def get_ab_pr_values(
     print('#' * 50, 'downloading', ab_prop_name)
 
     mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.AB_INITIO)
-    for deck in mpds_api.get_data(normalize_query({'props': ab_prop_name}), fields={'P': ab_prop_conds or [
+    for deck in mpds_api.get_data({'props': ab_prop_name}, fields={'P': ab_prop_conds or [
         'sample.material.chemical_formula',
         'sample.material.condition[0].scalar[0].value',
         'sample.material.phase_id',
@@ -274,7 +274,7 @@ def get_ab_pr_values(
     print('#' * 50, 'downloading', pr_prop_name)
 
     mpds_api = MPDSDataRetrieval(dtype=MPDSDataTypes.PEER_REVIEWED)
-    for deck in mpds_api.get_data(normalize_query({'props': pr_prop_name}), fields={'P': pr_prop_conds or [
+    for deck in mpds_api.get_data({'props': pr_prop_name}, fields={'P': pr_prop_conds or [
         'sample.material.chemical_formula',
         'sample.material.condition[0].scalar[0].value',
         'sample.material.phase_id',
