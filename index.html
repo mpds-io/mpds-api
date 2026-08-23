@@ -678,101 +678,107 @@ $(document).ready(function(){
 
             <h3 id="Categories">&sect;1.2. Categories of data</h3>
 
-            <p class="view">The most common task is to get the MPDS data according to some search criteria. We support 14 basic criteria for searching and downloading the entries:</p>
+            <p class="view">The most common task is to get the MPDS data according to some search criteria. We support about two dozen basic criteria for searching and downloading the entries:</p>
 
             <table class="view" id="T1">
                 <thead>
                     <tr>
-                    <th>Facet</th>
-                    <th>Machine-readable name</th>
-                    <th>Examples</th>
-                    <th>Case sensitivity</th>
+                        <th>Facet</th>
+                        <th>Machine-readable name</th>
+                        <th>Examples</th>
+                        <th>Case sensitivity</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Physical properties (see the <a href="/#hierarchy">MPDS physical properties hierarchy</a>,<br />numerical properties specifically)</td>
-                    <td><span class="t">props</span></td>
-                    <td><span class="t">conductivity</span></td>
-                    <td align="center">no</td>
+                        <td>Physical properties (see the <a href="/#hierarchy">MPDS physical properties hierarchy</a>,<br />numerical properties specifically)</td>
+                        <td><span class="t">props</span></td>
+                        <td><span class="t">conductivity</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Chemical elements</td>
-                    <td><span class="t">elements</span></td>
-                    <td><span class="t">Cs</span>, <span class="t">Fr-O</span></td>
-                    <td align="center">no</td>
+                        <td>Chemical elements</td>
+                        <td><span class="t">elements</span></td>
+                        <td><span class="t">Cs</span>, <span class="t">Fr-O</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://tutorial.mpds.io/#Classes">examples</a>)</td>
-                    <td><span class="t">classes</span></td>
-                    <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
-                    <td align="center">no</td>
+                        <td>Materials classes (various groups of terms: <i>i.e.</i> mineral names, periodic groups, physical classes, element count keywords <i>etc.</i>, see <a href="https://tutorial.mpds.io/#Classes">examples</a>)</td>
+                        <td><span class="t">classes</span></td>
+                        <td><span class="t">perovskite</span>, <span class="t">quaternary</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Crystal system</td>
-                    <td><span class="t">lattices</span></td>
-                    <td><span class="t">orthorhombic</span></td>
-                    <td align="center">no</td>
+                        <td>Crystal system</td>
+                        <td><span class="t">lattices</span></td>
+                        <td><span class="t">orthorhombic</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Chemical formula</td>
-                    <td><span class="t">formulae</span></td>
-                    <td><span class="t">SrTiO3</span>, <span class="t">O3Al2</span>, <span class="t">A2B</span></td>
-                    <td align="center">no</td>
+                        <td>Chemical formula</td>
+                        <td><span class="t">formulae</span></td>
+                        <td><span class="t">SrTiO3</span>, <span class="t">O3Al2</span>, <span class="t">A2B</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Space group (number or international short symbol)</td>
-                    <td><span class="t">sgs</span></td>
-                    <td><span class="t">221</span>, <span class="t">Pm-3m</span></td>
-                    <td align="center">no</td>
+                        <td>Space group (number or international short symbol)</td>
+                        <td><span class="t">sgs</span></td>
+                        <td><span class="t">221</span>, <span class="t">Pm-3m</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Prototype system (<a href="#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
-                    <td><span class="t">protos</span></td>
-                    <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
-                    <td align="center">yes</td>
+                        <td>Prototype system (<a href="#L3">"Strukturbericht"</a> or formula, Pearson symbol, space group number)</td>
+                        <td><span class="t">protos</span></td>
+                        <td><span class="t">D51</span>,<br /><span class="t">SiS2 oI12 72</span></td>
+                        <td align="center">yes</td>
                     </tr>
                     <tr>
-                    <td>Polyhedron atoms (center, ligands)</td>
-                    <td><span class="t">aeatoms</span></td>
-                    <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
-                    <td align="center">no</td>
+                        <td>Polyhedron atoms (center, ligands)</td>
+                        <td><span class="t">aeatoms</span></td>
+                        <td><span class="t">U</span>, <span class="t">X-Se</span>, <span class="t">UO6</span>, <span class="t">UX7</span><br />(<span class="t">X</span> = any atom)</td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Polyhedral type (see <a href="#L4">all supported types</a>)</td>
-                    <td><span class="t">aetypes</span></td>
-                    <td><span class="t">icosahedron 12-vertex</span></td>
-                    <td align="center">yes</td>
+                        <td>Polyhedral type (see <a href="#L4">all supported types</a>)</td>
+                        <td><span class="t">aetypes</span></td>
+                        <td><span class="t">icosahedron 12-vertex</span></td>
+                        <td align="center">yes</td>
                     </tr>
                     <tr>
-                    <td>Publication author</td>
-                    <td><span class="t">authors</span></td>
-                    <td><span class="t">Evarestov</span></td>
-                    <td align="center">no</td>
+                        <td>Wyckoff positions or sequence</td>
+                        <td><span class="t">wyckoff</span></td>
+                        <td><span class="t">4a, 4b</span>, <span class="t">dc2a</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>CODEN (code of publication journal, see <a href="https://cassi.cas.org">CODEN index</a>)</td>
-                    <td><span class="t">codens</span></td>
-                    <td><span class="t">PPCPFQ</span></td>
-                    <td align="center">no</td>
+                        <td>Publication author</td>
+                        <td><span class="t">authors</span></td>
+                        <td><span class="t">Evarestov</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Publication years</td>
-                    <td><span class="t">years</span></td>
-                    <td><span class="t">1960-1990</span></td>
-                    <td align="center">&mdash;</td>
+                        <td>CODEN (code of publication journal, see <a href="https://cassi.cas.org">CODEN index</a>)</td>
+                        <td><span class="t">codens</span></td>
+                        <td><span class="t">PPCPFQ</span></td>
+                        <td align="center">no</td>
                     </tr>
                     <tr>
-                    <td>Author location</td>
-                    <td><span class="t">geos</span></td>
-                    <td><span class="t">United Arab Emirates</span></td>
-                    <td align="center">yes</td>
+                        <td>Publication years</td>
+                        <td><span class="t">years</span></td>
+                        <td><span class="t">1960-1990</span></td>
+                        <td align="center">&mdash;</td>
                     </tr>
                     <tr>
-                    <td>Author organization</td>
-                    <td><span class="t">orgs</span></td>
-                    <td><span class="t">CSIRO</span></td>
-                    <td align="center">yes</td>
+                        <td>Author location</td>
+                        <td><span class="t">geos</span></td>
+                        <td><span class="t">United Arab Emirates</span></td>
+                        <td align="center">yes</td>
+                    </tr>
+                    <tr>
+                        <td>Author organization</td>
+                        <td><span class="t">orgs</span></td>
+                        <td><span class="t">CSIRO</span></td>
+                        <td align="center">yes</td>
                     </tr>
                 </tbody>
             </table>
