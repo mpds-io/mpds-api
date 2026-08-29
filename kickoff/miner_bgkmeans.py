@@ -14,6 +14,7 @@ from kmeans import Point, kmeans, k_from_n
 from element_groups import get_element_group
 
 
+
 client = MPDSDataRetrieval()
 
 dfrm = client.get_dataframe(
@@ -27,7 +28,7 @@ dfrm = client.get_dataframe(
     ]},
     columns=['Formula', 'Elements', 'SG', 'Units', 'Bandgap']
 )
-dfrm = dfrm.filter((dfrm['Units'] == 'eV') & (dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20))
+dfrm = dfrm.filter((dfrm['Units'] == 'eV') & (dfrm['Bandgap'] > 0) & (dfrm['Bandgap'] < 20) & dfrm['Elements'].is_not_null())
 
 # group by 'Formula' and calculate mean Bandgap
 avgbgfrm = dfrm.group_by('Formula').agg(

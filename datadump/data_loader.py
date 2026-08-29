@@ -1,8 +1,9 @@
-import os.path
+import os
 import time
 
 import ujson as json
 from mpds_client import MPDSDataRetrieval, APIError, MPDSDataTypes
+
 
 
 class DataExportMPDS:

@@ -11,6 +11,7 @@ import math
 from mpds_client import MPDSDataRetrieval, MPDSDataTypes
 
 
+
 result_cache = 'mpds_cmp_ab_pr.pkl'
 
 MILLIEV_TO_INVCM = 8.06554
@@ -256,6 +257,8 @@ def get_ab_pr_values(
         'sample.material.phase_id',
         'sample.measurement[0].property.scalar'
     ]}):
+        if not deck:
+            continue
         if ab_prop_massage:
             deck = ab_prop_massage(deck)
             if not deck:
@@ -281,6 +284,8 @@ def get_ab_pr_values(
         'sample.measurement[0].condition[0].name',
         'sample.measurement[0].condition[0].scalar'
     ]}):
+        if not deck:
+            continue
         if pr_prop_massage:
             deck = pr_prop_massage(deck)
             if not deck:

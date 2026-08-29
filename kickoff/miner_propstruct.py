@@ -14,6 +14,7 @@ import polars as pl
 from ase.data import covalent_radii, chemical_symbols
 from mpds_client import MPDSDataRetrieval
 
+
 def get_APF(ase_obj):
     """
     Example crystal structure descriptor:
@@ -51,6 +52,8 @@ answer = client.get_data(
 descriptors = []
 
 for item in answer:
+    if not item:
+        continue
     crystal = MPDSDataRetrieval.compile_crystal(item, 'ase')
     if not crystal:
         continue

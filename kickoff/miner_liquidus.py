@@ -17,7 +17,8 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 from mpds_client import MPDSDataRetrieval
 
-from miner_nonformers import pd_svg_to_points
+from miner_nonformers import pl_svg_to_points
+
 
 
 MARGIN_EDGES_COMP = 0.1
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     plt.annotate(elb, xy=(1.05, -0.1), xycoords='axes fraction')
     ymin, ymax = 500, 700
 
-    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary", "elements": "-".join(elements)}, fields={}): # fields={} means all fields
+    for pd in api_client.get_data({"props": "phase diagram", "classes": "binary", "elements": elements}, fields={}): # fields={} means all fields
         # Consider only full-composition diagrams
         if pd['comp_range'] != [0, 100]:
             continue
@@ -68,7 +69,7 @@ if __name__ == "__main__":
                 done_liquidus = True
                 liquidus_line = []
 
-                for point in pd_svg_to_points(area['svgpath']):
+                for point in pl_svg_to_points(area['svgpath']):
 
                     # NB the line out of polygon extraction algorithm must be improved;
                     # this is just a quick and dirty example based on

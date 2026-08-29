@@ -8,6 +8,7 @@ from numpy.linalg import det
 from mpds_client import MPDSDataRetrieval
 
 
+
 supported_arities = {1: 'unary', 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary'}
 mpds_api = MPDSDataRetrieval()
 
@@ -23,7 +24,7 @@ def get_cell_v_for_t(elements, t0=250, t1=350):
     """
     phases_volumes = {}
 
-    for item in mpds_api.get_data(dict(elements='-'.join(elements), classes=supported_arities[len(elements)]), fields={
+    for item in mpds_api.get_data(dict(elements=elements, classes=supported_arities[len(elements)]), fields={
     'P': [
         lambda: 'P',
         'sample.material.phase_id',
